@@ -1,0 +1,13 @@
+{
+  "source": "nitrofs/sound/108.mmf",
+  "source_sha256": "62596111108c43cfd25022c42f405365cf34949beaabc605a132afb10b13c5b6",
+  "source_size": 5282,
+  "source_fnv1a": 590600159,
+  "rate": 8000,
+  "samples": 431010,
+  "pcm_sha256": "16feb5d613c617e973887db2195a4473d01c7d158a17e022c1236a0911a22479",
+  "pcm_fnv1a": 1856597972,
+  "cache": "nitrofs/runner_audio/title108.zpc",
+  "cache_sha256": "bc97859b5d3b30c03e65cd627ad30c95f9529798822bee5d9e16b6ed6c03ffb0",
+  "synth_source_sha256": "993e4a024ca012d9770a05ee4a478333a10f6d0cda0cfef79e24be4159c0f2fe"
+}

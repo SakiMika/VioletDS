@@ -1,0 +1,91 @@
+name: Build Ragnarok Violet NDS
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ragnarok-violet-nds-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    container:
+      image: devkitpro/devkitarm:latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check toolchain
+        run: |
+          set -euo pipefail
+          export DEVKITPRO="${DEVKITPRO:-/opt/devkitpro}"
+          export DEVKITARM="${DEVKITARM:-$DEVKITPRO/devkitARM}"
+          export PATH="$DEVKITARM/bin:$DEVKITPRO/tools/bin:$PATH"
+
+          test -f "$DEVKITARM/ds_rules"
+          command -v make
+          command -v arm-none-eabi-g++
+          command -v ndstool
+          command -v python3
+          arm-none-eabi-g++ --version | head -n 1
+
+      - name: Static acceptance test
+        run: |
+          set -euo pipefail
+          python3 tests/ragnarok_firstpass_test.py
+
+      - name: Build ROM
+        run: |
+          set -euo pipefail
+          export DEVKITPRO="${DEVKITPRO:-/opt/devkitpro}"
+          export DEVKITARM="${DEVKITARM:-$DEVKITPRO/devkitARM}"
+          export PATH="$DEVKITARM/bin:$DEVKITPRO/tools/bin:$PATH"
+
+          make clean
+          set -o pipefail
+          make -j2 PYTHON=python3 2>&1 | tee build.log
+
+      - name: Verify and name ROM
+        run: |
+          set -euo pipefail
+          python3 - <<'PYCODE'
+          from pathlib import Path
+
+          rom = Path('Ragnarok_Violet_DSi.nds')
+          if not rom.is_file():
+              raise SystemExit('Ragnarok_Violet_DSi.nds was not produced')
+
+          data = rom.read_bytes()
+          if len(data) < 0x200:
+              raise SystemExit(f'ROM is unexpectedly small: {len(data)} bytes')
+          if data[12:16] != b'####':
+              raise SystemExit(f'Unexpected game code: {data[12:16]!r}')
+          if int.from_bytes(data[0x20:0x24], 'little') != 0x8000:
+              raise SystemExit('Unexpected ARM9 ROM offset')
+
+          out = Path('Ragnarok Violet.nds')
+          out.write_bytes(data)
+          print(f'Verified {out}: {len(data):,} bytes')
+          PYCODE
+
+      - name: Upload ROM and build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ragnarok-Violet-NDS-${{ github.run_number }}
+          path: |
+            Ragnarok Violet.nds
+            Ragnarok_Violet_DSi.nds
+            build.log
+          if-no-files-found: warn
+          retention-days: 30

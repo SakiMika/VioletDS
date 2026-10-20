@@ -1,0 +1,13 @@
+# devkitPro build output
+/build/
+/*.elf
+/*.nds
+/*.map
+
+# Local build logs
+/*.log
+/last_build*.log
+
+# Python cache
+__pycache__/
+*.py[cod]
