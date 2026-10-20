@@ -2,15 +2,18 @@
 #include <stdint.h>
 
 namespace ZenSav {
-// Three character slots (Save0.dat..Save2.dat) plus option.sav live in one
-// 128 KiB FAT container: ZLFT.sav. TEST2+ disables native cartridge EEPROM
-// probing for flashcart compatibility. EnableNativeProbe is now an API no-op.
+// Ragnarok Violet WIPI file persistence.
+//
+// The shipped NDS build uses the runner's 128 KiB cartridge EEPROM backend.
+// Stock melonDS requires a ROM-list-compatible header code to select that save
+// geometry, so the ROM header uses CDLG while RVDS remains the project/port ID.
+// The live game names are exactly save0, save1, save2, option and list.
 void InitFatFallback();
 void EnableNativeProbe();
 void Flush();
 
 bool IsPersistentName(const char *name);
-int RecordIdForName(const char *name); // Save0..2 => 0..2, option.sav => 3
+int RecordIdForName(const char *name);
 
 bool Exists(const char *name, uint32_t *out_len = nullptr);
 int Load(const char *name, uint8_t **out_data, uint32_t *out_len);

@@ -1,5 +1,7 @@
 # devkitPro build output
 /build/
+/build_melonds/
+/build_dldi/
 /*.elf
 /*.nds
 /*.map
@@ -11,3 +13,6 @@
 # Python cache
 __pycache__/
 *.py[cod]
+
+# Runtime FAT save sidecars
+*.sav

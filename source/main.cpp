@@ -100,11 +100,12 @@ int main(void) {
     wipi_init_video(&bottom);
     consoleSelect(&bottom);
     consoleClear();
-    printf("Ragnarok Violet WIPI -> DS/DSi first-pass\n");
+    printf("Ragnarok Violet WIPI -> NDS\n");
     printf("Guest: 240x320 RGB565\n");
     printf("TOP=y0..159 bottom-aligned, BOTTOM=y160..319 top-aligned\n");
-    printf("Keys: D-pad move, A=OK B=CLR X=0 Y=* R=#\n");
-    printf("L+A/B/X/Y=1/3/7/9, START=Call, SELECT=SUB toggle\n\n");
+    printf("Keys: D-pad move, A=EZ B=CLR X=0 Y=* R=#\n");
+    printf("L+A/B/X/Y=1/3/7/9, START=Call, SELECT=SUB toggle\n");
+    printf("Save: 128K cartridge EEPROM (.sav)\n\n");
     // Diagnostic build: keep the SUB console visible throughout native boot.
     // A guest crash inside entry/init/start cannot be recovered by the main
     // event loop, so hiding the log here makes the failure unobservable.

@@ -7,9 +7,12 @@ include $(DEVKITARM)/ds_rules
 
 GAME_TITLE      := Ragnarok Violet
 GAME_SUBTITLE1  := Gravity
-GAME_SUBTITLE2  := WIPI DSi
+GAME_SUBTITLE2  := WIPI NDS
 
-TARGET      := Ragnarok_Violet_DSi
+# Single DS-mode build. DSi can run normal .nds software, so there is no
+# separate DSi artifact/profile.
+TARGET      := Ragnarok_Violet
+ROM_GAMECODE := CDLG
 BUILD       := build
 SOURCES     := source
 INCLUDES    := source
@@ -22,14 +25,13 @@ PYTHON      ?= python
 
 ARCH        := -march=armv5te -mtune=arm946e-s -mthumb-interwork
 CALLBACK_CACHE ?= 0
-CFLAGS      := -g -Wall -Wextra -O2 -ffunction-sections -fdata-sections $(ARCH) $(INCLUDE) -DARM9 -DZEN_CONSERVATIVE_CALLBACK_CACHE=$(CALLBACK_CACHE)
+SAVE_DEFS   := -DRV_CART_SAVE_PROFILE=1
+CFLAGS      := -g -Wall -Wextra -O2 -ffunction-sections -fdata-sections $(ARCH) $(INCLUDE) -DARM9 -DZEN_CONSERVATIVE_CALLBACK_CACHE=$(CALLBACK_CACHE) $(SAVE_DEFS)
 CXXFLAGS    := $(CFLAGS) -fno-rtti -fno-exceptions -fno-strict-aliasing -std=gnu++17
 ASFLAGS     := -g $(ARCH)
 LDFLAGS     := -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 LIBS        := -lnds9
 
-# NitroFS needs the filesystem/FAT compatibility libraries. Keep the same
-# ordering used by the current devkitPro NDS template.
 ifneq ($(strip $(NITRO)),)
 LIBS        := -lfilesystem -lfat $(LIBS)
 endif
@@ -70,23 +72,21 @@ all: $(BUILD)
 $(BUILD):
 	@mkdir -p $@
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+	@rm -f "Ragnarok Violet.nds"
+	@mv -f Ragnarok_Violet.nds "Ragnarok Violet.nds"
 
 clean:
 	@echo clean ...
-	@rm -fr $(BUILD) $(TARGET).elf $(TARGET).nds $(TARGET).map
+	@rm -fr build Ragnarok_Violet.elf Ragnarok_Violet.nds Ragnarok_Violet.map "Ragnarok Violet.nds"
 
 else
-# TEST6 homebrew FAT profile. Keep ARM9 at 0x8000 and mark #### so melonDS
-# recognizes homebrew and applies DLDI. Do not revert to AAFA/EEPROM128.
 $(OUTPUT).nds: $(OUTPUT).elf $(NITRO_FILES) $(GAME_ICON)
-	@echo "creating Ragnarok Violet first-pass: ARM9@0x8000..."
-	@ndstool -c $@ -9 $< $(_ARM7_ELF) -b $(GAME_ICON) "$(GAME_TITLE)" -h 0x8000 -g "####" 01 "Ragnarok" 01 $(_ADDFILES)
+	@echo "creating Ragnarok Violet NDS: ARM9@0x8000 gamecode=$(ROM_GAMECODE)..."
+	@ndstool -c $@ -9 $< $(_ARM7_ELF) -b $(GAME_ICON) "$(GAME_TITLE)" -h 0x8000 -g "$(ROM_GAMECODE)" 01 "Ragnarok" 01 $(_ADDFILES)
 	@$(PYTHON) "$(dir $(OUTPUT))tools/patch_nds_header.py" "$@"
 
 $(OUTPUT).elf: $(OFILES)
 $(OFILES_SOURCES):
-
-# Banner icon: ndstool reads the indexed 32x32 BMP directly.
 
 -include $(DEPSDIR)/*.d
 endif

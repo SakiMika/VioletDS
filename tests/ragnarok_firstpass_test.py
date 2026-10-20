@@ -88,7 +88,8 @@ assert 'extern "C" void *fb_ptr(uint32_t fbp)' in shim
 assert 'zen_native_layout_install' not in main
 assert 'zen_native_minimap_install' not in main
 assert 'zen_native_boot_install' not in main
-assert 'Ragnarok_Violet_DSi' in mk
+assert 'TARGET      := Ragnarok_Violet' in mk
+assert 'GAME_SUBTITLE2  := WIPI NDS' in mk
 assert 'filter-out zen_native_layout.cpp zen_native_minimap.cpp zen_native_boot.cpp zen_predecoded_audio.cpp' in mk
 # Build regression from 2026-10-20: do not reference the excluded Zenonia
 # title108 PCM cache implementation from the live Ragnarok audio dispatcher.
@@ -180,8 +181,6 @@ assert 'rv_png_indices.bin' in packer
 assert 'convert_embedded_pngs' not in packer
 assert 'sig=%02x%02x%02x%02x' in shim
 assert '[PNG] create %lux%lu pal=%lu alpha=%lu' in shim
-print(f'OK: {len(game_files)} pristine game files; {png_count} PNG instances ({embedded_png} embedded); 1122 cached IDAT streams; mapping/display/ABI checks passed')
-
 # Timer callback tracing must surround the guest callback so unresolved imports
 # inside it are visible and a missing return is distinguishable from a healthy tick.
 enter=shim.index("g_trace_next_timer=true;")
@@ -195,3 +194,78 @@ assert '0x000027D8u' in main_cpp
 assert 'old==0xD003u' in main_cpp
 assert '*restart_gate=0x46C0u' in main_cpp
 assert '0x0000B110u' in main_cpp  # diagnostic EZ fallback retained
+
+# Ragnarok save persistence regression.  The public build is now a single
+# NDS-mode compatibility code CDLG selects 128 KiB EEPROM in stock melonDS; internal port ID remains RVDS.
+sav=(ROOT/'source/zen_sav_backend.cpp').read_text(errors='replace')
+savh=(ROOT/'source/zen_sav_backend.h').read_text(errors='replace')
+header_tool=(ROOT/'tools/patch_nds_header.py').read_text(errors='replace')
+workflow=(ROOT/'.github/workflows/build-nds.yml').read_text(errors='replace')
+assert 'RAGNAROK.sav' in sav  # fallback code may remain, but no second artifact is built
+assert 'RAGNAROK_SAVE_SLOTS = 3u' in sav
+assert 'PERSISTENT_NAMES    = 5u' in sav
+assert 'FAT_RECORD_CAPACITY = 16u' in sav  # physical COW records, not game slots
+assert 'is_save_number_name' in sav
+assert 'n<RAGNAROK_SAVE_SLOTS' in sav
+assert 'ascii_ieq(base,"option")' in sav
+assert 'ascii_ieq(base,"list")' in sav
+assert 'NATIVE_TOTAL_SIZE   = 128u*1024u' in sav
+assert 'NATIVE_ENTRY_COUNT  = PERSISTENT_NAMES' in sav
+assert 'if(ascii_ieq(base,"option") || ascii_ieq(base,"option.sav")) return 3;' in sav
+assert 'if(ascii_ieq(base,"list")) return 4;' in sav
+assert 'Losing list makes every slot appear New Game' in sav
+assert 'drop legacy save3..save15 entries' in sav
+assert '-DRV_CART_SAVE_PROFILE=1' in mk
+assert 'SAVE_PROFILE ?=' not in mk and '\nSAVE_PROFILE=' not in mk
+assert 'ROM_GAMECODE := CDLG' in mk
+assert 'TARGET      := Ragnarok_Violet' in mk
+assert "GAMECODE = b'CDLG'" in header_tool
+assert "choices=('melonds', 'dldi')" not in header_tool
+assert 'matrix:' not in workflow and 'SAVE_PROFILE=' not in workflow
+assert "Ragnarok Violet.nds" in workflow
+assert "Unexpected duplicate ROM: Ragnarok_Violet.nds" in workflow
+assert not (ROOT/'build_dldi.bat').exists()
+assert not (ROOT/'BUILD_DSI_WINDOWS.bat').exists()
+assert '*.sav' in (ROOT/'.gitignore').read_text(errors='replace')
+
+# Save-slot timestamp ABI. Ragnarok imports UIC GetTime (1fb:338), which must
+# write six 32-bit fields; an unresolved success stub leaves stack garbage.
+assert 'case 0x338: fn=(void*)uic_get_time' in shim
+assert 'extern "C" void uic_get_time(uint32_t component, int32_t *out)' in shim
+for expr in ['out[0]=t->tm_sec', 'out[1]=t->tm_min', 'out[2]=t->tm_hour',
+             'out[3]=t->tm_mday', 'out[4]=t->tm_mon', 'out[5]=t->tm_year']:
+    assert expr in shim
+assert 'sizeof(GuestTm32)==0x2c' in shim
+# binary.mod really imports WIPI table 0x1fb index 0x338.
+assert (0x1fb).to_bytes(4,'little') + (0x338).to_bytes(4,'little') in (nitro/'binary.mod').read_bytes()
+
+# LGT 0x190..0x1a0 must be filesystem ABI, not the old Zenonia DB-record ABI.
+assert 'uint32_t cursor;' in shim and 'uint32_t read_cursor;' not in shim and 'uint32_t write_cursor;' not in shim
+assert 'case 0x195: fn=(void*)fs_file_attribute' in shim
+assert 'case 0x197: fn=(void*)fs_rename' in shim
+assert 'case 0x198: fn=(void*)fs_mkdir' in shim
+assert 'case 0x199: fn=(void*)fs_rmdir' in shim
+assert 'case 0x19a: fn=(void*)fs_list' in shim
+assert 'case 0x19f: fn=(void*)fs_tell' in shim
+assert 'out[0]=0; out[1]=0; out[2]=len;' in shim
+assert 'Do NOT clamp at EOF' in shim
+assert '[FS] reopen' not in shim
+assert 'every MC_fsOpen creates a fresh handle' in shim
+assert 'A WIPI file descriptor is dead after close' in shim
+assert 'ragnarok_encoded_file_valid' in shim
+assert '[SLOT] %s len=%lu guest-check=%s' in shim
+
+# The supplied Ragnarok binary confirms the writable DB naming convention.
+binmod=(nitro/'binary.mod').read_bytes()
+assert b'save%d\x00' in binmod
+assert b'option\x00' in binmod
+
+# Single-ROM output policy
+assert 'mv -f Ragnarok_Violet.nds "Ragnarok Violet.nds"' in mk
+assert 'copy /y "Ragnarok_Violet.nds" "Ragnarok Violet.nds"' not in (ROOT / 'build.bat').read_text(encoding='utf-8', errors='ignore')
+assert 'out.write_bytes(data)' not in workflow
+
+print(f'OK: {len(game_files)} pristine game files; {png_count} PNG instances ({embedded_png} embedded); 1122 cached IDAT streams; mapping/display/time/save checks passed; single NDS output enforced')
+
+# No stale text-note files are shipped in the cleaned source package.
+assert not list(ROOT.rglob('*.txt')), 'stale .txt files remain in package'

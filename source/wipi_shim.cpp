@@ -564,7 +564,7 @@ static void runner_ui_draw(void) {
             runner_ui_set_row(15+i,logical<0?"":g_ui_log_lines[(start+logical)%UI_LOG_CAP]);
         }
         runner_ui_set_row(22,"tap SINGLE/COMBO to remap");
-        runner_ui_set_row(23,"settings are RAM-only for now");
+        runner_ui_set_row(23,"keymap RAM-only; game save FAT");
     } else {
         runner_ui_set_row(1,g_ui_tab==UI_TAB_SINGLE ?
             (g_ui_capture_single>=0?"press one physical key":"tap a target row to remap") :
@@ -638,8 +638,10 @@ struct DbSlot {
     uint8_t *data;
     uint32_t len;
     uint32_t capacity;
-    uint32_t read_cursor;
-    uint32_t write_cursor;
+    // LGT 0x190..0x1a0 is the WIPI filesystem API, not the database API.
+    // A file handle has one shared position for both reads and writes.
+    uint32_t cursor;
+    int mode;
     bool used;
     bool packaged;
     bool persistent;
@@ -652,11 +654,10 @@ static bool db_is_persistent_name(const char *name) {
 }
 
 static void storage_init_internal(void) {
-    // Do not touch Slot-1 EEPROM during the very early NitroFS/bootstrap phase.
-    // Only prepare the optional FAT fallback here. The native .sav probe is
-    // explicitly enabled immediately before the Clet start callback.
+    // Select the active persistence backend once: 128 KiB cart EEPROM for the
+    // melonDS profile, or DLDI/FAT for the hardware profile.
     ZenSav::InitFatFallback();
-    printf("[SAV] early backend=%s\n",ZenSav::BackendName());
+    printf("[SAV] backend=%s; Ragnarok slots=3 + option + list\n",ZenSav::BackendName());
 }
 
 static int db_persistent_file_size(const char *name,uint32_t *out_len) {
@@ -666,6 +667,21 @@ static int db_persistent_file_size(const char *name,uint32_t *out_len) {
     if(!ZenSav::Exists(name,&len)) return -12;
     if(out_len) *out_len=len;
     return 0;
+}
+
+static bool ragnarok_encoded_file_valid(const char *name,const uint8_t *data,uint32_t len) {
+    if(!name || !data || len<4) return false;
+    const char *base=name;
+    for(const char *p=name; *p; ++p) if(*p=='/' || *p=='\\') base=p+1;
+    const bool save=(strncmp(base,"save",4)==0 && base[4]>='0' && base[4]<='2' &&
+                     (base[5]==0 || strcmp(base+5,".dat")==0 || strcmp(base+5,".sav")==0));
+    const bool meta=!strcmp(base,"option") || !strcmp(base,"option.sav") || !strcmp(base,"list");
+    if(!save && !meta) return false;
+    const uint32_t encoded_len=(uint32_t)data[0] | ((uint32_t)data[2]<<8);
+    if(encoded_len!=len) return false;
+    uint8_t check=0;
+    for(uint32_t i=4;i<len;i++) check^=(uint8_t)(data[i]^data[i%3u]^(uint8_t)i);
+    return check==data[3];
 }
 
 static int db_load_persistent(DbSlot &d,const char *name) {
@@ -681,9 +697,11 @@ static int db_load_persistent(DbSlot &d,const char *name) {
     d.packaged=false;
     d.persistent=true;
     d.dirty=false;
-    d.read_cursor=0;
-    d.write_cursor=0;
+    d.cursor=0;
     printf("[SAV] DB load %s (%lu bytes)\n",d.name,(unsigned long)len);
+    if(!strncmp(d.name,"save",4) || !strcmp(d.name,"option") || !strcmp(d.name,"list"))
+        printf("[SLOT] %s len=%lu guest-check=%s\n",d.name,(unsigned long)len,
+               ragnarok_encoded_file_valid(d.name,d.data,d.len)?"OK":"BAD");
     return 0;
 }
 
@@ -1070,6 +1088,29 @@ extern "C" int knl_sprintk(char *dst,const char *fmt,uint32_t a0,uint32_t a1,uin
     return sprintf(dst,fmt,a0,a1,a2,a3,a4,a5);
 }
 extern "C" uint32_t knl_exit(int code) { printf("[WIPI] Exit(%d)\n",code); return 0; }
+
+
+// LGT/WIPI 0x338: MC_uicGetTime(component, out[6]).  Ragnarok uses this
+// directly when it builds the save-slot timestamp.  The six guest words are
+// second, minute, hour, day, month-1, year-1900.  Leaving this import as the
+// generic success stub leaves the caller's stack untouched, which is why the
+// slot menu previously printed large integers instead of a date.
+extern "C" void uic_get_time(uint32_t component, int32_t *out) {
+    (void)component;
+    if(!out) return;
+    time_t now=time(nullptr);
+    struct tm *t=localtime(&now);
+    if(!t) {
+        memset(out,0,6*sizeof(*out));
+        return;
+    }
+    out[0]=t->tm_sec;
+    out[1]=t->tm_min;
+    out[2]=t->tm_hour;
+    out[3]=t->tm_mday;
+    out[4]=t->tm_mon;
+    out[5]=t->tm_year;
+}
 
 extern "C" void knl_def_timer(void *timer, void (*callback)(void*,void*)) {
     if(g_timer_trace_budget) {
@@ -1726,184 +1767,164 @@ static int db_load_packaged(DbSlot &d,const char *name) {
     return 0;
 }
 
+// ---------------------------------------------------------------------------
+// LGT/WIPI filesystem API (service ids 0x190..0x1a0).
+//
+// Older Zenonia runner revisions mislabeled these calls as a database API.
+// Ragnarok uses them as ordinary files, including save0/option.  Preserve the
+// packaged-resource overlay, but match the LGT file ABI: one shared file
+// position, seek may move past EOF, file attributes are {0,0,size}, and the
+// method ids below retain their filesystem meanings.
+// ---------------------------------------------------------------------------
+constexpr int FS_OPEN_READ_ONLY      = 1;
+constexpr int FS_OPEN_WRITE_ONLY     = 2;
+constexpr int FS_OPEN_WRITE_TRUNCATE = 4;
+
+static bool fs_can_read(const DbSlot &d) {
+    return d.mode!=FS_OPEN_WRITE_ONLY && d.mode!=FS_OPEN_WRITE_TRUNCATE;
+}
+static bool fs_can_write(const DbSlot &d) {
+    return d.mode!=FS_OPEN_READ_ONLY && !d.packaged;
+}
+
 extern "C" int db_open(const char *name,int mode,int type) {
     (void)type; g_trace.db_opens++; if(!name) return -9;
     audio_note_asset(name);
-    // Each packaged database open must get an independent stream cursor.
-    // Save DBs stay resident so repeated open/close cycles preserve the exact
-    // WIPI stream state and can be flushed to FAT.
-    for(int i=0;i<DB_SLOTS;i++) if(g_db[i].used && !g_db[i].packaged && !strncmp(g_db[i].name,name,sizeof(g_db[i].name))) {
-        DbSlot &d=g_db[i];
-        if(mode==4) {
-            d.len=0; d.read_cursor=0; d.write_cursor=0; d.packaged=false;
-            d.persistent=db_is_persistent_name(name); d.dirty=d.persistent;
-            // v033: defer physical .sav writes until DB close. Zenonia writes
-            // stream data in multiple chunks; committing each chunk to EEPROM
-            // causes excessive page-program cycles and long save stalls.
-        } else {
-            d.read_cursor=0; d.write_cursor=0;
-        }
-        printf("[DB] reopen-save %s len=%lu -> %d\n",d.name,(unsigned long)d.len,i+1);
-        return i+1;
-    }
+
+    // Match WIPI filesystem semantics: every MC_fsOpen creates a fresh handle.
+    // In particular, slot-menu probes must reload save0/save1/save2 from EEPROM
+    // rather than reusing stale in-RAM state from an earlier open/close cycle.
+
     for(int i=0;i<DB_SLOTS;i++) if(!g_db[i].used) {
-        DbSlot &d=g_db[i]; memset(&d,0,sizeof(d)); d.used=true;
+        DbSlot &d=g_db[i]; memset(&d,0,sizeof(d)); d.used=true; d.mode=mode;
         strncpy(d.name,name,sizeof(d.name)-1);
-        // Mode 4 is create/truncate in WIPI. Ordinary opens first resolve
-        // immutable NitroFS assets, then Zenonia's writable save files.
-        int load=(mode==4)?-12:db_load_packaged(d,name);
+
+        // Read-only/open-existing calls may resolve immutable packaged files.
+        int load=(mode==FS_OPEN_WRITE_TRUNCATE)?-12:db_load_packaged(d,name);
         if(load==0) {
-            printf("[DB] packaged %s len=%lu -> %d\n",d.name,(unsigned long)d.len,i+1);
+            d.mode=mode; d.cursor=0;
+            printf("[FS] packaged %s len=%lu -> %d\n",d.name,(unsigned long)d.len,i+1);
             return i+1;
         }
-        if(mode!=4) {
+
+        if(mode!=FS_OPEN_WRITE_TRUNCATE) {
             load=db_load_persistent(d,name);
-            if(load==0) return i+1;
+            if(load==0) { d.mode=mode; d.cursor=0; return i+1; }
         }
-        // WIPI mode 1 is open-existing. Missing save DB must report NOENT so
-        // the game takes its fresh-save/create path instead of trying to load
-        // an empty phantom database.
-        if(mode==1) {
+
+        // WIPI mode 1 is open-existing. Missing file returns M_E_NOENT.
+        if(mode==FS_OPEN_READ_ONLY) {
             memset(&d,0,sizeof(d));
             return -12;
         }
+
+        // Other writable modes create an empty file if it does not exist.
         d.persistent=db_is_persistent_name(name);
-        d.dirty=(mode==4 && d.persistent);
-        printf("[DB] %s %s mode=%d -> %d\n",d.persistent?"save":"ram",d.name,mode,i+1);
+        d.dirty=d.persistent;
+        d.cursor=0;
+        printf("[FS] %s %s mode=%d -> %d\n",d.persistent?"save":"ram",d.name,mode,i+1);
         return i+1;
     }
     g_trace.db_open_fail++;
-    printf("[DB!] no free handle for %s (slots=%d)\n",name,DB_SLOTS);
+    printf("[FS!] no free handle for %s (slots=%d)\n",name,DB_SLOTS);
     return -3;
 }
+
 extern "C" int db_read(int id,void *buf,uint32_t len) {
-    if(id<1||id>DB_SLOTS||!g_db[id-1].used||(!buf&&len)) return -25;
+    if(id<1||id>DB_SLOTS||!g_db[id-1].used||(!buf&&len)) return -2;
     g_trace.db_reads++;
     DbSlot &d=g_db[id-1];
-    uint32_t before=d.read_cursor;
-    if(d.read_cursor>=d.len) {
-        if(g_db_trace_budget) { printf("[DBR] h=%d %s pos=%lu req=%lu -> EOF\n",id,d.name,(unsigned long)before,(unsigned long)len); g_db_trace_budget--; }
+    if(!fs_can_read(d)) return -24; // M_E_ACCESS
+    if(len==0) return 0;
+    const uint32_t before=d.cursor;
+    if(d.cursor>=d.len) {
+        if(g_db_trace_budget) { printf("[FSR] h=%d %s pos=%lu req=%lu -> EOF\n",id,d.name,(unsigned long)before,(unsigned long)len); g_db_trace_budget--; }
         return -23;
     }
-    uint32_t n=d.len-d.read_cursor; if(n>len)n=len;
-    if(n) memcpy(buf,d.data+d.read_cursor,n);
-    d.read_cursor+=n; g_trace.db_read_bytes+=n;
-    if(g_db_trace_budget) { printf("[DBR] h=%d %s %lu+%lu -> %lu\n",id,d.name,(unsigned long)before,(unsigned long)n,(unsigned long)d.read_cursor); g_db_trace_budget--; }
+    uint32_t n=d.len-d.cursor; if(n>len)n=len;
+    if(n) memcpy(buf,d.data+d.cursor,n);
+    d.cursor+=n; g_trace.db_read_bytes+=n;
+    if(g_db_trace_budget) { printf("[FSR] h=%d %s %lu+%lu -> %lu\n",id,d.name,(unsigned long)before,(unsigned long)n,(unsigned long)d.cursor); g_db_trace_budget--; }
     return (int)n;
 }
+
 extern "C" int db_write(int id,const void *buf,uint32_t len) {
-    if(id<1||id>DB_SLOTS||!g_db[id-1].used||(!buf&&len)) return -25;
-    DbSlot &d=g_db[id-1]; uint32_t end=d.write_cursor+len;
+    if(id<1||id>DB_SLOTS||!g_db[id-1].used||(!buf&&len)) return -2;
+    DbSlot &d=g_db[id-1];
+    if(!fs_can_write(d)) return -24; // M_E_ACCESS
+    if(len==0) return 0;
+    if(d.cursor>0x7fffffffu-len) return -1;
+    const uint32_t end=d.cursor+len;
     if(end>d.capacity) {
-        uint32_t cap=d.capacity?d.capacity:64; while(cap<end) cap*=2;
+        uint32_t cap=d.capacity?d.capacity:64;
+        while(cap<end) {
+            if(cap>0x40000000u) { cap=end; break; }
+            cap*=2;
+        }
         uint8_t *p=(uint8_t*)realloc(d.data,cap); if(!p)return -3;
         if(cap>d.capacity) memset(p+d.capacity,0,cap-d.capacity);
         d.data=p; d.capacity=cap;
     }
-    if(len) memcpy(d.data+d.write_cursor,buf,len);
-    d.write_cursor=end; if(end>d.len)d.len=end; d.packaged=false;
+    // Seeking beyond EOF creates a zero-filled hole, like WIE's filesystem.
+    if(d.cursor>d.len) memset(d.data+d.len,0,d.cursor-d.len);
+    memcpy(d.data+d.cursor,buf,len);
+    d.cursor=end; if(end>d.len)d.len=end; d.packaged=false;
     if(d.persistent) d.dirty=true;
     return (int)len;
 }
+
 extern "C" int db_close(int id) {
-    if(id<1||id>DB_SLOTS||!g_db[id-1].used) return -25;
+    if(id<1||id>DB_SLOTS||!g_db[id-1].used) return -2;
     DbSlot &d=g_db[id-1];
-    // Packaged assets are immutable and can be materialized again on reopen;
-    // release the handle so the next open receives an independent cursor.
-    if(d.packaged) {
-        free(d.data);
-        memset(&d,0,sizeof(d));
-    } else {
-        if(d.persistent && d.dirty) {
-            const int rc=db_persist(d);
-            if(rc!=0) printf("[SAV!] close commit %s rc=%d\n",d.name,rc);
-        }
-        // Save backing remains resident across close so WIPI reopen semantics
-        // remain unchanged while the bytes are durable in the single .sav.
-        d.read_cursor=0; d.write_cursor=0;
+    int rc=0;
+    if(d.persistent && d.dirty) {
+        rc=db_persist(d);
+        if(rc!=0) printf("[SAV!] close commit %s rc=%d\n",d.name,rc);
     }
-    return 0;
+    // A WIPI file descriptor is dead after close. Never leave a named cache
+    // entry in g_db: a later open must observe the current persistent bytes.
+    free(d.data);
+    memset(&d,0,sizeof(d));
+    return rc==0?0:rc;
 }
+
 extern "C" int db_seek(int id,int offset,int origin) {
-    if(id<1||id>DB_SLOTS||!g_db[id-1].used) return -25;
+    if(id<1||id>DB_SLOTS||!g_db[id-1].used) return -2;
     DbSlot &d=g_db[id-1];
-    int64_t base=(origin==0)?0:(origin==1?(int64_t)d.read_cursor:(origin==2?(int64_t)d.len:-1));
+    int64_t base=(origin==0)?0:(origin==1?(int64_t)d.cursor:(origin==2?(int64_t)d.len:-1));
     if(base<0) return -1;
-    int64_t pos=base+offset;
-    if(pos<0) pos=0;
-    if(pos>(int64_t)d.len) pos=d.len;
-    d.read_cursor=d.write_cursor=(uint32_t)pos;
-    if(g_db_trace_budget) { printf("[DBS] h=%d %s off=%d org=%d -> %ld\n",id,d.name,offset,origin,(long)pos); g_db_trace_budget--; }
+    const int64_t pos=base+(int64_t)offset;
+    if(pos<0 || pos>0x7fffffffull) return -1;
+    // Do NOT clamp at EOF. WIPI allows a later write to extend the file.
+    d.cursor=(uint32_t)pos;
+    if(g_db_trace_budget) { printf("[FSS] h=%d %s off=%d org=%d -> %ld\n",id,d.name,offset,origin,(long)pos); g_db_trace_budget--; }
     return (int)pos;
 }
+
 static int db_find_name(const char *name) {
     if(!name) return -1;
-    for(int i=0;i<DB_SLOTS;i++) {
-        if(g_db[i].used && !strncmp(g_db[i].name,name,sizeof(g_db[i].name))) return i;
-    }
+    for(int i=0;i<DB_SLOTS;i++) if(g_db[i].used && !strncmp(g_db[i].name,name,sizeof(g_db[i].name))) return i;
     return -1;
 }
 
-// LGT/WIPI database metadata helpers. These were still falling through to the
-// generic zero-return stub in v011. Inotia uses them during first-run save
-// setup; returning success without filling metadata makes the title conclude
-// that storage/save state is invalid and display the "not enough storage"
-// dialog.
-extern "C" int db_list_record_info(const char *name, uint32_t *out, uint32_t capacity) {
-    if(!name) return -9;
-    int idx=db_find_name(name);
-    EmbeddedAssetView a{};
-    bool packaged=embedded_asset_find(name,&a);
-    uint32_t persisted_len=0;
-    bool persisted=(db_persistent_file_size(name,&persisted_len)==0);
-    if(idx<0 && !packaged && !persisted) {
-        return -12;
+// MC_fsFileAttribute(name, out[3], access_mode): out = {flags0, flags1, size}.
+extern "C" int fs_file_attribute(const char *name,uint32_t *out,int access_mode) {
+    (void)access_mode;
+    if(!name || !out) return -9;
+    uint32_t len=0;
+    const int idx=db_find_name(name);
+    if(idx>=0) len=g_db[idx].len;
+    else {
+        EmbeddedAssetView a{};
+        if(embedded_asset_find(name,&a)) len=a.size;
+        else if(db_persistent_file_size(name,&len)!=0) return -12;
     }
-    uint32_t len=(idx>=0)?g_db[idx].len:(packaged?a.size:persisted_len);
-    if(out && capacity>0) {
-        // One record: {record id, flags/reserved, byte length}.
-        out[0]=1;
-        out[1]=0;
-        out[2]=len;
-    }
+    out[0]=0; out[1]=0; out[2]=len;
     return 0;
 }
 
-extern "C" int db_list_record(int id, uint32_t *out, uint32_t buf_len) {
-    if(id<1||id>DB_SLOTS||!g_db[id-1].used) return -25;
-    if(out && buf_len>=4) out[0]=1;
-    return 1; // one stream-backed record
-}
-
-extern "C" int db_update_record(int id,int rec_id,const void *buf,uint32_t len) {
-    if(id<1||id>DB_SLOTS||!g_db[id-1].used) return -25;
-    if(rec_id!=1 || (!buf&&len)) return -22;
-    DbSlot &d=g_db[id-1];
-    if(len>d.capacity) {
-        uint32_t cap=d.capacity?d.capacity:64;
-        while(cap<len) cap*=2;
-        uint8_t *q=(uint8_t*)realloc(d.data,cap);
-        if(!q) return -3;
-        if(cap>d.capacity) memset(q+d.capacity,0,cap-d.capacity);
-        d.data=q; d.capacity=cap;
-    }
-    if(len) memcpy(d.data,buf,len);
-    d.len=len; d.read_cursor=0; d.write_cursor=len; d.packaged=false;
-    if(d.persistent) d.dirty=true;
-    return 0;
-}
-
-extern "C" int db_select_record(int id,int rec_id,void *buf,uint32_t len) {
-    if(id<1||id>DB_SLOTS||!g_db[id-1].used) return -25;
-    if(rec_id!=1) return -22;
-    DbSlot &d=g_db[id-1];
-    if(len<d.len) return -18;
-    if(d.len && !buf) return -9;
-    if(d.len) memcpy(buf,d.data,d.len);
-    return 0;
-}
-
-extern "C" int db_exists(const char *name,int) {
+extern "C" int db_exists(const char *name,int access_mode) {
+    (void)access_mode;
     if(!name) return -9;
     EmbeddedAssetView a{};
     bool exists=(db_find_name(name)>=0) || embedded_asset_find(name,&a);
@@ -1911,17 +1932,38 @@ extern "C" int db_exists(const char *name,int) {
     return exists?0:-12;
 }
 
-extern "C" int db_delete(const char *name,int) {
+extern "C" int db_delete(const char *name,int access_mode) {
+    (void)access_mode;
     if(!name)return -9;
     int idx=db_find_name(name);
-    if(idx>=0) {
-        free(g_db[idx].data); memset(&g_db[idx],0,sizeof(g_db[idx]));
-    }
+    if(idx>=0) { free(g_db[idx].data); memset(&g_db[idx],0,sizeof(g_db[idx])); }
     if(db_is_persistent_name(name)) {
         const int rc=ZenSav::Remove(name);
         printf("[SAV] delete %s rc=%d\n",name,rc);
+        return (rc==0 || rc==-12)?0:rc;
     }
+    // Packaged resources are read-only.
+    EmbeddedAssetView a{}; if(embedded_asset_find(name,&a)) return -24;
+    return idx>=0?0:-12;
+}
+
+extern "C" int fs_rename(const char *old_name,const char *new_name,int access_mode) {
+    (void)access_mode;
+    if(!old_name || !new_name) return -9;
+    if(!db_is_persistent_name(old_name) || !db_is_persistent_name(new_name)) return -1;
+    uint8_t *mem=nullptr; uint32_t len=0;
+    const int rc=ZenSav::Load(old_name,&mem,&len); if(rc!=0) return rc;
+    const int wr=ZenSav::Store(new_name,mem,len); free(mem); if(wr!=0) return wr;
+    ZenSav::Remove(old_name);
     return 0;
+}
+extern "C" int fs_mkdir(const char*,int) { return -1; }
+extern "C" int fs_rmdir(const char*,int) { return -1; }
+extern "C" int fs_list(const char*,void*,int,int) { return -1; }
+extern "C" int db_available_storage(void) { return 1024*1024; }
+extern "C" int fs_tell(int id) {
+    if(id<1||id>DB_SLOTS||!g_db[id-1].used) return -2;
+    return (int)g_db[id-1].cursor;
 }
 
 // Standard WIPI database slot 12 (LGT method 0x19c): MC_dbListDataBase.
@@ -1930,10 +1972,7 @@ extern "C" int db_delete(const char *name,int) {
 // database-list operation. Returning the generic stub value 0 makes Inotia 1
 // immediately show its "not enough storage" dialog. Keep a deterministic
 // 1 MiB quota for the RAM-backed diagnostic save layer.
-extern "C" int db_available_storage(void) {
-    constexpr int AVAILABLE_BYTES = 1024 * 1024;
-    return AVAILABLE_BYTES;
-}
+
 
 extern "C" int std_atoi(const char *s) { return s?atoi(s):0; }
 extern "C" char *std_strcpy(char *d,const char*s){return strcpy(d,s);}
@@ -1943,8 +1982,57 @@ extern "C" int std_strcmp(const char*a,const char*b){return strcmp(a,b);}
 extern "C" size_t std_strlen(const char*s){return strlen(s);}
 extern "C" void *std_memcpy(void*d,const void*s,size_t n){return memcpy(d,s,n);}
 extern "C" void *std_memset(void*d,int c,size_t n){return memset(d,c,n);}
-extern "C" time_t std_time(time_t *p){return time(p);}
-extern "C" struct tm *std_localtime(const time_t *p){return localtime(p);}
+// LGT guest libc uses a 32-bit time_t even when the host/newlib toolchain uses
+// a different time_t width/layout.  Do not expose devkitARM's native time_t or
+// struct tm directly to the guest: Ragnarok stores five tm fields in its slot
+// metadata and later formats them as "%d/%d/%d %d:%d".  A host ABI mismatch
+// turns those fields into large pointer/stack-looking integers.
+struct GuestTm32 {
+    uint32_t tm_sec;
+    uint32_t tm_min;
+    uint32_t tm_hour;
+    uint32_t tm_mday;
+    uint32_t tm_mon;
+    uint32_t tm_year;
+    uint32_t tm_wday;
+    uint32_t tm_yday;
+    uint32_t tm_isdst;
+    uint32_t tm_gmtoff;
+    uint32_t tm_zone;
+};
+static_assert(sizeof(GuestTm32)==0x2c,"LGT guest tm ABI must stay 44 bytes");
+static GuestTm32 g_guest_tm32{};
+
+extern "C" uint32_t std_time(uint32_t *out) {
+    const time_t host_now=time(nullptr);
+    const uint32_t epoch=(host_now<0)?0u:(uint32_t)(uint64_t)host_now;
+    if(out) *out=epoch;
+    return epoch;
+}
+
+extern "C" GuestTm32 *std_localtime(const uint32_t *guest_time) {
+    if(!guest_time) return nullptr;
+    // WIE's LGT reference runtime currently exposes localtime in KST (UTC+9).
+    // Reproduce that ABI deterministically instead of depending on emulator/PC
+    // timezone settings.
+    time_t adjusted=(time_t)(uint64_t)(*guest_time);
+    adjusted += (time_t)(9*60*60);
+    struct tm *t=gmtime(&adjusted);
+    if(!t) return nullptr;
+    g_guest_tm32.tm_sec=(uint32_t)t->tm_sec;
+    g_guest_tm32.tm_min=(uint32_t)t->tm_min;
+    g_guest_tm32.tm_hour=(uint32_t)t->tm_hour;
+    g_guest_tm32.tm_mday=(uint32_t)t->tm_mday;
+    g_guest_tm32.tm_mon=(uint32_t)t->tm_mon;
+    g_guest_tm32.tm_year=(uint32_t)t->tm_year;
+    g_guest_tm32.tm_wday=(uint32_t)t->tm_wday;
+    // WIE writes chrono ordinal here (1-based), not libc's 0-based tm_yday.
+    g_guest_tm32.tm_yday=(uint32_t)t->tm_yday + 1u;
+    g_guest_tm32.tm_isdst=0;
+    g_guest_tm32.tm_gmtoff=9u*60u*60u;
+    g_guest_tm32.tm_zone=0;
+    return &g_guest_tm32;
+}
 extern "C" int std_sprintf(char *dst,const char *fmt,uint32_t a0,uint32_t a1,uint32_t a2,uint32_t a3,uint32_t a4,uint32_t a5) {
     if(!dst||!fmt) return 0;
     return sprintf(dst,fmt,a0,a1,a2,a3,a4,a5);
@@ -3698,17 +3786,21 @@ void *wipi_get_import_function(uint32_t table, uint32_t index) {
             case 0x12e: fn=(void*)im_set_current_mode; break;
             case 0x12f: fn=(void*)im_get_current_mode; break;
             case 0x130: fn=(void*)im_handle_input; break;
+            case 0x338: fn=(void*)uic_get_time; break;
+            // LGT/WIPI filesystem table (matches wie-lgt svc_ids.rs).
             case 0x190: fn=(void*)db_open; break;
             case 0x191: fn=(void*)db_read; break;
             case 0x192: fn=(void*)db_write; break;
             case 0x193: fn=(void*)db_close; break;
             case 0x194: fn=(void*)db_seek; break;
-            case 0x195: fn=(void*)db_list_record_info; break;
+            case 0x195: fn=(void*)fs_file_attribute; break;
             case 0x196: fn=(void*)db_delete; break;
-            case 0x197: fn=(void*)db_list_record; break;
-            case 0x198: fn=(void*)db_update_record; break;
-            case 0x199: fn=(void*)db_select_record; break;
+            case 0x197: fn=(void*)fs_rename; break;
+            case 0x198: fn=(void*)fs_mkdir; break;
+            case 0x199: fn=(void*)fs_rmdir; break;
+            case 0x19a: fn=(void*)fs_list; break;
             case 0x19c: fn=(void*)db_available_storage; break;
+            case 0x19f: fn=(void*)fs_tell; break;
             case 0x1a0: fn=(void*)db_exists; break;
             // WIPI media compatibility. Zenonia 2 ships SMAF/MMF resources;
             // these calls feed the real buffered clip + DS PCM/SMAF synth path.
@@ -3780,9 +3872,7 @@ bool wipi_start_clet(void) {
     DC_FlushAll();
     printf("[CLET] invalidate I-cache\n");
     IC_InvalidateAll();
-    // Ragnarok first-pass deliberately avoids the Zenonia-specific native
-    // cartridge save probe. Database calls still work through the RAM/FAT shim.
-    printf("[SAV] native Zenonia probe disabled; backend=%s\n",ZenSav::BackendName());
+    printf("[SAV] Clet start backend=%s\n",ZenSav::BackendName());
     printf("[CLET>] calling cb0 now\n");
     // v005: call immediately; the previous VBlank wait was the actual hang.
     ZenBootProfile::reset();
