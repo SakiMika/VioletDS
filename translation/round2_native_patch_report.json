@@ -1,0 +1,1200 @@
+{
+  "original_sha256": "88d0342ca398c2a72b4a809036aecb4f42407b871d3858714b676a33591690ba",
+  "patched_sha256": "a303dbf0560819cbc1714407ab9813ff33cd61e9c5f3492baa6fe255878e9b7c",
+  "changed_native_entries": 146,
+  "changed_bytes": 2392,
+  "skipped": {
+    "58": "target 9 > old capacity 6 bytes",
+    "90": "target 7 > old capacity 6 bytes",
+    "425": "target 5 > old capacity 4 bytes",
+    "503": "target 7 > old capacity 6 bytes",
+    "1543": "target 5 > old capacity 4 bytes",
+    "1544": "target 7 > old capacity 6 bytes",
+    "1553": "target 5 > old capacity 4 bytes",
+    "1554": "target 12 > old capacity 11 bytes",
+    "1561": "target 5 > old capacity 4 bytes",
+    "1565": "target 3 > old capacity 2 bytes",
+    "1569": "target 6 > old capacity 4 bytes",
+    "1571": "target 3 > old capacity 2 bytes",
+    "1764": "target 5 > old capacity 4 bytes",
+    "1765": "target 7 > old capacity 6 bytes",
+    "1774": "target 5 > old capacity 4 bytes",
+    "1775": "target 12 > old capacity 11 bytes"
+  },
+  "records": [
+    {
+      "entry": 11,
+      "va": "0x3b1b8",
+      "original": "다크로드의 부활은 저지되었고 이마드의 음모 역시 분쇄되었다. 룬 미드가츠 왕국은 다시 평화를 되찾았다. 그리고 나는 프론테라 왕국의 기사가 되었다. 아버지의 명예도 회복되었고...카렌은 프론테라 성당 지하수로에 있는 도적길드로 다시 돌아갔다고 한다. 여전히 동생을 만나고 싶어 하겠지? 릴리는 지금쯤 아버지를 잃은 슬픔을 집에서 홀로 이겨내고 있을 것이다. 바이올렛을 잃은 룬 미드가츠 왕국은 앞으로 어떻게 될까? 이제...하나뿐인 이 바이올렛을 누구에게 주어야 할까?...",
+      "translation": "I stopped Dark Lord's resurrection and crushed Imad's plot. Peace returned to Rune Midgartz, and I became a knight of Prontera. My father's honor was restored. Karen went back to the Thieves Guild beneath Prontera Cathedral, still hoping to see her brother. Lily returned home to mourn her father. What will become of Rune Midgartz without Violet? And to whom should I give this last Violet...?",
+      "length": 394,
+      "capacity": 455
+    },
+    {
+      "entry": 12,
+      "va": "0x3b380",
+      "original": "기사였던 아버지를 보며 어려서부터 기사의 꿈을 키웠던 클라이드... 클라이드는 프론테라 최고의 기사가 되고 싶은 꿈을 가지고 있다. 오늘은 클라이드가 그토록 기다리던 프론테라 국왕의 친위대 바이올렛 기사단의 입학 시험날이다. 클라이드는 돌아가신 아버지 대신 홀로 클라이드를 키워주신 어머니의 격려를 받으면서 집을 나서게 되는데...",
+      "translation": "Clide grew up admiring his father, a knight, and dreamed of following in his footsteps. He hopes to become Prontera's finest knight. Today is the entrance exam for the Violet Knights, the King's royal guard. Encouraged by his mother, who raised him alone after his father's death, Clide leaves home...",
+      "length": 301,
+      "capacity": 322
+    },
+    {
+      "entry": 25,
+      "va": "0x3babc",
+      "original": "최다 콤보",
+      "translation": "Top Combo",
+      "length": 9,
+      "capacity": 9
+    },
+    {
+      "entry": 29,
+      "va": "0x3bafc",
+      "original": "퀘스트 진행률",
+      "translation": "Quest Status",
+      "length": 12,
+      "capacity": 13
+    },
+    {
+      "entry": 36,
+      "va": "0x3bbbc",
+      "original": "선행스킬:",
+      "translation": "ReqSkill:",
+      "length": 9,
+      "capacity": 9
+    },
+    {
+      "entry": 38,
+      "va": "0x3bbd0",
+      "original": "필요레벨:  %d",
+      "translation": "Req Lv:  %d",
+      "length": 11,
+      "capacity": 13
+    },
+    {
+      "entry": 39,
+      "va": "0x3bbe0",
+      "original": "예",
+      "translation": "OK",
+      "length": 2,
+      "capacity": 2
+    },
+    {
+      "entry": 62,
+      "va": "0x3bcf4",
+      "original": "꾸미기",
+      "translation": "Decor",
+      "length": 5,
+      "capacity": 6
+    },
+    {
+      "entry": 63,
+      "va": "0x3bd14",
+      "original": "사랑스러운 펫에게 아이템을 선물하시겠습니까?",
+      "translation": "Give a gift to your lovely pet?",
+      "length": 31,
+      "capacity": 44
+    },
+    {
+      "entry": 68,
+      "va": "0x3bd8c",
+      "original": "향상할까요?",
+      "translation": "Upgrade?",
+      "length": 8,
+      "capacity": 11
+    },
+    {
+      "entry": 70,
+      "va": "0x3bdac",
+      "original": "스킬 레벨업 완료",
+      "translation": "Skill Lv. Up!",
+      "length": 13,
+      "capacity": 16
+    },
+    {
+      "entry": 72,
+      "va": "0x3bdd0",
+      "original": "선행 스킬 필요!",
+      "translation": "Skill required!",
+      "length": 15,
+      "capacity": 15
+    },
+    {
+      "entry": 73,
+      "va": "0x3bde0",
+      "original": "레벨 부족!",
+      "translation": "Low level!",
+      "length": 10,
+      "capacity": 10
+    },
+    {
+      "entry": 75,
+      "va": "0x3bdfc",
+      "original": "스킬마스터!",
+      "translation": "Skill MAX!",
+      "length": 10,
+      "capacity": 11
+    },
+    {
+      "entry": 81,
+      "va": "0x3be5c",
+      "original": "펫만족도 +%d",
+      "translation": "Pet mood +%d",
+      "length": 12,
+      "capacity": 12
+    },
+    {
+      "entry": 84,
+      "va": "0x3be90",
+      "original": "인챈트 부족!",
+      "translation": "No enchants!",
+      "length": 12,
+      "capacity": 12
+    },
+    {
+      "entry": 86,
+      "va": "0x3beb4",
+      "original": "속성카드 장착불가",
+      "translation": "Invalid element!",
+      "length": 16,
+      "capacity": 17
+    },
+    {
+      "entry": 94,
+      "va": "0x3bf50",
+      "original": "재료가 부족합니다",
+      "translation": "Not enough mats!",
+      "length": 16,
+      "capacity": 17
+    },
+    {
+      "entry": 96,
+      "va": "0x3bf78",
+      "original": "제련",
+      "translation": "Ref.",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 100,
+      "va": "0x3bfac",
+      "original": "제련 실패!!",
+      "translation": "Forge fail!",
+      "length": 11,
+      "capacity": 11
+    },
+    {
+      "entry": 110,
+      "va": "0x3c04c",
+      "original": "아이템 생성성공",
+      "translation": "Item created!",
+      "length": 13,
+      "capacity": 15
+    },
+    {
+      "entry": 112,
+      "va": "0x3c06c",
+      "original": "인벤토리 부족!",
+      "translation": "Inventory full",
+      "length": 14,
+      "capacity": 14
+    },
+    {
+      "entry": 120,
+      "va": "0x3c0cc",
+      "original": "세트 완성도",
+      "translation": "Set Bonus",
+      "length": 9,
+      "capacity": 11
+    },
+    {
+      "entry": 125,
+      "va": "0x3c130",
+      "original": "펫슬롯 부족!",
+      "translation": "No pet slot!",
+      "length": 12,
+      "capacity": 12
+    },
+    {
+      "entry": 126,
+      "va": "0x3c140",
+      "original": "꽝!!",
+      "translation": "Miss",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 134,
+      "va": "0x3c1c4",
+      "original": "인벤토리 증가!",
+      "translation": "Inventory up!",
+      "length": 13,
+      "capacity": 14
+    },
+    {
+      "entry": 145,
+      "va": "0x3c2ac",
+      "original": "처리중.",
+      "translation": "Working",
+      "length": 7,
+      "capacity": 7
+    },
+    {
+      "entry": 146,
+      "va": "0x3c2b4",
+      "original": "처리중..",
+      "translation": "Working.",
+      "length": 8,
+      "capacity": 8
+    },
+    {
+      "entry": 147,
+      "va": "0x3c2c0",
+      "original": "처리중...",
+      "translation": "Working..",
+      "length": 9,
+      "capacity": 9
+    },
+    {
+      "entry": 148,
+      "va": "0x3c2cc",
+      "original": "접속중.",
+      "translation": "Online.",
+      "length": 7,
+      "capacity": 7
+    },
+    {
+      "entry": 149,
+      "va": "0x3c2d4",
+      "original": "접속중..",
+      "translation": "Online..",
+      "length": 8,
+      "capacity": 8
+    },
+    {
+      "entry": 150,
+      "va": "0x3c2e0",
+      "original": "접속중...",
+      "translation": "Online...",
+      "length": 9,
+      "capacity": 9
+    },
+    {
+      "entry": 155,
+      "va": "0x3c330",
+      "original": "이 게임은 게임이용시|별도의 비용이 발생하지|않는 단독형게임입니다.|단, 네트워크 접속시|통화료가 발생 되고,|부분 유료화 사용 시|별도의 정보이용료가|발생합니다.",
+      "translation": "This standalone game|has no extra charge|for normal play.|Network access may|incur carrier fees.|Optional paid services|may have separate|usage charges.",
+      "length": 152,
+      "capacity": 158
+    },
+    {
+      "entry": 230,
+      "va": "0x3d904",
+      "original": "무기장착필요",
+      "translation": "Equip weapon",
+      "length": 12,
+      "capacity": 12
+    },
+    {
+      "entry": 233,
+      "va": "0x3d92c",
+      "original": "SP 부족!",
+      "translation": "Low SP!",
+      "length": 7,
+      "capacity": 8
+    },
+    {
+      "entry": 234,
+      "va": "0x3d938",
+      "original": "단검 스킬!",
+      "translation": "Dagger Art",
+      "length": 10,
+      "capacity": 10
+    },
+    {
+      "entry": 235,
+      "va": "0x3d944",
+      "original": "한손검 스킬!",
+      "translation": "Sword Skill",
+      "length": 11,
+      "capacity": 12
+    },
+    {
+      "entry": 236,
+      "va": "0x3d954",
+      "original": "양손검 스킬!",
+      "translation": "2H Skill!",
+      "length": 9,
+      "capacity": 12
+    },
+    {
+      "entry": 237,
+      "va": "0x3d964",
+      "original": "방패 스킬!",
+      "translation": "Shield Art",
+      "length": 10,
+      "capacity": 10
+    },
+    {
+      "entry": 242,
+      "va": "0x3d9e4",
+      "original": "퀘스트 획득!",
+      "translation": "New Quest!",
+      "length": 10,
+      "capacity": 12
+    },
+    {
+      "entry": 243,
+      "va": "0x3d9f4",
+      "original": "퀘스트 완료!",
+      "translation": "Quest Done!",
+      "length": 11,
+      "capacity": 12
+    },
+    {
+      "entry": 244,
+      "va": "0x3da04",
+      "original": "제니획득!",
+      "translation": "Got Zeny!",
+      "length": 9,
+      "capacity": 9
+    },
+    {
+      "entry": 245,
+      "va": "0x3da10",
+      "original": "아이템획득!",
+      "translation": "Got Item!",
+      "length": 9,
+      "capacity": 11
+    },
+    {
+      "entry": 248,
+      "va": "0x3da3c",
+      "original": "스텟포인트 획득!",
+      "translation": "Stat Pt +1",
+      "length": 10,
+      "capacity": 16
+    },
+    {
+      "entry": 249,
+      "va": "0x3da50",
+      "original": "스킬포인트 획득!",
+      "translation": "Skill Pt +1",
+      "length": 11,
+      "capacity": 16
+    },
+    {
+      "entry": 323,
+      "va": "0x3e11c",
+      "original": "퀘스트완료",
+      "translation": "Quest Done",
+      "length": 10,
+      "capacity": 10
+    },
+    {
+      "entry": 426,
+      "va": "0x140084e",
+      "original": "한손검",
+      "translation": "1H Swd",
+      "length": 6,
+      "capacity": 6
+    },
+    {
+      "entry": 427,
+      "va": "0x1400857",
+      "original": "양손검",
+      "translation": "2H Swd",
+      "length": 6,
+      "capacity": 6
+    },
+    {
+      "entry": 428,
+      "va": "0x1400860",
+      "original": "한손둔기",
+      "translation": "Mace",
+      "length": 4,
+      "capacity": 8
+    },
+    {
+      "entry": 429,
+      "va": "0x1400869",
+      "original": "양손도끼",
+      "translation": "2H Axe",
+      "length": 6,
+      "capacity": 8
+    },
+    {
+      "entry": 430,
+      "va": "0x1400872",
+      "original": "방패",
+      "translation": "Shld",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 431,
+      "va": "0x140087b",
+      "original": "갑옷",
+      "translation": "Mail",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 432,
+      "va": "0x1400884",
+      "original": "로브",
+      "translation": "Robe",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 433,
+      "va": "0x140088d",
+      "original": "투구",
+      "translation": "Helm",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 434,
+      "va": "0x1400896",
+      "original": "신발",
+      "translation": "Boot",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 435,
+      "va": "0x140089f",
+      "original": "액세서리",
+      "translation": "Trinket",
+      "length": 7,
+      "capacity": 8
+    },
+    {
+      "entry": 436,
+      "va": "0x14008a8",
+      "original": "투구",
+      "translation": "Helm",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 437,
+      "va": "0x14008af",
+      "original": "목걸이",
+      "translation": "Neck.",
+      "length": 5,
+      "capacity": 6
+    },
+    {
+      "entry": 438,
+      "va": "0x14008b6",
+      "original": "반지",
+      "translation": "Ring",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 439,
+      "va": "0x14008bd",
+      "original": "무기",
+      "translation": "Arms",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 440,
+      "va": "0x14008c4",
+      "original": "갑옷",
+      "translation": "Mail",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 441,
+      "va": "0x14008cb",
+      "original": "장갑",
+      "translation": "Glov",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 442,
+      "va": "0x14008d2",
+      "original": "신발",
+      "translation": "Boot",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 443,
+      "va": "0x14008d9",
+      "original": "예",
+      "translation": "OK",
+      "length": 2,
+      "capacity": 2
+    },
+    {
+      "entry": 444,
+      "va": "0x14008e0",
+      "original": "아니오",
+      "translation": "No",
+      "length": 2,
+      "capacity": 6
+    },
+    {
+      "entry": 445,
+      "va": "0x1400913",
+      "original": "상세보기",
+      "translation": "Details",
+      "length": 7,
+      "capacity": 8
+    },
+    {
+      "entry": 446,
+      "va": "0x140091e",
+      "original": "장착하기",
+      "translation": "Equip",
+      "length": 5,
+      "capacity": 8
+    },
+    {
+      "entry": 447,
+      "va": "0x1400929",
+      "original": "장비해제",
+      "translation": "Unequip",
+      "length": 7,
+      "capacity": 8
+    },
+    {
+      "entry": 448,
+      "va": "0x1400934",
+      "original": "퀵슬롯등록",
+      "translation": "Quick Slot",
+      "length": 10,
+      "capacity": 10
+    },
+    {
+      "entry": 449,
+      "va": "0x140093f",
+      "original": "사용하기",
+      "translation": "Use Item",
+      "length": 8,
+      "capacity": 8
+    },
+    {
+      "entry": 450,
+      "va": "0x140094a",
+      "original": "버리기",
+      "translation": "Drop",
+      "length": 4,
+      "capacity": 6
+    },
+    {
+      "entry": 451,
+      "va": "0x1400955",
+      "original": "등록하기",
+      "translation": "Register",
+      "length": 8,
+      "capacity": 8
+    },
+    {
+      "entry": 453,
+      "va": "0x140096b",
+      "original": "단축키 7번키 설정",
+      "translation": "Assign Key 7",
+      "length": 12,
+      "capacity": 17
+    },
+    {
+      "entry": 454,
+      "va": "0x140097d",
+      "original": "단축키 9번키 설정",
+      "translation": "Assign Key 9",
+      "length": 12,
+      "capacity": 17
+    },
+    {
+      "entry": 455,
+      "va": "0x140098f",
+      "original": "단축키 *키  설정",
+      "translation": "Assign * key",
+      "length": 12,
+      "capacity": 16
+    },
+    {
+      "entry": 456,
+      "va": "0x14009a1",
+      "original": "단축키 #키  설정",
+      "translation": "Assign # key",
+      "length": 12,
+      "capacity": 16
+    },
+    {
+      "entry": 458,
+      "va": "0x14009be",
+      "original": "효과음",
+      "translation": "SFX",
+      "length": 3,
+      "capacity": 6
+    },
+    {
+      "entry": 459,
+      "va": "0x14009c9",
+      "original": "NPC말하기",
+      "translation": "NPC Chat",
+      "length": 8,
+      "capacity": 9
+    },
+    {
+      "entry": 460,
+      "va": "0x14009d4",
+      "original": "그래픽효과",
+      "translation": "FX",
+      "length": 2,
+      "capacity": 10
+    },
+    {
+      "entry": 461,
+      "va": "0x14009df",
+      "original": "말풍선",
+      "translation": "Speech",
+      "length": 6,
+      "capacity": 6
+    },
+    {
+      "entry": 462,
+      "va": "0x14009ea",
+      "original": "사운드",
+      "translation": "Sound",
+      "length": 5,
+      "capacity": 6
+    },
+    {
+      "entry": 463,
+      "va": "0x14009f3",
+      "original": "진동",
+      "translation": "Buzz",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 464,
+      "va": "0x14009fc",
+      "original": "속도",
+      "translation": "Pace",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 465,
+      "va": "0x1400a05",
+      "original": "고급옵션",
+      "translation": "Advanced",
+      "length": 8,
+      "capacity": 8
+    },
+    {
+      "entry": 466,
+      "va": "0x1400a0e",
+      "original": "저장하기",
+      "translation": "Save",
+      "length": 4,
+      "capacity": 8
+    },
+    {
+      "entry": 467,
+      "va": "0x1400a17",
+      "original": "럭셔리샵",
+      "translation": "Lux Shop",
+      "length": 8,
+      "capacity": 8
+    },
+    {
+      "entry": 468,
+      "va": "0x1400a20",
+      "original": "환경설정",
+      "translation": "Settings",
+      "length": 8,
+      "capacity": 8
+    },
+    {
+      "entry": 469,
+      "va": "0x1400a29",
+      "original": "도움말",
+      "translation": "Help",
+      "length": 4,
+      "capacity": 6
+    },
+    {
+      "entry": 470,
+      "va": "0x1400a32",
+      "original": "기록확인",
+      "translation": "Records",
+      "length": 7,
+      "capacity": 8
+    },
+    {
+      "entry": 471,
+      "va": "0x1400a3b",
+      "original": "메인메뉴",
+      "translation": "Menu",
+      "length": 4,
+      "capacity": 8
+    },
+    {
+      "entry": 472,
+      "va": "0x1400a5c",
+      "original": "제명",
+      "translation": "Name",
+      "length": 4,
+      "capacity": 4
+    },
+    {
+      "entry": 473,
+      "va": "0x1400a69",
+      "original": "이용등급",
+      "translation": "Age Rate",
+      "length": 8,
+      "capacity": 8
+    },
+    {
+      "entry": 474,
+      "va": "0x1400a76",
+      "original": "제작연월일",
+      "translation": "Release",
+      "length": 7,
+      "capacity": 10
+    },
+    {
+      "entry": 475,
+      "va": "0x1400a83",
+      "original": "상호",
+      "translation": "Co.",
+      "length": 3,
+      "capacity": 4
+    },
+    {
+      "entry": 476,
+      "va": "0x1400a90",
+      "original": "등급분류번호",
+      "translation": "Rating No.",
+      "length": 10,
+      "capacity": 12
+    },
+    {
+      "entry": 477,
+      "va": "0x1400a9d",
+      "original": "신고번호",
+      "translation": "Reg. No.",
+      "length": 8,
+      "capacity": 8
+    },
+    {
+      "entry": 494,
+      "va": "0x1401020",
+      "original": "네트워크에 올리기",
+      "translation": "Upload Online",
+      "length": 13,
+      "capacity": 17
+    },
+    {
+      "entry": 495,
+      "va": "0x1401032",
+      "original": "내폰에 내려받기",
+      "translation": "Download Local",
+      "length": 14,
+      "capacity": 15
+    },
+    {
+      "entry": 496,
+      "va": "0x1401090",
+      "original": "밥주기",
+      "translation": "Feed",
+      "length": 4,
+      "capacity": 6
+    },
+    {
+      "entry": 497,
+      "va": "0x1401099",
+      "original": "상태보기",
+      "translation": "Status",
+      "length": 6,
+      "capacity": 8
+    },
+    {
+      "entry": 498,
+      "va": "0x14010a2",
+      "original": "말하기",
+      "translation": "Talk",
+      "length": 4,
+      "capacity": 6
+    },
+    {
+      "entry": 499,
+      "va": "0x14010ab",
+      "original": "부르기",
+      "translation": "Call",
+      "length": 4,
+      "capacity": 6
+    },
+    {
+      "entry": 500,
+      "va": "0x14010b4",
+      "original": "버리기",
+      "translation": "Drop",
+      "length": 4,
+      "capacity": 6
+    },
+    {
+      "entry": 504,
+      "va": "0x1401117",
+      "original": "나이트",
+      "translation": "Knight",
+      "length": 6,
+      "capacity": 6
+    },
+    {
+      "entry": 505,
+      "va": "0x1401122",
+      "original": "로드나이트",
+      "translation": "Lord Knt",
+      "length": 8,
+      "capacity": 10
+    },
+    {
+      "entry": 506,
+      "va": "0x140112d",
+      "original": "크루세이더",
+      "translation": "Crusader",
+      "length": 8,
+      "capacity": 10
+    },
+    {
+      "entry": 507,
+      "va": "0x1401138",
+      "original": "팔라딘",
+      "translation": "Pal.",
+      "length": 4,
+      "capacity": 6
+    },
+    {
+      "entry": 508,
+      "va": "0x14015ba",
+      "original": "안녕 클라이드",
+      "translation": "Hello Clide",
+      "length": 11,
+      "capacity": 13
+    },
+    {
+      "entry": 509,
+      "va": "0x14015d8",
+      "original": "하이 클라이드",
+      "translation": "Hi Clide",
+      "length": 8,
+      "capacity": 13
+    },
+    {
+      "entry": 510,
+      "va": "0x14015f6",
+      "original": "좋은 날씨야",
+      "translation": "Nice day!",
+      "length": 9,
+      "capacity": 11
+    },
+    {
+      "entry": 511,
+      "va": "0x1401614",
+      "original": "일하기 좋은 날씨군",
+      "translation": "Good day to work",
+      "length": 16,
+      "capacity": 18
+    },
+    {
+      "entry": 512,
+      "va": "0x1401632",
+      "original": "오..기사는 멋있어",
+      "translation": "Knights are cool!",
+      "length": 17,
+      "capacity": 17
+    },
+    {
+      "entry": 513,
+      "va": "0x1401650",
+      "original": "안녕하세요",
+      "translation": "Hello!",
+      "length": 6,
+      "capacity": 10
+    },
+    {
+      "entry": 514,
+      "va": "0x140166e",
+      "original": "편히 쉬다 가세요",
+      "translation": "Have a good rest",
+      "length": 16,
+      "capacity": 16
+    },
+    {
+      "entry": 515,
+      "va": "0x140168c",
+      "original": "안전한 여행이 되기를..",
+      "translation": "Travel safely...",
+      "length": 16,
+      "capacity": 22
+    },
+    {
+      "entry": 516,
+      "va": "0x14016aa",
+      "original": "하하 반가와요",
+      "translation": "Haha, welcome",
+      "length": 13,
+      "capacity": 13
+    },
+    {
+      "entry": 517,
+      "va": "0x14016c8",
+      "original": "더워 더워",
+      "translation": "So hot!",
+      "length": 7,
+      "capacity": 9
+    },
+    {
+      "entry": 518,
+      "va": "0x14016e6",
+      "original": "이곳은 안전해",
+      "translation": "Safe here!",
+      "length": 10,
+      "capacity": 13
+    },
+    {
+      "entry": 519,
+      "va": "0x1401704",
+      "original": "반가와요",
+      "translation": "Welcome!",
+      "length": 8,
+      "capacity": 8
+    },
+    {
+      "entry": 520,
+      "va": "0x1401722",
+      "original": "자네도 죽었는가",
+      "translation": "Dead like me?",
+      "length": 13,
+      "capacity": 15
+    },
+    {
+      "entry": 521,
+      "va": "0x1401740",
+      "original": "이곳에서 산자를 보다니..",
+      "translation": "A living soul here...",
+      "length": 21,
+      "capacity": 24
+    },
+    {
+      "entry": 522,
+      "va": "0x140175e",
+      "original": "죽음의 신의 가호를!!",
+      "translation": "Bless the death god!",
+      "length": 20,
+      "capacity": 20
+    },
+    {
+      "entry": 523,
+      "va": "0x140177c",
+      "original": "랄랄랄라~",
+      "translation": "La la la~",
+      "length": 9,
+      "capacity": 9
+    },
+    {
+      "entry": 524,
+      "va": "0x140179a",
+      "original": "심심하지? 나두 심심해",
+      "translation": "Bored? Me too!",
+      "length": 14,
+      "capacity": 21
+    },
+    {
+      "entry": 525,
+      "va": "0x14017b8",
+      "original": "배터리는 충전 했니?",
+      "translation": "Battery charged?",
+      "length": 16,
+      "capacity": 19
+    },
+    {
+      "entry": 526,
+      "va": "0x14017d6",
+      "original": "이제 그만 사냥하러가렴",
+      "translation": "Go on, keep hunting!",
+      "length": 20,
+      "capacity": 22
+    },
+    {
+      "entry": 527,
+      "va": "0x14017f4",
+      "original": "이제 더 말 안할 거야",
+      "translation": "No more talk.",
+      "length": 13,
+      "capacity": 20
+    },
+    {
+      "entry": 528,
+      "va": "0x1401812",
+      "original": "클라이드...빨랑가",
+      "translation": "Clide, hurry up",
+      "length": 15,
+      "capacity": 17
+    },
+    {
+      "entry": 529,
+      "va": "0x1401830",
+      "original": "나 라바하러 간다..안녕",
+      "translation": "Going to Lava. Bye!",
+      "length": 19,
+      "capacity": 22
+    },
+    {
+      "entry": 530,
+      "va": "0x140184e",
+      "original": "휴 너같은 애는 처음본다",
+      "translation": "Never met your kind!",
+      "length": 20,
+      "capacity": 23
+    },
+    {
+      "entry": 531,
+      "va": "0x1401890",
+      "original": "가지고 싶어",
+      "translation": "I want it",
+      "length": 9,
+      "capacity": 11
+    },
+    {
+      "entry": 532,
+      "va": "0x14018a1",
+      "original": "이쁘다 갖고 싶다",
+      "translation": "So cute, want it",
+      "length": 16,
+      "capacity": 16
+    },
+    {
+      "entry": 533,
+      "va": "0x14018b2",
+      "original": "고마와",
+      "translation": "Thanks",
+      "length": 6,
+      "capacity": 6
+    },
+    {
+      "entry": 534,
+      "va": "0x14018bc",
+      "original": "맘에 들어",
+      "translation": "I like it",
+      "length": 9,
+      "capacity": 9
+    },
+    {
+      "entry": 540,
+      "va": "0x140194d",
+      "original": "사랑한다!",
+      "translation": "Love you!",
+      "length": 9,
+      "capacity": 9
+    },
+    {
+      "entry": 831,
+      "va": "0x1405a56",
+      "original": "게임심의정보",
+      "translation": "Game Rating",
+      "length": 11,
+      "capacity": 12
+    },
+    {
+      "entry": 1531,
+      "va": "0x14122b6",
+      "original": "클라이드_단검",
+      "translation": "Clide_Dagger",
+      "length": 12,
+      "capacity": 13
+    },
+    {
+      "entry": 1532,
+      "va": "0x14122c8",
+      "original": "클라이드_한손무기",
+      "translation": "Clide_1H Weapon",
+      "length": 15,
+      "capacity": 17
+    },
+    {
+      "entry": 1533,
+      "va": "0x14122da",
+      "original": "클라이드_양손무기",
+      "translation": "Clide_2H Weapon",
+      "length": 15,
+      "capacity": 17
+    },
+    {
+      "entry": 1541,
+      "va": "0x141237c",
+      "original": "엄마",
+      "translation": "Mom",
+      "length": 3,
+      "capacity": 4
+    },
+    {
+      "entry": 1560,
+      "va": "0x14124d2",
+      "original": "페이욘 촌장",
+      "translation": "Payon Chief",
+      "length": 11,
+      "capacity": 11
+    },
+    {
+      "entry": 1567,
+      "va": "0x1412550",
+      "original": "대신녀",
+      "translation": "Priest",
+      "length": 6,
+      "capacity": 6
+    },
+    {
+      "entry": 1752,
+      "va": "0x141385b",
+      "original": "클라이드_단검",
+      "translation": "Clide_Dagger",
+      "length": 12,
+      "capacity": 13
+    },
+    {
+      "entry": 1753,
+      "va": "0x141387a",
+      "original": "클라이드_한손무기",
+      "translation": "Clide_1H Weapon",
+      "length": 15,
+      "capacity": 17
+    },
+    {
+      "entry": 1754,
+      "va": "0x1413899",
+      "original": "클라이드_양손무기",
+      "translation": "Clide_2H Weapon",
+      "length": 15,
+      "capacity": 17
+    },
+    {
+      "entry": 1762,
+      "va": "0x14139b0",
+      "original": "엄마",
+      "translation": "Mom",
+      "length": 3,
+      "capacity": 4
+    }
+  ],
+  "notes": [
+    "In-place replacement only: ELF size, section offsets and relocation tables unchanged",
+    "Unused old byte capacity is zero-filled; surrounding code/data unchanged",
+    "Some other Korean ELF strings remain untranslated",
+    "ROM build / emulator runtime not verified in this environment"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "changed_files": 484,
+  "changed_records": 3456,
+  "per_kind": {
+    "unchanged_native": 1143,
+    "native": 829,
+    "length8": 428,
+    "same_length8": 1,
+    "dialogue": 2199,
+    "unchanged_dialogue": 370,
+    "same_dialogue": 14
+  },
+  "remaining_korean_elf_entries": 1088,
+  "ios_dialogues_copied": 2145,
+  "manual_dialogues": 68,
+  "dialogue_control_entries_preserved": 370,
+  "original_resource_files_unchanged_except_text": true,
+  "static_status": "PASS",
+  "runtime_status": "NOT_TESTED",
+  "font_layout_status": "NOT_TESTED",
+  "dialogue_files": 479,
+  "dialogue_mismatched_entry_counts": [
+    185
+  ],
+  "native_binary_original_sha256": "4aff4641efeff7578afc6d02c44b5c45279648200bb5af6e9db1996778ec609a",
+  "native_binary_patched_sha256": "a303dbf0560819cbc1714407ab9813ff33cd61e9c5f3492baa6fe255878e9b7c",
+  "round2": {
+    "patched": 146,
+    "changed_bytes": 2392,
+    "prior_remaining": 1234,
+    "now_remaining": 1088,
+    "sha256": "a303dbf0560819cbc1714407ab9813ff33cd61e9c5f3492baa6fe255878e9b7c",
+    "static_test": "PASS",
+    "emulator": "NOT_TESTED"
+  }
+}
