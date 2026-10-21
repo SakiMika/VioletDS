@@ -630,7 +630,7 @@ void InitFatFallback() {
     }
 #endif
 
-    // DLDI/flashcart fallback.  With the #### profile this is the normal path.
+    // DLDI/flashcart fallback if the native EEPROM probe is unavailable.
     if(!fatInitDefault()) {
         printf("[SAV] FAT persistence unavailable\n");
         return;

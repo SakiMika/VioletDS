@@ -216,15 +216,41 @@ assert 'if(ascii_ieq(base,"option") || ascii_ieq(base,"option.sav")) return 3;' 
 assert 'if(ascii_ieq(base,"list")) return 4;' in sav
 assert 'Losing list makes every slot appear New Game' in sav
 assert 'drop legacy save3..save15 entries' in sav
-assert '-DRV_CART_SAVE_PROFILE=0' in mk
+assert 'SAVE_DEFS   := -DRV_CART_SAVE_PROFILE=1' in mk
 assert 'SAVE_PROFILE ?=' not in mk and '\nSAVE_PROFILE=' not in mk
-assert r'ROM_GAMECODE := \#\#\#\#' in mk
+assert 'ROM_GAMECODE := CDLG' in mk
 assert 'TARGET      := Ragnarok_Violet' in mk
-assert "GAMECODE = b'####'" in header_tool
-assert "choices=('melonds', 'dldi')" not in header_tool
+assert "GAMECODE = b'CDLG'" in header_tool
+assert "--homebrew" not in header_tool
 assert 'matrix:' not in workflow and 'SAVE_PROFILE=' not in workflow
+assert "if data[12:16] != b'CDLG':" in workflow
+# Keep the alternative Windows compiler script aligned with the canonical build.
+windows_builder=(ROOT/'tools/build_windows.py').read_text(errors='replace')
+assert "'-DRV_CART_SAVE_PROFILE=1'" in windows_builder
+assert "'-g','CDLG','01'" in windows_builder
 assert "Ragnarok Violet.nds" in workflow
 assert "Unexpected duplicate ROM: Ragnarok_Violet.nds" in workflow
+
+# Exercise the header patcher, not just its source string. A mismatched game
+# code previously passed the static test but made the CI ROM verification fail.
+import subprocess
+import sys
+import tempfile
+with tempfile.TemporaryDirectory(prefix='rv_header_test_') as tmp:
+    test_rom=Path(tmp)/'test.nds'
+    raw=bytearray(0x10000)
+    struct.pack_into('<I', raw, 0x20, 0x8000)  # expected ARM9 ROM offset
+    struct.pack_into('<I', raw, 0x84, 0x8000)  # expected header size
+    test_rom.write_bytes(raw)
+    subprocess.run([sys.executable, str(ROOT/'tools/patch_nds_header.py'), str(test_rom)],
+                   check=True, capture_output=True, text=True)
+    patched=test_rom.read_bytes()
+    assert len(patched)==32*1024*1024, len(patched)
+    assert patched[0x0C:0x10]==b'CDLG', patched[0x0C:0x10]
+    assert patched[0x14]==8, patched[0x14]  # 32 MiB device capacity
+    assert struct.unpack_from('<I',patched,0x20)[0]==0x8000
+    assert struct.unpack_from('<I',patched,0x84)[0]==0x8000
+    assert patched[0x15E:0x160]!=b'\0\0'  # header CRC was written
 assert not (ROOT/'build_dldi.bat').exists()
 assert not (ROOT/'BUILD_DSI_WINDOWS.bat').exists()
 assert '*.sav' in (ROOT/'.gitignore').read_text(errors='replace')
