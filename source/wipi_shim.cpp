@@ -46,15 +46,15 @@ constexpr int LOG_BTN_X=236;
 constexpr int LOG_BTN_Y=4;
 constexpr int LOG_BTN_W=16;
 constexpr int LOG_BTN_H=16;
-// Ragnarok first-pass: the 240x320 handset framebuffer is split 1:1 across
-// the two 256x192 DS LCDs (top y=0..159, bottom y=160..319).
+// Ragnarok first-pass: fit handset width to TOP; retain native vertical pixels.
 constexpr uint8_t SUB_BG_COL=0;
 constexpr uint8_t SUB_PANEL_COL=18;
 constexpr uint8_t SUB_FRAME_COL=15;
-// Keep Ragnarok at handset speed until its timing has been profiled.
+// Pace guest callbacks in real time, including zero-delay timer rearming.
 constexpr uint32_t GUEST_TIME_NUM=1;
 constexpr uint32_t GUEST_TIME_DEN=1;
 constexpr int TIMER_SLOTS=32;
+constexpr uint64_t GUEST_TIMER_MIN_INTERVAL_MS=50; // at most 20 updates/sec per timer
 constexpr int DB_SLOTS=24;
 constexpr int UNKNOWN_THUNK_SLOTS=192;
 constexpr int KNOWN_TRACE_THUNK_SLOTS=160;
@@ -162,6 +162,7 @@ struct TimerSlot {
     void (*callback)(void*,void*);
     void *param;
     uint64_t due_ms;
+    uint64_t next_fire_real_ms;
     bool armed;
 };
 
@@ -204,6 +205,9 @@ static uint64_t g_log_last_draw_ms=0;
 // SELECT: hide/show the SUB view, retaining the original source's dedicated
 // display-toggle key. The minimap itself is disabled in the split-screen port.
 static bool g_bottom_half_visible=true;
+static uint32_t g_rv_map_self=0;
+static uint32_t g_touch_logical=0;
+static const int RV_QUICK_TARGETS[6]={2,3,5,6,8,9};
 static bool g_log_button_drawn=false;
 static uint16_t *g_dialogue_snapshot=nullptr;
 static bool g_dialogue_snapshot_valid=false;
@@ -1123,6 +1127,7 @@ extern "C" void knl_def_timer(void *timer, void (*callback)(void*,void*)) {
         if (g_timers[i].timer==timer) {
             g_timers[i].callback=callback;
             g_timers[i].param=nullptr;
+            g_timers[i].next_fire_real_ms=0;
             g_timers[i].armed=false;
             return;
         }
@@ -1133,6 +1138,7 @@ extern "C" void knl_def_timer(void *timer, void (*callback)(void*,void*)) {
             g_timers[i].callback=callback;
             g_timers[i].param=nullptr;
             g_timers[i].due_ms=0;
+            g_timers[i].next_fire_real_ms=0;
             g_timers[i].armed=false;
             return;
         }
@@ -3027,6 +3033,7 @@ static void paint_region(int x,int y,int w,int h) {
     BootCostScope profile(ZenBootProfile::Paint);
     g_in_paint=true;
     g_minimap_valid=false; // No stale map in menus or after native early return.
+    g_rv_map_self=0;
     typedef void (*Fn)(int,int,int,int);
     Fn f=(Fn)(uintptr_t)g_clet.callbacks[4];
     f(x,y,w,h);
@@ -3049,7 +3056,8 @@ static void service_repaint(void) {
 static void process_timers(void) {
     uint64_t t=timer_now_ms();
     for(int i=0;i<TIMER_SLOTS;i++) {
-        if(g_timers[i].armed && g_timers[i].callback && t>=g_timers[i].due_ms) {
+        if(g_timers[i].armed && g_timers[i].callback && t>=g_timers[i].due_ms &&
+           real_monotonic_ms()>=g_timers[i].next_fire_real_ms) {
             auto cb=g_timers[i].callback; void *timer=g_timers[i].timer; void *param=g_timers[i].param;
             const uintptr_t cbaddr=(uintptr_t)cb;
             if((cbaddr&~1u)<0x02000000u || (cbaddr&~1u)>=0x04000000u) {
@@ -3084,6 +3092,9 @@ static void process_timers(void) {
                 }
                 g_timer_trace_budget--;
             }
+            // Charge the interval before entering guest code. SetTimer may
+            // rearm this slot immediately; it must not erase the pacing deadline.
+            g_timers[i].next_fire_real_ms=real_monotonic_ms()+GUEST_TIMER_MIN_INTERVAL_MS;
             cb(timer,param);
             if(g_timer_trace_budget) {
                 printf("[T<] s=%d ret rp=%lu fl=%lu im=%lu\n",i,
@@ -3133,7 +3144,7 @@ static void runner_release_all_logical(void);
 
 void wipi_init_video(PrintConsole *log_console) {
     lcdMainOnTop();
-    // Main/top: native 256x192 guest framebuffer, shown without resampling.
+    // Main/top: 256x192 presentation bitmap for the scaled guest framebuffer.
     videoSetMode(MODE_5_2D);
     vramSetBankA(VRAM_A_MAIN_BG);
     g_main_bg=bgInit(3,BgType_Bmp16,BgSize_B16_256x256,0,0);
@@ -3437,50 +3448,86 @@ void wipi_toggle_minimap(void) {
     g_repaint_pending=true; // Redraw native scene; never erase a rectangle from TOP.
 }
 
+void wipi_note_ragnarok_map(uint32_t self) {
+    if(self>=0x02000000u && self<=0x02400000u-0x3330u) g_rv_map_self=self;
+}
+static void rv_draw_touch_panel(uint16_t *dst) {
+    if(!g_rv_map_self) return;
+    const uint8_t *map=(const uint8_t*)(uintptr_t)g_rv_map_self;
+    const int w=map[0x32dd],h=map[0x32de];
+    if(w<1 || w>51 || h<1 || h>51) return;
+    // Native map cells are column-major, 51 signed 16-bit tiles per column.
+    // Use the same atlas as the map renderer for a complete terrain thumbnail.
+    const uint16_t *cells=(const uint16_t*)(map+16);
+    RvImageAllocation *atlas=rv_image(*(const uint32_t*)(map+4));
+    uint16_t *pixels=atlas?fb_pixels16(&atlas->backing):nullptr;
+    const int aw=atlas?(int)atlas->backing.width:0;
+    const int ah=atlas?(int)atlas->backing.height:0;
+    int dw=216,dh=dw*h/w;
+    if(dh>120) {dh=120;dw=dh*w/h;}
+    const int dx=(DS_W-dw)/2,dy=12+(120-dh)/2;
+    sub_rect_to(dst,dx-1,dy-1,dw+2,dh+2,RGB15(18,16,25)|BIT(15));
+    for(int y=0;y<dh;y++) for(int x=0;x<dw;x++) {
+        const int wx=x*w*18/dw,wy=y*h*18/dh;
+        const unsigned tile=cells[(wx/18)*51+wy/18];
+        uint16_t color=RGB15(8,10,12)|BIT(15);
+        const int sx=(tile%10)*18+wx%18,sy=(tile/10)*18+wy%18;
+        if(pixels && sx<aw && sy<ah) color=rgb565_to_ds15(pixels[sy*(atlas->backing.bpl/2)+sx]);
+        else if(tile<256) color=RGB15(10+(tile%7),12+(tile%9),10+(tile%5))|BIT(15);
+        dst[(dy+y)*DS_W+dx+x]=color;
+    }
+    // Show the actual camera window on the full map.
+    const int cx=*(const int16_t*)(map+0x3328),cy=*(const int16_t*)(map+0x332a);
+    int l=cx*dw/(w*18),t=cy*dh/(h*18),rw=PHONE_W*dw/(w*18),rh=DS_H*dh/(h*18);
+    if(l<0)l=0;if(t<0)t=0;if(rw<2)rw=2;if(rh<2)rh=2;
+    if(l+rw>dw)rw=dw-l;if(t+rh>dh)rh=dh-t;
+    const uint16_t marker=RGB15(31,28,8)|BIT(15);
+    if(rw>0 && rh>0) {
+        sub_rect_to(dst,dx+l,dy+t,rw,1,marker);sub_rect_to(dst,dx+l,dy+t+rh-1,rw,1,marker);
+        sub_rect_to(dst,dx+l,dy+t,1,rh,marker);sub_rect_to(dst,dx+l+rw-1,dy+t,1,rh,marker);
+    }
+    static const uint8_t labels[6][5]={
+        {2,6,2,2,7},{6,1,3,1,6},{7,1,2,2,2},
+        {2,5,3,1,6},{7,5,5,5,7},{5,7,5,7,5}
+    };
+    for(int i=0;i<6;i++) {
+        const int x=8+i*40;
+        const bool pressed=(g_touch_logical&(1u<<(4+RV_QUICK_TARGETS[i])))!=0;
+        sub_rect_to(dst,x,144,38,44,RGB15(18,16,25)|BIT(15));
+        sub_rect_to(dst,x+1,145,36,42,(pressed?RGB15(14,12,24):RGB15(5,5,10))|BIT(15));
+        draw_3x5_glyph_to(dst,x+14,157,labels[i],3,RGB15(31,30,31)|BIT(15));
+    }
+}
+
 void wipi_present(void) {
     if(!g_phone_fb||!g_ds_fb||!g_sub_fb) return;
     g_present_pending=false;
 
-    // Temporary Ragnarok layout: preserve the original 240x320 pixels with no
-    // scaling. TOP shows y=0..159 and is bottom-aligned; SUB shows y=160..319
-    // and is top-aligned.  This removes the artificial 16+16 px black seam
-    // between the two LCDs while retaining the 8 px horizontal side margins.
-    static_assert(PHONE_W==240 && PHONE_H==320,"Ragnarok first-pass framebuffer must be 240x320");
-    constexpr int HALF_H=PHONE_H/2;
-    constexpr int DST_X=(DS_W-PHONE_W)/2;
-    constexpr int TOP_DST_Y=DS_H-HALF_H; // 32: push top half to inner/bottom edge
-    constexpr int SUB_DST_Y=0;           // 0: push bottom half to inner/top edge
+    // Fit handset width to TOP, keeping guest Y coordinates at native scale.
+    // Rows below the 192px LCD remain clipped until the next layout pass.
     constexpr size_t LCD_BYTES=DS_W*DS_H*2u;
     const uint16_t black=(uint16_t)(BIT(15) | RGB15(0,0,0));
-
-    // Do NOT clear visible VRAM and then draw into it pixel-by-pixel. melonDS
-    // (and real LCD scanout) can observe the intermediate black frame, which
-    // appears as continuous flashing when the guest flushes at video rate.
-    // Compose a complete LCD image in RAM first, then transfer it in one burst.
+    uint16_t *top=g_sub_comp ? g_sub_comp : g_ds_fb;
+    for(int y=0;y<DS_H;y++) {
+        const uint16_t *src=g_phone_fb+y*PHONE_W;
+        for(int x=0;x<DS_W;x++)
+            top[y*DS_W+x]=rgb565_to_ds15(src[x*PHONE_W/DS_W]);
+    }
+    // Compose in RAM before transferring, so scanout cannot see a blank frame.
     if(g_sub_comp) {
-        ZenRenderFast::fill16(g_sub_comp,DS_W*DS_H,black);
-        copy_phone_rect_to_ds_buf(g_sub_comp,0,0,PHONE_W,HALF_H,DST_X,TOP_DST_Y);
         DC_FlushRange(g_sub_comp,LCD_BYTES);
         dmaCopy(g_sub_comp,g_ds_fb,LCD_BYTES);
-    } else {
-        // Allocation fallback: never blank the live LCD between frames.
-        copy_phone_rect_to_main(0,0,PHONE_W,HALF_H,DST_X,TOP_DST_Y);
     }
 
-    // When the diagnostic log is visible libnds owns SUB; otherwise SUB is the
-    // lower half of the guest framebuffer. No minimap/settings overlay here.
+    // SUB is reserved for the existing settings/log controls.
     if(!g_log_visible) {
+        uint16_t *sub=g_sub_comp ? g_sub_comp : g_sub_fb;
+        ZenRenderFast::fill16(sub,DS_W*DS_H,black);
+        rv_draw_touch_panel(sub);
+        draw_log_button_to(sub);
         if(g_sub_comp) {
-            ZenRenderFast::fill16(g_sub_comp,DS_W*DS_H,black);
-            if(g_bottom_half_visible)
-                copy_phone_rect_to_ds_buf(g_sub_comp,0,HALF_H,PHONE_W,HALF_H,DST_X,SUB_DST_Y);
-            draw_log_button_to(g_sub_comp);
             DC_FlushRange(g_sub_comp,LCD_BYTES);
             dmaCopy(g_sub_comp,g_sub_fb,LCD_BYTES);
-        } else {
-            if(g_bottom_half_visible)
-                copy_phone_rect_to_sub_buf(g_sub_fb,0,HALF_H,PHONE_W,HALF_H,DST_X,SUB_DST_Y);
-            draw_log_button_to(g_sub_fb);
         }
     }
 }
@@ -3630,6 +3677,10 @@ void wipi_handle_touch(uint32_t down,int x,int y) {
         if(x>=LOG_BTN_X && x<LOG_BTN_X+LOG_BTN_W && y>=LOG_BTN_Y && y<LOG_BTN_Y+LOG_BTN_H) {
             wipi_set_log_visible(true);
             return;
+        }
+        if(g_rv_map_self && y>=144 && y<188 && x>=8 && x<248) {
+            const int slot=(x-8)/40;
+            g_touch_logical=1u<<(4+RV_QUICK_TARGETS[slot]);
         }
         return;
     }
@@ -3944,13 +3995,6 @@ void wipi_dispatch_keys(uint32_t down,uint32_t up) {
     }
 
 
-    // Preserve README SELECT behavior while showing the lower half rather
-    // than a Zenonia-specific minimap. This never reaches call_event().
-    if((down&KEY_SELECT) && !g_log_visible) {
-        g_bottom_half_visible=!g_bottom_half_visible;
-        wipi_present(); // also clears the lower LCD immediately on hide
-    }
-
     uint32_t logical=0;
     // D-pad remains fixed to WIPI directional codes.
     if(rawHeld&KEY_UP) logical|=1u<<0;
@@ -3973,6 +4017,8 @@ void wipi_dispatch_keys(uint32_t down,uint32_t up) {
         if(key && (rawHeld&key) && !(activeComboPhysical&key)) logical|=1u<<(4+i);
     }
 
+    if(!(keysHeld()&KEY_TOUCH) || g_log_visible || !g_rv_map_self) g_touch_logical=0;
+    logical|=g_touch_logical;
     uint32_t logicalDown=logical & ~g_ui_prev_logical;
     uint32_t logicalUp=g_ui_prev_logical & ~logical;
     for(int bit=0;bit<4+UI_TARGET_COUNT;bit++) {

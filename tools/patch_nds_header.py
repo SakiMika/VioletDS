@@ -6,7 +6,7 @@ ROM_SIZE = 32 * 1024 * 1024
 DEVICE_CAPACITY = 8
 REQUIRED_ARM9_OFFSET = 0x8000
 REQUIRED_HEADER_SIZE = 0x8000
-GAMECODE = b'CDLG'  # melonDS ROM-list compatibility: 128 KiB EEPROM
+GAMECODE = b'####'  # melonDS ROM-list compatibility: 128 KiB EEPROM
 
 
 def crc16_nds(data: bytes) -> int:
@@ -25,6 +25,7 @@ def u32le(d: bytearray, off: int) -> int:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('rom')
+    ap.add_argument('--homebrew',action='store_true',help='DS test profile: ####, no cart EEPROM')
     args = ap.parse_args()
 
     p = Path(args.rom)
@@ -46,13 +47,21 @@ def main():
         d.extend(b'\x00' * (ROM_SIZE - len(d)))
 
     d[0x000:0x00C] = b'RAGNAROK VLT'
-    d[0x00C:0x010] = GAMECODE
+    d[0x12]=0  # one DS-mode homebrew ROM, also runnable on DSi
+    gamecode=b'####' if args.homebrew else GAMECODE
+    d[0x00C:0x010] = gamecode
     d[0x014] = DEVICE_CAPACITY
+    # Homebrew NitroFS bytes are plaintext. ndstool's retail default (00586000)
+    # enables KEY2 data/command encryption when Calico opens Slot-1 in DS mode.
+    # Keep transfer gaps/clock settings, clear only the three encryption flags.
+    normal_control = u32le(d, 0x60) & ~((1 << 13) | (1 << 14) | (1 << 22))
+    d[0x60:0x64] = normal_control.to_bytes(4, 'little')
     crc = crc16_nds(d[:0x15E])
     d[0x15E:0x160] = crc.to_bytes(2, 'little')
     p.write_bytes(d)
 
-    print(f'[HEADER] title=RAGNAROK VLT code={GAMECODE.decode()}')
+    print(f'[HEADER] plaintext card control=0x{normal_control:08X}')
+    print(f'[HEADER] title=RAGNAROK VLT code={gamecode.decode()}')
     print(f'[HEADER] arm9=0x{arm9_off:04X} header=0x{header_size:04X} '
           f'rom={len(d)} devcap={d[0x14]} crc={crc:04X}')
 

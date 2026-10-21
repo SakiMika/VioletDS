@@ -48,3 +48,6 @@ void wipi_toggle_minimap(void);
 void wipi_invalidate_minimap_cache(void);
 bool wipi_try_cached_minimap(uint32_t self,uint32_t map,int width,int height,uint32_t *result);
 void wipi_store_minimap_cache(uint32_t result);
+
+// Live Ragnarok map render notification for the touch-screen panel.
+void wipi_note_ragnarok_map(uint32_t self);

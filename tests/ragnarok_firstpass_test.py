@@ -41,12 +41,11 @@ assert '!(activeComboPhysical&key)' in shim
 # SELECT is not a guest WIPI key; it switches SUB pixels on/off immediately.
 assert 'keysHeld() & ~(KEY_TOUCH|KEY_LID|KEY_SELECT)' in shim
 assert 'rawDown=down & ~(KEY_TOUCH|KEY_LID|KEY_SELECT)' in shim
-assert 'if((down&KEY_SELECT) && !g_log_visible)' in shim
-assert 'g_bottom_half_visible=!g_bottom_half_visible' in shim
-assert 'if(g_bottom_half_visible)' in shim
-assert 'wipi_present(); // also clears the lower LCD immediately on hide' in shim
+assert 'if((down&KEY_SELECT)' not in shim
+assert 'g_bottom_half_visible=!g_bottom_half_visible' not in shim
+
 assert 'wipi_toggle_minimap();' not in shim.split('void wipi_dispatch_keys(',1)[1]
-assert 'START=Call, SELECT=SUB toggle' in main
+assert 'START=Call, SELECT=unused' in main
 
 # Ragnarok startup restart prompt: native UI state 0x16 explicitly accepts
 # EZ/FIRE (-5).  The relocation-safe bridge bypasses only this one handset
@@ -67,11 +66,13 @@ assert '\x1b[2J' not in runner_draw_body
 poll_body=shim.split('void wipi_poll(void)',1)[1].split('uint32_t wipi_get_import_table',1)[0]
 assert 'now-g_log_last_draw_ms>=100u' in poll_body
 assert 'runner_ui_draw();' in poll_body
-assert 'constexpr int HALF_H=PHONE_H/2' in shim
-assert 'constexpr int TOP_DST_Y=DS_H-HALF_H' in shim
-assert 'constexpr int SUB_DST_Y=0' in shim
-assert 'copy_phone_rect_to_main(0,0,PHONE_W,HALF_H,DST_X,TOP_DST_Y)' in shim
-assert 'copy_phone_rect_to_sub_buf(g_sub_fb,0,HALF_H,PHONE_W,HALF_H,DST_X,SUB_DST_Y)' in shim
+# Width fits TOP while vertical pixels stay native; SUB keeps settings/log.
+present=shim.split('void wipi_present(void)',1)[1].split('// Boot probe',1)[0]
+assert 'src[x*PHONE_W/DS_W]' in present
+assert 'g_phone_fb+y*PHONE_W' in present
+assert 'y*PHONE_H/DS_H' not in present
+assert 'HALF_H' not in present
+assert 'copy_phone_rect_to_sub_buf' not in present
 assert 'gfx_flush_source_to_phone(source)' in shim
 assert 'extern "C" int gfx_flush(int kind, uint32_t source' in shim
 assert 'dmaCopy(g_sub_comp,g_ds_fb,LCD_BYTES)' in shim
@@ -121,7 +122,7 @@ assert main.index('wipi_boot_stage("01 VIDEO READY")') < main.index('wipi_set_lo
 # reopened by touch. Fatal paths still open it explicitly.
 assert 'wipi_set_log_visible(false);' in main.split('int main(void)',1)[1]
 assert main.index('wipi_debug_dump("after paint")') < main.index('wipi_set_log_visible(false);')
-assert 'draw_log_button_to(g_sub_fb);' in shim.split('void wipi_present(void)',1)[1].split('void wipi_set_log_visible',1)[0]
+assert 'draw_log_button_to(sub);' in shim.split('void wipi_present(void)',1)[1].split('void wipi_set_log_visible',1)[0]
 assert 'touchRead(&touch);' in main and 'wipi_handle_touch(down, touch.px, touch.py);' in main
 assert 'runner_ui_log_push_line(stage);' in shim
 assert 'memcmp(c->data,"MMMD",4)==0) return media_decode_smaf(c)' in shim
@@ -215,11 +216,11 @@ assert 'if(ascii_ieq(base,"option") || ascii_ieq(base,"option.sav")) return 3;' 
 assert 'if(ascii_ieq(base,"list")) return 4;' in sav
 assert 'Losing list makes every slot appear New Game' in sav
 assert 'drop legacy save3..save15 entries' in sav
-assert '-DRV_CART_SAVE_PROFILE=1' in mk
+assert '-DRV_CART_SAVE_PROFILE=0' in mk
 assert 'SAVE_PROFILE ?=' not in mk and '\nSAVE_PROFILE=' not in mk
-assert 'ROM_GAMECODE := CDLG' in mk
+assert r'ROM_GAMECODE := \#\#\#\#' in mk
 assert 'TARGET      := Ragnarok_Violet' in mk
-assert "GAMECODE = b'CDLG'" in header_tool
+assert "GAMECODE = b'####'" in header_tool
 assert "choices=('melonds', 'dldi')" not in header_tool
 assert 'matrix:' not in workflow and 'SAVE_PROFILE=' not in workflow
 assert "Ragnarok Violet.nds" in workflow
@@ -269,3 +270,4 @@ print(f'OK: {len(game_files)} pristine game files; {png_count} PNG instances ({e
 
 # No stale text-note files are shipped in the cleaned source package.
 assert not list(ROOT.rglob('*.txt')), 'stale .txt files remain in package'
+

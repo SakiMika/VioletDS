@@ -138,10 +138,24 @@ static bool wait_aux_spi_idle(uint32_t budget=200000u) {
     while((REG_AUXSPICNT & CARD_SPI_BUSY) && budget) --budget;
     return (REG_AUXSPICNT & CARD_SPI_BUSY)==0;
 }
+// EEPROM and NitroFS share AUXSPICNT. Preserve ROM transfer configuration
+// (especially transfer IRQ enable) across every complete SPI transaction.
+static uint16_t g_saved_auxspicnt=0;
+static bool g_spi_transaction=false;
+static void spi_restore_rom_control() {
+    if(!g_spi_transaction) return;
+    REG_AUXSPICNT=g_saved_auxspicnt;
+    g_spi_transaction=false;
+}
 static bool spi_byte_mode(unsigned char value,unsigned char *result,bool hold) {
+    if(!g_spi_transaction) {
+        if(!wait_aux_spi_idle()) return false;
+        g_saved_auxspicnt=REG_AUXSPICNT;
+        g_spi_transaction=true;
+    }
     REG_AUXSPICNT = CARD_ENABLE | CARD_SPI_ENABLE | (hold ? CARD_SPI_HOLD : 0);
     REG_AUXSPIDATA = value;
-    if(!wait_aux_spi_idle()) return false;
+    if(!wait_aux_spi_idle()) { spi_restore_rom_control(); return false; }
     if(result) *result=REG_AUXSPIDATA;
     return true;
 }
@@ -150,7 +164,7 @@ static bool spi_hold(unsigned char value,unsigned char *result=nullptr) {
 }
 static bool spi_release(unsigned char value,unsigned char *result=nullptr) {
     const bool ok=spi_byte_mode(value,result,false);
-    REG_AUXSPICNT=CARD_ENABLE;
+    spi_restore_rom_control();
     return ok;
 }
 static bool eeprom_write_enable() { return spi_release(0x06); }

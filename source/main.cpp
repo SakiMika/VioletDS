@@ -72,7 +72,7 @@ static void prepatch_lgt_imports(LgtLoadedImage *img) {
 
 static void fatal_wait(const char *msg) {
     wipi_set_log_visible(true);
-    wipi_boot_stage("ERROR BOOT STOPPED");
+    wipi_boot_stage(msg);
     printf("\n[FATAL] %s\nSTART = exit\n", msg);
     while(1){scanKeys();if(keysDown()&KEY_START)break;swiDelay(20000);}
 }
@@ -93,6 +93,263 @@ static void dump_irq_state(const char *tag) {
            (unsigned long)read_cpsr());
 }
 
+// Notice-only Thumb immediates; leave shared font/camera coordinates intact.
+// Validate the entire patch set before writing anything to the relocated guest.
+static void patch_ragnarok_notice_layout(LgtLoadedImage *img) {
+    struct Patch { uint32_t address; uint16_t before, after; };
+    static const Patch patches[]={
+        {0x1615Au,0x3964u,0x39A0u}, // panel: centerY - 100 -> centerY - 160 (y=0)
+        {0x1617Au,0x3A5Au,0x3A9Cu}, // heading: y=70 -> y=4
+        {0x1619Cu,0x3A41u,0x3A83u}, // body: y=95 -> y=29
+        {0x161B8u,0x325Au,0x3210u}, // prompt: y=250 -> y=176
+        {0x16148u,0x3250u,0x3206u}, // slime anchor: y=240 -> y=166
+    };
+    uint16_t *locations[sizeof(patches)/sizeof(patches[0])];
+    for(unsigned i=0;i<sizeof(patches)/sizeof(patches[0]);i++) {
+        locations[i]=(uint16_t*)lgt_translate_ptr(img,patches[i].address);
+        if(!locations[i] || *locations[i]!=patches[i].before) {
+            printf("[RV!] notice layout opcode mismatch at %08lx; skipped\n",
+                   (unsigned long)patches[i].address);
+            return;
+        }
+    }
+    for(unsigned i=0;i<sizeof(patches)/sizeof(patches[0]);i++) {
+        *locations[i]=patches[i].after;
+        DC_FlushRange(locations[i],sizeof(uint16_t));
+        IC_InvalidateRange(locations[i],sizeof(uint16_t));
+    }
+    printf("[RV] notice layout: heading=4 body=29 prompt=176 slime=166\n");
+}
+
+// Scope splash/loading placement to their original draw call sites.
+static void patch_ragnarok_loader_layout(LgtLoadedImage *img) {
+    struct Patch { uint32_t address; uint16_t before, after; };
+    static const Patch patches[]={
+        {0x16208u,0x681Au,0x2260u}, // OD ARTS: center Y=96
+        {0x16280u,0x681Au,0x2260u}, // Gravity Mobile: center Y=96
+        {0x017AEu,0x3614u,0x3604u}, // tall handset loading: y=180 -> y=164
+        {0x017A6u,0x3632u,0x3622u}, // alternate handset loading: also lift 16px
+    };
+    uint16_t *locations[sizeof(patches)/sizeof(patches[0])];
+    for(unsigned i=0;i<sizeof(patches)/sizeof(patches[0]);i++) {
+        locations[i]=(uint16_t*)lgt_translate_ptr(img,patches[i].address);
+        if(!locations[i] || *locations[i]!=patches[i].before) {
+            printf("[RV!] loader layout opcode mismatch at %08lx; skipped\n",
+                   (unsigned long)patches[i].address);
+            return;
+        }
+    }
+    for(unsigned i=0;i<sizeof(patches)/sizeof(patches[0]);i++) {
+        *locations[i]=patches[i].after;
+        DC_FlushRange(locations[i],sizeof(uint16_t));
+        IC_InvalidateRange(locations[i],sizeof(uint16_t));
+    }
+    printf("[RV] splash center=96 loading lifted=16\n");
+}
+
+// Background uses two 240x160 image halves. Move both together without
+// changing their native scale or the shared handset drawing function.
+static void (*rv_background_draw)(uint32_t,int,int,int)=nullptr;
+extern "C" void rv_draw_centered_background(uint32_t image,int x,int y,int anchor) {
+    if(rv_background_draw) rv_background_draw(image,x,y-32,anchor);
+}
+
+static void patch_ragnarok_title_layout(LgtLoadedImage *img) {
+    struct Patch { uint32_t address; uint16_t before, after; };
+    static const Patch patches[]={
+        {0x162CEu,0x2240u,0x2220u}, // title logo y=64 -> y=32
+        {0x1637Eu,0x3C49u,0x24A4u}, // Press Any Key: y=164
+        {0x162F8u,0x3C2Bu,0x24A4u}, // alternate height branch: same prompt Y
+        {0x06060u,0x3D30u,0x3D80u}, // six menu rows: y=32,55,78,101,124,147
+    };
+    uint16_t *locations[sizeof(patches)/sizeof(patches[0])];
+    uint32_t *background=(uint32_t*)lgt_translate_ptr(img,0x6040u);
+    void *draw=lgt_translate_ptr(img,0x1484u);
+    if(!background || !draw || *background!=((uint32_t)(uintptr_t)draw|1u)) {
+        printf("[RV!] title background signature mismatch; skipped\n");
+        return;
+    }
+    for(unsigned i=0;i<sizeof(patches)/sizeof(patches[0]);i++) {
+        locations[i]=(uint16_t*)lgt_translate_ptr(img,patches[i].address);
+        if(!locations[i] || *locations[i]!=patches[i].before) {
+            printf("[RV!] title layout opcode mismatch at %08lx; skipped\n",
+                   (unsigned long)patches[i].address);
+            return;
+        }
+    }
+    rv_background_draw=(void (*)(uint32_t,int,int,int))((uintptr_t)draw|1u);
+    *background=(uint32_t)(uintptr_t)&rv_draw_centered_background;
+    DC_FlushRange(background,sizeof(uint32_t));
+    for(unsigned i=0;i<sizeof(patches)/sizeof(patches[0]);i++) {
+        *locations[i]=patches[i].after;
+        DC_FlushRange(locations[i],sizeof(uint16_t));
+        IC_InvalidateRange(locations[i],sizeof(uint16_t));
+    }
+    printf("[RV] background shift=-32 title=32 prompt=164 menu=32..147\n");
+}
+
+// Save-slot page only: title, row frames, selection fill and slot contents.
+static void patch_ragnarok_slot_layout(LgtLoadedImage *img) {
+    struct Patch { uint32_t address; uint16_t before, after; };
+    static const Patch patches[]={
+        {0x167E0u,0x3A50u,0x3A90u}, // title y=80 -> y=16
+        {0x167FEu,0x3938u,0x3978u}, // three row frames: y=40,83,126
+        {0x1682Au,0x3936u,0x3976u}, // selection fill follows each row
+        {0x16860u,0x3834u,0x3874u}, // occupied-slot details follow each row
+        {0x1687Au,0x3A2Au,0x3A6Au}, // empty-slot label follows each row
+    };
+    uint16_t *locations[sizeof(patches)/sizeof(patches[0])];
+    for(unsigned i=0;i<sizeof(patches)/sizeof(patches[0]);i++) {
+        locations[i]=(uint16_t*)lgt_translate_ptr(img,patches[i].address);
+        if(!locations[i] || *locations[i]!=patches[i].before) {
+            printf("[RV!] slot layout opcode mismatch at %08lx; skipped\n",
+                   (unsigned long)patches[i].address);
+            return;
+        }
+    }
+    for(unsigned i=0;i<sizeof(patches)/sizeof(patches[0]);i++) {
+        *locations[i]=patches[i].after;
+        DC_FlushRange(locations[i],sizeof(uint16_t));
+        IC_InvalidateRange(locations[i],sizeof(uint16_t));
+    }
+    printf("[RV] slot page lifted=64 title=16 rows=40,83,126\n");
+}
+
+// Private read-only viewport values for gameplay, camera bounds and in-game UI.
+// Keep the original 240x320 storage/phone globals and previously tuned menus.
+static const uint32_t rv_gameplay_height=192;
+static const uint32_t rv_gameplay_center_y=96;
+static void patch_ragnarok_gameplay_viewport(LgtLoadedImage *img) {
+    struct Alias { uint32_t address, original; const uint32_t *value; };
+    static const Alias aliases[]={
+        {0x01D60u,0x015003DCu,&rv_gameplay_height}, // initialize dialogue panel/text Y from DS height
+        {0x03EA0u,0x015003DCu,&rv_gameplay_height},
+        {0x04634u,0x015003DCu,&rv_gameplay_height},
+        {0x047A4u,0x015003DCu,&rv_gameplay_height},
+        {0x06258u,0x015003DCu,&rv_gameplay_height},
+        {0x0B7BCu,0x015003DCu,&rv_gameplay_height},
+        {0x1DCF4u,0x015003DCu,&rv_gameplay_height},
+        {0x20AD8u,0x015003DCu,&rv_gameplay_height},
+        {0x24698u,0x015003DCu,&rv_gameplay_height},
+        {0x26448u,0x015003DCu,&rv_gameplay_height},
+        {0x26614u,0x015003DCu,&rv_gameplay_height},
+        {0x27978u,0x015003DCu,&rv_gameplay_height},
+        {0x2820Cu,0x015003DCu,&rv_gameplay_height},
+        {0x2F470u,0x015003DCu,&rv_gameplay_height},
+        {0x2F7E8u,0x015003DCu,&rv_gameplay_height},
+        {0x04628u,0x015003D0u,&rv_gameplay_center_y},
+        {0x06254u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0630Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x06B88u,0x015003D0u,&rv_gameplay_center_y},
+        {0x08A8Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x0AB24u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0ACE0u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0BA84u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0BCD0u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0CA30u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0CC1Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x0D1A8u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0D54Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x0DE84u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0E188u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0E50Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x0E744u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0EE18u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0F074u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0F3BCu,0x015003D0u,&rv_gameplay_center_y},
+        {0x0F770u,0x015003D0u,&rv_gameplay_center_y},
+        {0x0FB0Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x0FF18u,0x015003D0u,&rv_gameplay_center_y},
+        {0x106ECu,0x015003D0u,&rv_gameplay_center_y},
+        {0x10CDCu,0x015003D0u,&rv_gameplay_center_y},
+        {0x110D8u,0x015003D0u,&rv_gameplay_center_y},
+        {0x1142Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x11B08u,0x015003D0u,&rv_gameplay_center_y},
+        {0x11E58u,0x015003D0u,&rv_gameplay_center_y},
+        {0x1235Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x12810u,0x015003D0u,&rv_gameplay_center_y},
+        {0x13348u,0x015003D0u,&rv_gameplay_center_y},
+        {0x13778u,0x015003D0u,&rv_gameplay_center_y},
+        {0x13B7Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x13F90u,0x015003D0u,&rv_gameplay_center_y},
+        {0x14318u,0x015003D0u,&rv_gameplay_center_y},
+        {0x14638u,0x015003D0u,&rv_gameplay_center_y},
+        {0x1499Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x14F44u,0x015003D0u,&rv_gameplay_center_y},
+        {0x15E20u,0x015003D0u,&rv_gameplay_center_y},
+        {0x15F08u,0x015003D0u,&rv_gameplay_center_y},
+        {0x15FFCu,0x015003D0u,&rv_gameplay_center_y},
+        {0x18118u,0x015003D0u,&rv_gameplay_center_y},
+        {0x1897Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x1A2E0u,0x015003D0u,&rv_gameplay_center_y},
+        {0x1A6D4u,0x015003D0u,&rv_gameplay_center_y},
+        {0x1AAE4u,0x015003D0u,&rv_gameplay_center_y},
+        {0x1AE50u,0x015003D0u,&rv_gameplay_center_y},
+        {0x1B23Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x1B678u,0x015003D0u,&rv_gameplay_center_y},
+        {0x1BA60u,0x015003D0u,&rv_gameplay_center_y},
+        {0x1BEECu,0x015003D0u,&rv_gameplay_center_y},
+        {0x1C344u,0x015003D0u,&rv_gameplay_center_y},
+        {0x1D9F8u,0x015003D0u,&rv_gameplay_center_y},
+        {0x21898u,0x015003D0u,&rv_gameplay_center_y},
+        {0x21938u,0x015003D0u,&rv_gameplay_center_y},
+        {0x220E4u,0x015003D0u,&rv_gameplay_center_y},
+        {0x22254u,0x015003D0u,&rv_gameplay_center_y},
+        {0x25EF4u,0x015003D0u,&rv_gameplay_center_y},
+        {0x26470u,0x015003D0u,&rv_gameplay_center_y},
+        {0x26AD8u,0x015003D0u,&rv_gameplay_center_y},
+        {0x26C6Cu,0x015003D0u,&rv_gameplay_center_y},
+        {0x27028u,0x015003D0u,&rv_gameplay_center_y},
+        {0x27474u,0x015003D0u,&rv_gameplay_center_y},
+        {0x278FCu,0x015003D0u,&rv_gameplay_center_y},
+        {0x27D84u,0x015003D0u,&rv_gameplay_center_y},
+        {0x28214u,0x015003D0u,&rv_gameplay_center_y},
+        {0x2E9CCu,0x015003D0u,&rv_gameplay_center_y},
+        {0x16760u,0x015003D0u,&rv_gameplay_center_y},
+    };
+    // Validate every relocated literal before committing the complete set.
+    for(const Alias &a:aliases) {
+        uint32_t *location=(uint32_t*)lgt_translate_ptr(img,a.address);
+        void *original=lgt_translate_ptr(img,a.original);
+        if(!location || !original || *location!=(uint32_t)(uintptr_t)original) {
+            printf("[RV!] gameplay viewport mismatch at %08lx; skipped\n",
+                   (unsigned long)a.address);
+            return;
+        }
+    }
+    for(const Alias &a:aliases) {
+        uint32_t *location=(uint32_t*)lgt_translate_ptr(img,a.address);
+        *location=(uint32_t)(uintptr_t)a.value;
+        DC_FlushRange(location,sizeof(uint32_t));
+    }
+    printf("[RV] gameplay viewport=240x192 centerY=96; story centered\n");
+}
+
+// Observe the native map renderer without changing its draw or camera state.
+static uint32_t (*rv_original_map_draw)(uint32_t)=nullptr;
+extern "C" uint32_t rv_map_draw_for_sub(uint32_t self) {
+    const uint32_t result=rv_original_map_draw(self);
+    wipi_note_ragnarok_map(self);
+    return result;
+}
+static void install_ragnarok_sub_map(LgtLoadedImage *img) {
+    const uint32_t sites[]={0x27020u,0x274A0u,0x27910u};
+    void *original=lgt_translate_ptr(img,0x3AFCu);
+    if(!original) return;
+    for(uint32_t site:sites) {
+        uint32_t *p=(uint32_t*)lgt_translate_ptr(img,site);
+        if(!p || *p!=((uint32_t)(uintptr_t)original|1u)) {
+            printf("[RV!] SUB map signature mismatch\n"); return;
+        }
+    }
+    rv_original_map_draw=(uint32_t (*)(uint32_t))((uintptr_t)original|1u);
+    for(uint32_t site:sites) {
+        uint32_t *p=(uint32_t*)lgt_translate_ptr(img,site);
+        *p=(uint32_t)(uintptr_t)&rv_map_draw_for_sub;
+        DC_FlushRange(p,4);
+    }
+}
+
 int main(void) {
     powerOn(POWER_ALL_2D);
     soundEnable();
@@ -104,7 +361,7 @@ int main(void) {
     printf("Guest: 240x320 RGB565\n");
     printf("TOP=y0..159 bottom-aligned, BOTTOM=y160..319 top-aligned\n");
     printf("Keys: D-pad move, A=EZ B=CLR X=0 Y=* R=#\n");
-    printf("L+A/B/X/Y=1/3/7/9, START=Call, SELECT=SUB toggle\n");
+    printf("L+A/B/X/Y=1/3/7/9, START=Call, SELECT=unused\n");
     printf("Save: 128K cartridge EEPROM (.sav)\n\n");
     // Diagnostic build: keep the SUB console visible throughout native boot.
     // A guest crash inside entry/init/start cannot be recovered by the main
@@ -116,13 +373,22 @@ int main(void) {
     wipi_boot_stage("02 OPEN NITROFS");
 
     if(!nitroFSInit(NULL)) { fatal_wait("NitroFS init failed"); return 1; }
+    uint32_t boot_binary_size=0;
+    const bool binary_before_save=embedded_asset_size("binary.mod",&boot_binary_size);
+    printf("[FS] binary before save=%s size=%lu mode=%s\n",
+           binary_before_save?"OK":"FAIL",(unsigned long)boot_binary_size,
+           isDSiMode()?"DSi":"DS");
+    if(!binary_before_save) { fatal_wait(embedded_asset_last_error()); return 1; }
+    const uint16_t rom_control_before_save=REG_AUXSPICNT;
     wipi_init_storage();
+    printf("[FS] card control %04x -> %04x\n",
+           (unsigned)rom_control_before_save,(unsigned)REG_AUXSPICNT);
 
     printf("[ROM] NitroFS payload: %lu bytes / %lu files\n",
            (unsigned long)embedded_asset_pack_size(),
            (unsigned long)embedded_asset_count());
     EmbeddedAssetView binary{};
-    if(!embedded_asset_find("binary.mod",&binary)) { fatal_wait("NitroFS binary.mod missing"); return 1; }
+    if(!embedded_asset_find("binary.mod",&binary)) { fatal_wait(embedded_asset_last_error()); return 1; }
     printf("[ROM] binary.mod %lu bytes\n",(unsigned long)binary.size);
     printf("[VID] split portrait framebuffer, no scaling\n");
     printf("[SPD] guest clock = 1.00x\n");
@@ -137,6 +403,12 @@ int main(void) {
     // Do not install any Zenonia-specific address/signature hooks here.
     wipi_boot_stage("04 PATCH IMPORT");
     prepatch_lgt_imports(&image);
+    patch_ragnarok_notice_layout(&image);
+    patch_ragnarok_loader_layout(&image);
+    patch_ragnarok_title_layout(&image);
+    patch_ragnarok_slot_layout(&image);
+    patch_ragnarok_gameplay_viewport(&image);
+    install_ragnarok_sub_map(&image);
 
     InitParam1 p1{};
     InitParam2 p2{};

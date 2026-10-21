@@ -16,3 +16,5 @@ int embedded_asset_read(const char *name, void *dst, uint32_t cap);
 void embedded_asset_release_cache(void);
 uint32_t embedded_asset_count(void);
 uint32_t embedded_asset_pack_size(void);
+
+const char *embedded_asset_last_error(void);
