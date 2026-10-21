@@ -252,7 +252,14 @@ with tempfile.TemporaryDirectory(prefix='rv_header_test_') as tmp:
     assert struct.unpack_from('<I',patched,0x84)[0]==0x8000
     assert patched[0x15E:0x160]!=b'\0\0'  # header CRC was written
 assert not (ROOT/'build_dldi.bat').exists()
-assert not (ROOT/'BUILD_DSI_WINDOWS.bat').exists()
+# The former DSi Windows entrypoint is now an alias, not a separate build.
+# Keeping the wrapper also avoids an old tracked GitHub file surviving ZIP
+# uploads and breaking CI (uploads do not automatically delete tracked files).
+legacy_windows=(ROOT/'BUILD_DSI_WINDOWS.bat').read_text(encoding='utf-8', errors='replace').lower()
+assert 'call "%~dp0build.bat" %*' in legacy_windows
+assert 'exit /b %errorlevel%' in legacy_windows
+assert 'ragnarok_violet_dsi.nds' not in legacy_windows
+assert 'make -j2' not in legacy_windows
 assert '*.sav' in (ROOT/'.gitignore').read_text(errors='replace')
 
 # Save-slot timestamp ABI. Ragnarok imports UIC GetTime (1fb:338), which must

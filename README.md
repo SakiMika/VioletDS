@@ -10,6 +10,10 @@ Windows:
 build.bat
 ```
 
+For older Windows setup instructions, `BUILD_DSI_WINDOWS.bat` is retained as a
+compatibility alias to `build.bat`. It does not create a separate DSi ROM.
+
+
 Linux / GitHub Actions:
 
 ```sh
