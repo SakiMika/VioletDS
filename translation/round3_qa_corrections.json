@@ -1,0 +1,107 @@
+[
+  {
+    "entry": 1536,
+    "elf_va": "0x1412322",
+    "old": "Karn",
+    "new": "Kar.",
+    "capacity": 4
+  },
+  {
+    "entry": 1757,
+    "elf_va": "0x1413915",
+    "old": "Karn",
+    "new": "Kar.",
+    "capacity": 4
+  },
+  {
+    "entry": 1543,
+    "elf_va": "0x14123a0",
+    "old": "Gart",
+    "new": "Gar.",
+    "capacity": 4
+  },
+  {
+    "entry": 1764,
+    "elf_va": "0x14139ee",
+    "old": "Gart",
+    "new": "Gar.",
+    "capacity": 4
+  },
+  {
+    "entry": 1544,
+    "elf_va": "0x14123b2",
+    "old": "Antony",
+    "new": "Anth.",
+    "capacity": 6
+  },
+  {
+    "entry": 1765,
+    "elf_va": "0x1413a0d",
+    "old": "Antony",
+    "new": "Anth.",
+    "capacity": 6
+  },
+  {
+    "entry": 1601,
+    "elf_va": "0x14127b4",
+    "old": "Princess",
+    "new": "Purinces",
+    "capacity": 8
+  },
+  {
+    "entry": 1822,
+    "elf_va": "0x14140f4",
+    "old": "Princess",
+    "new": "Purinces",
+    "capacity": 8
+  },
+  {
+    "entry": 1712,
+    "elf_va": "0x1412f82",
+    "old": "Porg",
+    "new": "Pori",
+    "capacity": 4
+  },
+  {
+    "entry": 1933,
+    "elf_va": "0x1414e65",
+    "old": "Porg",
+    "new": "Pori",
+    "capacity": 4
+  },
+  {
+    "entry": 1629,
+    "elf_va": "0x14129ac",
+    "old": "Area",
+    "new": "Fld",
+    "capacity": 4
+  },
+  {
+    "entry": 1850,
+    "elf_va": "0x1414458",
+    "old": "Area",
+    "new": "Fld",
+    "capacity": 4
+  },
+  {
+    "entry": 1216,
+    "elf_va": "0x140fc72",
+    "old": "Skt",
+    "new": "Sakk",
+    "capacity": 4
+  },
+  {
+    "entry": 920,
+    "elf_va": "0x1406b5e",
+    "old": "Water",
+    "new": "Wtrwks",
+    "capacity": 6
+  },
+  {
+    "entry": 949,
+    "elf_va": "0x1406ddd",
+    "old": "Hurrican",
+    "new": "Hurri.",
+    "capacity": 8
+  }
+]
