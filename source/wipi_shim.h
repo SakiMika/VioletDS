@@ -34,7 +34,7 @@ struct WipiCletState {
 const WipiCletState *wipi_clet_state(void);
 
 // Scoped HUD geometry guard; HUD and gameplay draw directly into the TOP RGB565 LCD.
-// SUB supports the SELECT minimap and settings; no virtual quickbar keys.
+// SUB supports the native Ragnarok quickbar and settings; SELECT is unused.
 bool wipi_begin_native_hud(void);
 void wipi_end_native_hud(void);
 
@@ -51,3 +51,9 @@ void wipi_store_minimap_cache(uint32_t result);
 
 // Live Ragnarok map render notification for the touch-screen panel.
 void wipi_note_ragnarok_map(uint32_t self);
+
+// Capture the original gameplay quickbar without changing menu previews.
+void wipi_draw_ragnarok_quickbar(uint32_t fn, uint32_t flags);
+
+// Use the guest key-3 map renderer with its graphics state saved/restored.
+void wipi_set_ragnarok_native_minimap(uint32_t draw,void *context,uint32_t *color);

@@ -325,6 +325,25 @@ static void patch_ragnarok_gameplay_viewport(LgtLoadedImage *img) {
     printf("[RV] gameplay viewport=240x192 centerY=96; story centered\n");
 }
 
+// Intro-only controls: keep the original SKIP and EZ:FAST sprite draw calls,
+// but place both labels at y=164, safely above the 192px LCD edge.
+static void patch_ragnarok_intro_controls(LgtLoadedImage *img) {
+    const uint32_t sites[]={0x166ACu,0x166CCu};
+    for(uint32_t site:sites) {
+        const uint16_t *p=(const uint16_t*)lgt_translate_ptr(img,site);
+        if(!p || *p!=0x3A14u) {
+            printf("[RV!] intro control signature mismatch; skipped\n"); return;
+        }
+    }
+    for(uint32_t site:sites) {
+        uint16_t *p=(uint16_t*)lgt_translate_ptr(img,site);
+        *p=0x22A4u; // movs r2,#164 (was subs r2,#20 from phone height)
+        DC_FlushRange(p,2);
+        IC_InvalidateRange(p,2);
+    }
+    printf("[RV] intro EZ:FAST / SKIP y=164\n");
+}
+
 // Observe the native map renderer without changing its draw or camera state.
 static uint32_t (*rv_original_map_draw)(uint32_t)=nullptr;
 extern "C" uint32_t rv_map_draw_for_sub(uint32_t self) {
@@ -342,12 +361,44 @@ static void install_ragnarok_sub_map(LgtLoadedImage *img) {
             printf("[RV!] SUB map signature mismatch\n"); return;
         }
     }
+    // Key 3 opens UI state 101; 0x187CC calls this pure map renderer at
+    // 0x187EC. Reuse that renderer without opening the menu or changing keys.
+    const uint32_t *minimap_code=(const uint32_t*)lgt_translate_ptr(img,0x182C4u);
+    const uint32_t *minimap_map=(const uint32_t*)lgt_translate_ptr(img,0x183B4u);
+    void *map=lgt_translate_ptr(img,0x01503EACu);
+    void *context=lgt_translate_ptr(img,0x01500640u);
+    uint32_t *color=(uint32_t*)lgt_translate_ptr(img,0x0150CA9Cu);
+    if(!minimap_code || *minimap_code!=0xB097B5F0u || !minimap_map ||
+       *minimap_map!=(uint32_t)(uintptr_t)map || !context || !color) {
+        printf("[RV!] key-3 minimap signature mismatch; skipped\n"); return;
+    }
+    wipi_set_ragnarok_native_minimap((uint32_t)(uintptr_t)minimap_code|1u,context,color);
     rv_original_map_draw=(uint32_t (*)(uint32_t))((uintptr_t)original|1u);
     for(uint32_t site:sites) {
         uint32_t *p=(uint32_t*)lgt_translate_ptr(img,site);
         *p=(uint32_t)(uintptr_t)&rv_map_draw_for_sub;
         DC_FlushRange(p,4);
     }
+}
+
+static uint32_t rv_original_quickbar=0;
+extern "C" void rv_quickbar_for_sub(int,int,uint32_t flags) {
+    wipi_draw_ragnarok_quickbar(rv_original_quickbar,flags);
+}
+static void install_ragnarok_sub_quickbar(LgtLoadedImage *img) {
+    uint32_t *site=(uint32_t*)lgt_translate_ptr(img,0x2469Cu);
+    void *original=lgt_translate_ptr(img,0x9778u);
+    const uint8_t coords[]={0,0,21,0,63,0,84,0};
+    const void *guest_coords=lgt_translate_ptr(img,0x0140028Du);
+    if(!site || !original || !guest_coords ||
+       *site!=((uint32_t)(uintptr_t)original|1u) ||
+       memcmp(guest_coords,coords,sizeof(coords))!=0) {
+        printf("[RV!] quickbar signature mismatch; skipped\n"); return;
+    }
+    rv_original_quickbar=(uint32_t)(uintptr_t)original|1u;
+    *site=(uint32_t)(uintptr_t)&rv_quickbar_for_sub;
+    DC_FlushRange(site,4);
+    printf("[RV] native quickbar -> SUB y172..191; touch 1/3/7/9\n");
 }
 
 int main(void) {
@@ -408,7 +459,9 @@ int main(void) {
     patch_ragnarok_title_layout(&image);
     patch_ragnarok_slot_layout(&image);
     patch_ragnarok_gameplay_viewport(&image);
+    patch_ragnarok_intro_controls(&image);
     install_ragnarok_sub_map(&image);
+    install_ragnarok_sub_quickbar(&image);
 
     InitParam1 p1{};
     InitParam2 p2{};
@@ -511,9 +564,7 @@ int main(void) {
         const uint32_t up=keysUp();
         const uint32_t held=keysHeld();
         if((down&KEY_START) && (held&KEY_X) && (held&KEY_Y)) break;
-        // Touch is reserved for DS-side LOG/CLOSE controls. Never forward it
-        // as a WIPI game key; the lower LCD continues to show guest y=160..319
-        // whenever the diagnostic console is closed.
+        // Touch targets the native quickbar and the settings/log controls.
         if(down & KEY_TOUCH) {
             touchPosition touch{};
             touchRead(&touch);

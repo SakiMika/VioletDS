@@ -207,13 +207,27 @@ static uint64_t g_log_last_draw_ms=0;
 static bool g_bottom_half_visible=true;
 static uint32_t g_rv_map_self=0;
 static uint32_t g_touch_logical=0;
-static const int RV_QUICK_TARGETS[6]={2,3,5,6,8,9};
+static const int RV_QUICK_TARGETS[4]={2,3,5,6}; // 1,3,7,9
+static const int RV_QUICK_OFFSETS[4]={0,21,63,84};
+static constexpr int RV_QUICK_W=104, RV_QUICK_H=20;
+static constexpr int RV_QUICK_X=(DS_W-RV_QUICK_W)/2;
+static constexpr int RV_QUICK_Y=DS_H-RV_QUICK_H;
+alignas(32) static uint16_t g_rv_quick_fb[PHONE_W*RV_QUICK_H];
+static bool g_rv_quick_capture=false, g_rv_quick_valid=false;
+static WipiFramebuffer g_rv_quick_alias{};
 static bool g_log_button_drawn=false;
 static uint16_t *g_dialogue_snapshot=nullptr;
 static bool g_dialogue_snapshot_valid=false;
 static int g_dialogue_hold_frames=0;
 static bool g_dialogue_last_visible=false;
 static int g_dialogue_capture_y=UI_DIALOG_CUTSCENE_SRC_Y;
+static constexpr int RV_MAP_H=172;
+alignas(32) static uint16_t g_rv_native_map_fb[PHONE_W*RV_MAP_H];
+static WipiFramebuffer g_rv_native_map_alias{};
+static bool g_rv_native_map_capture=false, g_rv_native_map_valid=false;
+static uint32_t g_rv_native_map_draw=0;
+static WipiGraphicsContext *g_rv_native_map_context=nullptr;
+static uint32_t *g_rv_native_map_color=nullptr;
 static WipiFramebuffer g_screen_fb{};
 static LgtGraphicsView g_screen_view{};
 static LgtFramebuffer g_screen_wrapper{};
@@ -763,6 +777,19 @@ static WipiFramebuffer *as_fb(uint32_t p) {
         if (!fb->buf || fb->width==0 || fb->height==0 || fb->bpp==0) return nullptr;
     }
 
+    if(g_rv_native_map_capture && fb->buf==(uint32_t)(uintptr_t)g_phone_fb) {
+        g_rv_native_map_alias=*fb;
+        g_rv_native_map_alias.buf=(uint32_t)(uintptr_t)g_rv_native_map_fb;
+        g_rv_native_map_alias.height=RV_MAP_H;
+        return &g_rv_native_map_alias;
+    }
+    // Only the gameplay quickbar draw is redirected; inventory previews stay native.
+    if(g_rv_quick_capture && fb->buf==(uint32_t)(uintptr_t)g_phone_fb) {
+        g_rv_quick_alias=*fb;
+        g_rv_quick_alias.buf=(uint32_t)(uintptr_t)g_rv_quick_fb;
+        g_rv_quick_alias.height=RV_QUICK_H;
+        return &g_rv_quick_alias;
+    }
     // Redirect only screen storage in the scoped legacy minimap call.
     if(g_minimap_capture && fb->buf==(uint32_t)(uintptr_t)g_phone_fb){
         g_minimap_alias=*fb;g_minimap_alias.buf=(uint32_t)(uintptr_t)g_minimap_fb;
@@ -3034,6 +3061,7 @@ static void paint_region(int x,int y,int w,int h) {
     g_in_paint=true;
     g_minimap_valid=false; // No stale map in menus or after native early return.
     g_rv_map_self=0;
+    g_rv_quick_valid=false;
     typedef void (*Fn)(int,int,int,int);
     Fn f=(Fn)(uintptr_t)g_clet.callbacks[4];
     f(x,y,w,h);
@@ -3449,64 +3477,78 @@ void wipi_toggle_minimap(void) {
 }
 
 void wipi_note_ragnarok_map(uint32_t self) {
-    if(self>=0x02000000u && self<=0x02400000u-0x3330u) g_rv_map_self=self;
+    if(valid_ptr(self)) g_rv_map_self=self;
 }
-static void rv_draw_touch_panel(uint16_t *dst) {
-    if(!g_rv_map_self) return;
+// This is the original key-3 minimap renderer (guest 0x182C4), not a
+// reconstruction from map tiles. Capture its pixels, including native markers.
+void wipi_set_ragnarok_native_minimap(uint32_t draw,void *context,uint32_t *color) {
+    g_rv_native_map_draw=draw;
+    g_rv_native_map_context=(WipiGraphicsContext*)context;
+    g_rv_native_map_color=color;
+}
+namespace {
+static void rv_capture_native_minimap(void) {
+    g_rv_native_map_valid=false;
+    if(!g_rv_map_self || !g_rv_native_map_draw ||
+       !g_rv_native_map_context || !g_rv_native_map_color) return;
     const uint8_t *map=(const uint8_t*)(uintptr_t)g_rv_map_self;
-    const int w=map[0x32dd],h=map[0x32de];
-    if(w<1 || w>51 || h<1 || h>51) return;
-    // Native map cells are column-major, 51 signed 16-bit tiles per column.
-    // Use the same atlas as the map renderer for a complete terrain thumbnail.
-    const uint16_t *cells=(const uint16_t*)(map+16);
-    RvImageAllocation *atlas=rv_image(*(const uint32_t*)(map+4));
-    uint16_t *pixels=atlas?fb_pixels16(&atlas->backing):nullptr;
-    const int aw=atlas?(int)atlas->backing.width:0;
-    const int ah=atlas?(int)atlas->backing.height:0;
-    int dw=216,dh=dw*h/w;
-    if(dh>120) {dh=120;dw=dh*w/h;}
-    const int dx=(DS_W-dw)/2,dy=12+(120-dh)/2;
-    sub_rect_to(dst,dx-1,dy-1,dw+2,dh+2,RGB15(18,16,25)|BIT(15));
-    for(int y=0;y<dh;y++) for(int x=0;x<dw;x++) {
-        const int wx=x*w*18/dw,wy=y*h*18/dh;
-        const unsigned tile=cells[(wx/18)*51+wy/18];
-        uint16_t color=RGB15(8,10,12)|BIT(15);
-        const int sx=(tile%10)*18+wx%18,sy=(tile/10)*18+wy%18;
-        if(pixels && sx<aw && sy<ah) color=rgb565_to_ds15(pixels[sy*(atlas->backing.bpl/2)+sx]);
-        else if(tile<256) color=RGB15(10+(tile%7),12+(tile%9),10+(tile%5))|BIT(15);
-        dst[(dy+y)*DS_W+dx+x]=color;
-    }
-    // Show the actual camera window on the full map.
-    const int cx=*(const int16_t*)(map+0x3328),cy=*(const int16_t*)(map+0x332a);
-    int l=cx*dw/(w*18),t=cy*dh/(h*18),rw=PHONE_W*dw/(w*18),rh=DS_H*dh/(h*18);
-    if(l<0)l=0;if(t<0)t=0;if(rw<2)rw=2;if(rh<2)rh=2;
-    if(l+rw>dw)rw=dw-l;if(t+rh>dh)rh=dh-t;
-    const uint16_t marker=RGB15(31,28,8)|BIT(15);
-    if(rw>0 && rh>0) {
-        sub_rect_to(dst,dx+l,dy+t,rw,1,marker);sub_rect_to(dst,dx+l,dy+t+rh-1,rw,1,marker);
-        sub_rect_to(dst,dx+l,dy+t,1,rh,marker);sub_rect_to(dst,dx+l+rw-1,dy+t,1,rh,marker);
-    }
-    static const uint8_t labels[6][5]={
-        {2,6,2,2,7},{6,1,3,1,6},{7,1,2,2,2},
-        {2,5,3,1,6},{7,5,5,5,7},{5,7,5,7,5}
-    };
-    for(int i=0;i<6;i++) {
-        const int x=8+i*40;
-        const bool pressed=(g_touch_logical&(1u<<(4+RV_QUICK_TARGETS[i])))!=0;
-        sub_rect_to(dst,x,144,38,44,RGB15(18,16,25)|BIT(15));
-        sub_rect_to(dst,x+1,145,36,42,(pressed?RGB15(14,12,24):RGB15(5,5,10))|BIT(15));
-        draw_3x5_glyph_to(dst,x+14,157,labels[i],3,RGB15(31,30,31)|BIT(15));
-    }
+    if(map[0x32dd]<1 || map[0x32dd]>51 || map[0x32de]<1 || map[0x32de]>51) return;
+    const WipiGraphicsContext saved=*g_rv_native_map_context;
+    const uint32_t color=*g_rv_native_map_color;
+    g_rv_native_map_context->clip_x1=0;
+    g_rv_native_map_context->clip_y1=0;
+    g_rv_native_map_context->clip_x2=PHONE_W-1;
+    g_rv_native_map_context->clip_y2=RV_MAP_H-1;
+    g_rv_native_map_context->offset_x=0;
+    g_rv_native_map_context->offset_y=0;
+    memset(g_rv_native_map_fb,0xff,sizeof(g_rv_native_map_fb));
+    g_rv_native_map_capture=true;
+    typedef void (*Draw)(int,int);
+    ((Draw)(uintptr_t)g_rv_native_map_draw)(PHONE_W/2,80);
+    g_rv_native_map_capture=false;
+    *g_rv_native_map_context=saved;
+    *g_rv_native_map_color=color;
+    g_rv_native_map_valid=true;
+}
+} // namespace
+static void rv_draw_native_minimap(uint16_t *dst) {
+    if(!g_rv_native_map_valid) return;
+    // Pixel-for-pixel transfer; native renderer chooses the map scale/colors.
+    for(int y=0;y<RV_MAP_H;y++) for(int x=0;x<PHONE_W;x++)
+        dst[y*DS_W+(DS_W-PHONE_W)/2+x]=
+            rgb565_to_ds15(g_rv_native_map_fb[y*PHONE_W+x]);
+}
+
+// Guest 0x9778 draws the original frame, four icons, counts and cooldowns.
+// Its inventory preview caller is deliberately not hooked.
+void wipi_draw_ragnarok_quickbar(uint32_t fn, uint32_t flags) {
+    memset(g_rv_quick_fb,0xff,sizeof(g_rv_quick_fb));
+    g_rv_quick_capture=true;
+    typedef void (*Draw)(int,int,uint32_t);
+    ((Draw)(uintptr_t)fn)((PHONE_W-RV_QUICK_W)/2,0,flags);
+    g_rv_quick_capture=false;
+    g_rv_quick_valid=true;
+}
+static void rv_draw_native_quickbar(uint16_t *dst) {
+    if(!g_rv_quick_valid) return;
+    const int sx=(PHONE_W-RV_QUICK_W)/2;
+    for(int y=0;y<RV_QUICK_H;y++) for(int x=0;x<RV_QUICK_W;x++)
+        dst[(RV_QUICK_Y+y)*DS_W+RV_QUICK_X+x]=
+            rgb565_to_ds15(g_rv_quick_fb[y*PHONE_W+sx+x]);
 }
 
 void wipi_present(void) {
     if(!g_phone_fb||!g_ds_fb||!g_sub_fb) return;
     g_present_pending=false;
+    // Ragnarok also paints directly in timer callbacks and calls FlushLcd,
+    // bypassing paint_region. Capture the native map only after that complete
+    // guest frame has returned, on every presentation path.
+    rv_capture_native_minimap();
 
     // Fit handset width to TOP, keeping guest Y coordinates at native scale.
     // Rows below the 192px LCD remain clipped until the next layout pass.
     constexpr size_t LCD_BYTES=DS_W*DS_H*2u;
-    const uint16_t black=(uint16_t)(BIT(15) | RGB15(0,0,0));
+    const uint16_t sub_background=(uint16_t)(BIT(15) | RGB15(31,31,31));
     uint16_t *top=g_sub_comp ? g_sub_comp : g_ds_fb;
     for(int y=0;y<DS_H;y++) {
         const uint16_t *src=g_phone_fb+y*PHONE_W;
@@ -3519,17 +3561,21 @@ void wipi_present(void) {
         dmaCopy(g_sub_comp,g_ds_fb,LCD_BYTES);
     }
 
-    // SUB is reserved for the existing settings/log controls.
+    // SUB contains the key-3 native minimap, original quickbar and settings/log controls.
     if(!g_log_visible) {
         uint16_t *sub=g_sub_comp ? g_sub_comp : g_sub_fb;
-        ZenRenderFast::fill16(sub,DS_W*DS_H,black);
-        rv_draw_touch_panel(sub);
+        ZenRenderFast::fill16(sub,DS_W*DS_H,sub_background);
+        rv_draw_native_minimap(sub);
+        rv_draw_native_quickbar(sub);
         draw_log_button_to(sub);
         if(g_sub_comp) {
             DC_FlushRange(g_sub_comp,LCD_BYTES);
             dmaCopy(g_sub_comp,g_sub_fb,LCD_BYTES);
         }
     }
+    // Each new guest frame must actually draw the world again; do not leave
+    // a stale minimap on title/menu screens. Keep the captured pixels for touch.
+    g_rv_map_self=0;
 }
 
 
@@ -3672,15 +3718,21 @@ bool wipi_log_visible(void) { return g_log_visible; }
 void wipi_handle_touch(uint32_t down,int x,int y) {
     if(!(down&KEY_TOUCH)) return;
 
-    // Six synthetic 4..9 buttons and their hit boxes are removed. LOG remains.
+    // Native quickbar slot bounds are shared with the SUB compositor.
     if(!g_log_visible) {
         if(x>=LOG_BTN_X && x<LOG_BTN_X+LOG_BTN_W && y>=LOG_BTN_Y && y<LOG_BTN_Y+LOG_BTN_H) {
             wipi_set_log_visible(true);
             return;
         }
-        if(g_rv_map_self && y>=144 && y<188 && x>=8 && x<248) {
-            const int slot=(x-8)/40;
-            g_touch_logical=1u<<(4+RV_QUICK_TARGETS[slot]);
+        g_touch_logical=0;
+        if(g_rv_quick_valid && y>=RV_QUICK_Y && y<DS_H) {
+            for(int slot=0;slot<4;slot++) {
+                const int left=RV_QUICK_X+RV_QUICK_OFFSETS[slot];
+                if(x>=left && x<left+20) {
+                    g_touch_logical=1u<<(4+RV_QUICK_TARGETS[slot]);
+                    break;
+                }
+            }
         }
         return;
     }
@@ -3957,7 +4009,7 @@ static void runner_release_all_logical(void) {
 
 void wipi_dispatch_keys(uint32_t down,uint32_t up) {
     (void)up;
-    // SELECT is a DS-side display toggle, never a guest key. Exclude it even
+    // SELECT is unused. Exclude it even
     // when the diagnostic SINGLE/COMBO remapping UI is active.
     uint32_t rawHeld=keysHeld() & ~(KEY_TOUCH|KEY_LID|KEY_SELECT);
     uint32_t rawDown=down & ~(KEY_TOUCH|KEY_LID|KEY_SELECT);
@@ -4017,7 +4069,7 @@ void wipi_dispatch_keys(uint32_t down,uint32_t up) {
         if(key && (rawHeld&key) && !(activeComboPhysical&key)) logical|=1u<<(4+i);
     }
 
-    if(!(keysHeld()&KEY_TOUCH) || g_log_visible || !g_rv_map_self) g_touch_logical=0;
+    if(!(keysHeld()&KEY_TOUCH) || g_log_visible || !g_rv_quick_valid) g_touch_logical=0;
     logical|=g_touch_logical;
     uint32_t logicalDown=logical & ~g_ui_prev_logical;
     uint32_t logicalUp=g_ui_prev_logical & ~logical;
