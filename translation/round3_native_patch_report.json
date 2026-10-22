@@ -1,0 +1,6831 @@
+{
+  "total": 851,
+  "tooltip_revisions": [
+    {
+      "file": "res/2.dat",
+      "index": 0,
+      "old": "[Dagger]Summon spinning daggers",
+      "new": "[Dagger] Summon daggers"
+    },
+    {
+      "file": "res/3.dat",
+      "index": 194,
+      "old": "Raw Material Pocket",
+      "new": "Pouch containing materials."
+    }
+  ],
+  "changed_bytes": 8442,
+  "remaining": 237,
+  "old_sha256": "a303dbf0560819cbc1714407ab9813ff33cd61e9c5f3492baa6fe255878e9b7c",
+  "new_sha256": "e241269ba0d2b8ef769112fb06b46e70e962cebcda36491e3c21ec007d6ed972",
+  "records": [
+    {
+      "entry": 4,
+      "elf_va": "0x3b110",
+      "original": "아이템 한도를 초과했습니다!",
+      "target": "Inventory limit reached!",
+      "capacity": 27,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 43,
+      "elf_va": "0x3bc00",
+      "original": "팬저 고블린",
+      "target": "Panzer Gob",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 44,
+      "elf_va": "0x3bc0c",
+      "original": "포포링",
+      "target": "Popo",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 50,
+      "elf_va": "0x3bc4c",
+      "original": "폭주위스퍼",
+      "target": "Wild Wisp",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 51,
+      "elf_va": "0x3bc58",
+      "original": "본건",
+      "target": "Bong",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 55,
+      "elf_va": "0x3bc84",
+      "original": "고렘",
+      "target": "Golm",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 56,
+      "elf_va": "0x3bc8c",
+      "original": "에이션트 가고일",
+      "target": "Anc Gargoyle",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 80,
+      "elf_va": "0x3be40",
+      "original": "장갑",
+      "target": "Glov",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 90,
+      "elf_va": "0x3bf14",
+      "original": "인챈트",
+      "target": "Enchnt",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 165,
+      "elf_va": "0x3c49c",
+      "original": "%d위",
+      "target": "%dth",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 166,
+      "elf_va": "0x3c4a4",
+      "original": "이벤트당첨",
+      "target": "Prize Won",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 174,
+      "elf_va": "0x3c5c0",
+      "original": "카프라서비스",
+      "target": "Kafra Svc",
+      "capacity": 12,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 184,
+      "elf_va": "0x3c674",
+      "original": "럭셔리샵",
+      "target": "Lux Shop",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 185,
+      "elf_va": "0x3c688",
+      "original": "4차원 전송",
+      "target": "4D Warp",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 193,
+      "elf_va": "0x3c708",
+      "original": "선물 받기",
+      "target": "Get Gift",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 217,
+      "elf_va": "0x3d7cc",
+      "original": "성공!!!",
+      "target": "Success",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 227,
+      "elf_va": "0x3d8a8",
+      "original": "나의 선물이야",
+      "target": "My Gift",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 264,
+      "elf_va": "0x3dca0",
+      "original": "HP, SP 전체 회복",
+      "target": "Full HP/SP Heal",
+      "capacity": 16,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 273,
+      "elf_va": "0x3de14",
+      "original": "스텟 분배 완료",
+      "target": "Stats Applied",
+      "capacity": 14,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 275,
+      "elf_va": "0x3de2c",
+      "original": "돈 ",
+      "target": "Z",
+      "capacity": 3,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 276,
+      "elf_va": "0x3de30",
+      "original": "레벨 ",
+      "target": "Lv",
+      "capacity": 5,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 278,
+      "elf_va": "0x3de40",
+      "original": "맵 ",
+      "target": "Map",
+      "capacity": 3,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 283,
+      "elf_va": "0x3de68",
+      "original": "이동속도 ",
+      "target": "Move Spd",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 284,
+      "elf_va": "0x3de74",
+      "original": "펫 ",
+      "target": "Pet",
+      "capacity": 3,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 286,
+      "elf_va": "0x3de80",
+      "original": "스킬획득 ",
+      "target": "New Skill",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 288,
+      "elf_va": "0x3de9c",
+      "original": "보나스스텟 ",
+      "target": "Bonus Stat",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 291,
+      "elf_va": "0x3dec8",
+      "original": "진동시간 ",
+      "target": "Vibration",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 292,
+      "elf_va": "0x3ded4",
+      "original": "진동세기 ",
+      "target": "Vib Level",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 317,
+      "elf_va": "0x3e07c",
+      "original": "중점이동여부 ",
+      "target": "Move focus?",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 327,
+      "elf_va": "0x3e160",
+      "original": "인벤토리 부족",
+      "target": "Bag is full!",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 329,
+      "elf_va": "0x3e178",
+      "original": "%s 맛있어",
+      "target": "Yummy %s",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 335,
+      "elf_va": "0x3e77c",
+      "original": "펫",
+      "target": "Pt",
+      "capacity": 2,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 336,
+      "elf_va": "0x3e780",
+      "original": "받기",
+      "target": "Get",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 355,
+      "elf_va": "0x3e984",
+      "original": "실제 현금 ",
+      "target": "Real money",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 381,
+      "elf_va": "0x1400103",
+      "original": "카드장착",
+      "target": "Socket",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 386,
+      "elf_va": "0x1400240",
+      "original": "다크로드",
+      "target": "Darklord",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 387,
+      "elf_va": "0x140024b",
+      "original": "발키리",
+      "target": "Valk",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 388,
+      "elf_va": "0x1400256",
+      "original": "소드맨",
+      "target": "Swdman",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 390,
+      "elf_va": "0x140026c",
+      "original": "로드나이트",
+      "target": "Lord Kn",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 393,
+      "elf_va": "0x14004d0",
+      "original": "검은포플라와 같은 용기를",
+      "target": "Be brave as poplar",
+      "capacity": 24,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 394,
+      "elf_va": "0x14004eb",
+      "original": "에델바이스와 같은 인내심을",
+      "target": "Patient as edelweiss",
+      "capacity": 26,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 395,
+      "elf_va": "0x1400506",
+      "original": "네잎크로버와 같은 행운을",
+      "target": "Lucky as a 4-leaf clover",
+      "capacity": 24,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 396,
+      "elf_va": "0x1400521",
+      "original": "동백나무와 같은 현명함을",
+      "target": "Wise as a camellia",
+      "capacity": 24,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 401,
+      "elf_va": "0x1400588",
+      "original": "공격력 좋은검",
+      "target": "Strong Sword",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 402,
+      "elf_va": "0x1400599",
+      "original": "무적의 방패",
+      "target": "Invincible",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 403,
+      "elf_va": "0x14005aa",
+      "original": "제련 아이템",
+      "target": "Refine Item",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 404,
+      "elf_va": "0x14005bb",
+      "original": "고급 스킬북",
+      "target": "Skill Book",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 408,
+      "elf_va": "0x14005ff",
+      "original": "불을 피워 쫓는다",
+      "target": "Light a fire",
+      "capacity": 16,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 409,
+      "elf_va": "0x1400610",
+      "original": "눈 앞에 포링이 있습니다 어떻게 할까요?",
+      "target": "A Poring! What will you do?",
+      "capacity": 38,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 410,
+      "elf_va": "0x140063b",
+      "original": "상자를 받았습니다. 무엇이 나오면 좋을까요?",
+      "target": "You got a box. What is in it?",
+      "capacity": 42,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 411,
+      "elf_va": "0x1400666",
+      "original": "무서운 괴물이 공격해옵니다. 어떻게 할까요?",
+      "target": "A monster attacks! Now what?",
+      "capacity": 42,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 412,
+      "elf_va": "0x1400709",
+      "original": "ATK(공격력) 증가",
+      "target": "ATK increased",
+      "capacity": 16,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 413,
+      "elf_va": "0x1400732",
+      "original": "FLEE(회피율) 증가",
+      "target": "FLEE increased",
+      "capacity": 17,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 414,
+      "elf_va": "0x140075b",
+      "original": "HP(체력), DEF2(방어력) 증가",
+      "target": "HP & DEF2 increased",
+      "capacity": 27,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 415,
+      "elf_va": "0x1400784",
+      "original": "SP(마력), MATK/MDEF2(마법공격/방어) 증가",
+      "target": "SP, MATK/MDEF2 increased",
+      "capacity": 40,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 416,
+      "elf_va": "0x14007ad",
+      "original": "HIT(명중률) 증가",
+      "target": "HIT increased",
+      "capacity": 16,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 417,
+      "elf_va": "0x14007d6",
+      "original": "FLEE(회피율), CRI(크리티컬)증가",
+      "target": "FLEE & CRI increased",
+      "capacity": 31,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 425,
+      "elf_va": "0x1400845",
+      "original": "단검",
+      "target": "Dag.",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 480,
+      "elf_va": "0x1400e14",
+      "original": "시크, 월화란무, 이세환",
+      "target": "Schick & Moonflower",
+      "capacity": 22,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 484,
+      "elf_va": "0x1400e9e",
+      "original": "베타 테스터 여러분께",
+      "target": "Thanks to all beta",
+      "capacity": 20,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 486,
+      "elf_va": "0x1400efa",
+      "original": "라그나로크 바이올렛",
+      "target": "Ragnarok Violet",
+      "capacity": 19,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 488,
+      "elf_va": "0x1400f28",
+      "original": "서 감사합니다.",
+      "target": "our game!",
+      "capacity": 14,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 489,
+      "elf_va": "0x1400f84",
+      "original": "스토리 모드 이후에",
+      "target": "After Story Mode,",
+      "capacity": 18,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 490,
+      "elf_va": "0x1400f9b",
+      "original": "도 숨겨진 퀘스트등",
+      "target": "hidden quests are",
+      "capacity": 18,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 491,
+      "elf_va": "0x1400fb2",
+      "original": "을 통해 게임을 계",
+      "target": "still waiting for",
+      "capacity": 17,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 492,
+      "elf_va": "0x1400fc9",
+      "original": "속 즐기실 수 있습",
+      "target": "you to discover.",
+      "capacity": 17,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 503,
+      "elf_va": "0x140110c",
+      "original": "소드맨",
+      "target": "Swdman",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 535,
+      "elf_va": "0x14018c6",
+      "original": "이바닥이 다 그렇지 뭐!",
+      "target": "Thats life!",
+      "capacity": 22,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 536,
+      "elf_va": "0x14018e1",
+      "original": "오리고기 먹지마!",
+      "target": "No duck!",
+      "capacity": 16,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 537,
+      "elf_va": "0x14018fc",
+      "original": "우리정말 뜨거운 사이 맞지?",
+      "target": "Too hot together!",
+      "capacity": 26,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 538,
+      "elf_va": "0x1401917",
+      "original": "하악~하악~",
+      "target": "Pant pant!",
+      "capacity": 10,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 539,
+      "elf_va": "0x1401932",
+      "original": "평생 너만을...",
+      "target": "Only you...",
+      "capacity": 14,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 541,
+      "elf_va": "0x1401968",
+      "original": "헤어스탈 쩐다",
+      "target": "Nice hair!",
+      "capacity": 13,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 542,
+      "elf_va": "0x1401983",
+      "original": "내가 한번쏘께~",
+      "target": "My treat!",
+      "capacity": 14,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 543,
+      "elf_va": "0x140199e",
+      "original": "마이 묵었다아이가",
+      "target": "I ate a lot!",
+      "capacity": 17,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 544,
+      "elf_va": "0x14019b9",
+      "original": "니가 질것같오",
+      "target": "You may lose!",
+      "capacity": 13,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 545,
+      "elf_va": "0x14019d4",
+      "original": "내밑으로 다 집합해!!",
+      "target": "Everyone line up!",
+      "capacity": 20,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 547,
+      "elf_va": "0x1401a0a",
+      "original": "슈타인집에 가고 싶어",
+      "target": "I wanna go to Stein",
+      "capacity": 20,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 549,
+      "elf_va": "0x1401a40",
+      "original": "성당 제단 뭐가 있지?",
+      "target": "Whats at the altar?",
+      "capacity": 20,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 552,
+      "elf_va": "0x1401a91",
+      "original": "모든건 거기부터야",
+      "target": "It starts there.",
+      "capacity": 17,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 554,
+      "elf_va": "0x1401ac7",
+      "original": "행복을 나누세요",
+      "target": "Share happiness",
+      "capacity": 15,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 556,
+      "elf_va": "0x1401afd",
+      "original": "사랑은 이기적이지",
+      "target": "Love is selfish.",
+      "capacity": 17,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 557,
+      "elf_va": "0x1401b18",
+      "original": "이제 다시 시작이다",
+      "target": "Start again!",
+      "capacity": 18,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 558,
+      "elf_va": "0x1401b33",
+      "original": "난 외로워",
+      "target": "Im lonely",
+      "capacity": 9,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 559,
+      "elf_va": "0x1401b4e",
+      "original": "우리 친구 맞니?",
+      "target": "Are we friends?",
+      "capacity": 15,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 560,
+      "elf_va": "0x1401b69",
+      "original": "뭘 많이 메기야지",
+      "target": "Feed me more!",
+      "capacity": 16,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 563,
+      "elf_va": "0x1401bba",
+      "original": "기운을 내!",
+      "target": "Cheer up!",
+      "capacity": 10,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 564,
+      "elf_va": "0x1401bd5",
+      "original": "당신만 알고 있어요",
+      "target": "Just between us.",
+      "capacity": 18,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 565,
+      "elf_va": "0x1401bf0",
+      "original": "사랑이 어떻게 변하니?",
+      "target": "Can love change?",
+      "capacity": 21,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 566,
+      "elf_va": "0x1401c0b",
+      "original": "정말 멋진 날이군",
+      "target": "What a fine day!",
+      "capacity": 16,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 567,
+      "elf_va": "0x1401c26",
+      "original": "나는 나, 너는 너",
+      "target": "You do you!",
+      "capacity": 16,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 568,
+      "elf_va": "0x1401c41",
+      "original": "시험 끝났니?",
+      "target": "Exams over?",
+      "capacity": 12,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 569,
+      "elf_va": "0x1401c57",
+      "original": "사랑해",
+      "target": "Love",
+      "capacity": 6,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 570,
+      "elf_va": "0x1401c6d",
+      "original": "사랑을 그대 품안에",
+      "target": "Hold me close",
+      "capacity": 18,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 571,
+      "elf_va": "0x1401c83",
+      "original": "친구가 생겼네",
+      "target": "A new friend!",
+      "capacity": 13,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 572,
+      "elf_va": "0x1401c99",
+      "original": "너는 누구냐!!",
+      "target": "Who are you?",
+      "capacity": 13,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 573,
+      "elf_va": "0x1401caf",
+      "original": "설마 날 좋아하는겨?",
+      "target": "You like me?",
+      "capacity": 19,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 574,
+      "elf_va": "0x1401cc5",
+      "original": "사랑한다!",
+      "target": "Love you!",
+      "capacity": 9,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 576,
+      "elf_va": "0x1401cf1",
+      "original": "나~눈 높다.",
+      "target": "Im picky!",
+      "capacity": 11,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 578,
+      "elf_va": "0x1401d1d",
+      "original": "소개팅?오케이?",
+      "target": "Date? OK?",
+      "capacity": 14,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 579,
+      "elf_va": "0x1401d33",
+      "original": "머리가 허전해.",
+      "target": "Need a haircut",
+      "capacity": 14,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 580,
+      "elf_va": "0x1401d49",
+      "original": "사랑의 증표가 필요해~",
+      "target": "Show me some love!",
+      "capacity": 21,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 581,
+      "elf_va": "0x1401d5f",
+      "original": "친구가 필요해.",
+      "target": "Need a friend.",
+      "capacity": 14,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 582,
+      "elf_va": "0x1401d75",
+      "original": "감기조심해",
+      "target": "Stay warm!",
+      "capacity": 10,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 583,
+      "elf_va": "0x1401d8b",
+      "original": "다이어트 성공했구나~",
+      "target": "You look slimmer!",
+      "capacity": 20,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 587,
+      "elf_va": "0x1401de2",
+      "original": "나 이뻐?",
+      "target": "Im cute?",
+      "capacity": 8,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 589,
+      "elf_va": "0x1401e0c",
+      "original": "이게 뭐~~니!",
+      "target": "Whats this?!",
+      "capacity": 12,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 590,
+      "elf_va": "0x1401e21",
+      "original": "저기도 있네",
+      "target": "Over there",
+      "capacity": 11,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 591,
+      "elf_va": "0x1401e36",
+      "original": "여기도 있네",
+      "target": "Right here",
+      "capacity": 11,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 593,
+      "elf_va": "0x1401e60",
+      "original": "너만 이쁜거 샀구나?",
+      "target": "You got nice stuff?",
+      "capacity": 19,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 597,
+      "elf_va": "0x1401eae",
+      "original": "밥상차려",
+      "target": "Feed me!",
+      "capacity": 8,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 598,
+      "elf_va": "0x1401ebd",
+      "original": "한푼줍쇼",
+      "target": "Please?",
+      "capacity": 8,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 600,
+      "elf_va": "0x1401edb",
+      "original": "내 브런치는?",
+      "target": "My brunch?",
+      "capacity": 12,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 601,
+      "elf_va": "0x1401eea",
+      "original": "클린히트!! 나이스!!",
+      "target": "Clean hit! Nice!",
+      "capacity": 19,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 602,
+      "elf_va": "0x1401f01",
+      "original": "완전 쩔어!",
+      "target": "So awesome",
+      "capacity": 10,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 605,
+      "elf_va": "0x1401f46",
+      "original": "브라보!!@@",
+      "target": "Bravo!!!",
+      "capacity": 10,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 606,
+      "elf_va": "0x1401f55",
+      "original": "앗싸 대박이다",
+      "target": "Jackpot!",
+      "capacity": 13,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 618,
+      "elf_va": "0x1402031",
+      "original": "아침 안 먹었지?",
+      "target": "No breakfast?",
+      "capacity": 15,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 619,
+      "elf_va": "0x1402048",
+      "original": "오늘 너 스타일 짱이다!",
+      "target": "Great style today!",
+      "capacity": 22,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 620,
+      "elf_va": "0x140205f",
+      "original": "헤어스타일 바꾸었니?",
+      "target": "New haircut?",
+      "capacity": 20,
+      "mode": "short pet expression (translated from Korean)"
+    },
+    {
+      "entry": 627,
+      "elf_va": "0x14038c0",
+      "original": "프론테라왕궁입구",
+      "target": "Pron Palace Gate",
+      "capacity": 16,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 628,
+      "elf_va": "0x14038d4",
+      "original": "니플헤임 도구점",
+      "target": "Nifl Gen. Store",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 629,
+      "elf_va": "0x14038e8",
+      "original": "니플헤임 무기점",
+      "target": "Nifl Equip Shop",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 635,
+      "elf_va": "0x1403960",
+      "original": "슈타인 박사의 집",
+      "target": "Dr Steins House",
+      "capacity": 16,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 637,
+      "elf_va": "0x1403988",
+      "original": "페이욘 무기점",
+      "target": "Payon Eq Shop",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 640,
+      "elf_va": "0x14039c4",
+      "original": "꽃집",
+      "target": "Flor",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 641,
+      "elf_va": "0x14039d8",
+      "original": "프론테라 도구점",
+      "target": "Pron Gen Store",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 642,
+      "elf_va": "0x14039ec",
+      "original": "제트의 집",
+      "target": "Zets Home",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 643,
+      "elf_va": "0x1403a00",
+      "original": "프론테라 무기점",
+      "target": "Pron Equip Shop",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 644,
+      "elf_va": "0x1403a14",
+      "original": "성당",
+      "target": "Chch",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 645,
+      "elf_va": "0x1403a28",
+      "original": "프론테라 왕궁",
+      "target": "Pron Palace",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 648,
+      "elf_va": "0x1403a64",
+      "original": "헤어샵",
+      "target": "Salon",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 650,
+      "elf_va": "0x1403a8c",
+      "original": "사막북부",
+      "target": "N Desert",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 653,
+      "elf_va": "0x1403ac8",
+      "original": "사막남부",
+      "target": "S Desert",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 654,
+      "elf_va": "0x1403adc",
+      "original": "모로크 남부",
+      "target": "S Morroc",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 655,
+      "elf_va": "0x1403af0",
+      "original": "모로크 서부",
+      "target": "W Morroc",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 656,
+      "elf_va": "0x1403b04",
+      "original": "모로크 탄광 앞",
+      "target": "Morroc Mine",
+      "capacity": 14,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 657,
+      "elf_va": "0x1403b18",
+      "original": "묘르닐산맥",
+      "target": "Mjolnir Mt",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 659,
+      "elf_va": "0x1403b40",
+      "original": "묘르닐 깊은 곳",
+      "target": "Deep Mjolnir",
+      "capacity": 14,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 661,
+      "elf_va": "0x1403b68",
+      "original": "발키리 제단",
+      "target": "Valk Altar",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 663,
+      "elf_va": "0x1403b90",
+      "original": "죽음의 평원 서부",
+      "target": "W Death Plains",
+      "capacity": 16,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 664,
+      "elf_va": "0x1403ba4",
+      "original": "죽음의 평원 남부",
+      "target": "S Death Plains",
+      "capacity": 16,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 665,
+      "elf_va": "0x1403bb8",
+      "original": "니플헤임 동부",
+      "target": "E Niflheim",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 666,
+      "elf_va": "0x1403bcc",
+      "original": "니플헤임 남부",
+      "target": "S Niflheim",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 667,
+      "elf_va": "0x1403be0",
+      "original": "니플헤임 계곡 동부",
+      "target": "E Nifl Valley",
+      "capacity": 18,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 668,
+      "elf_va": "0x1403bf4",
+      "original": "니플헤임 계곡",
+      "target": "Nifl Valley",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 670,
+      "elf_va": "0x1403c1c",
+      "original": "봉인지 서부",
+      "target": "W Seal Zone",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 672,
+      "elf_va": "0x1403c44",
+      "original": "페이욘 남부",
+      "target": "S Payon",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 673,
+      "elf_va": "0x1403c58",
+      "original": "페이욘 외곽지",
+      "target": "Payon Edge",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 674,
+      "elf_va": "0x1403c6c",
+      "original": "알베르타 북부",
+      "target": "N Alberta",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 675,
+      "elf_va": "0x1403c80",
+      "original": "프론테라남부",
+      "target": "S Prontera",
+      "capacity": 12,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 676,
+      "elf_va": "0x1403c94",
+      "original": "프론테라 다리 북부",
+      "target": "N Pron Bridge",
+      "capacity": 18,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 677,
+      "elf_va": "0x1403ca8",
+      "original": "깊은 골짜기",
+      "target": "Deep Ravine",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 678,
+      "elf_va": "0x1403cbc",
+      "original": "페이욘 북부",
+      "target": "N Payon",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 679,
+      "elf_va": "0x1403cd0",
+      "original": "프론테라 서부",
+      "target": "W Prontera",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 680,
+      "elf_va": "0x1403ce4",
+      "original": "니플헤임 지하통로",
+      "target": "Nifl Underpass",
+      "capacity": 17,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 683,
+      "elf_va": "0x1403d20",
+      "original": "모르크 지하통로",
+      "target": "Morroc Tunnel",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 684,
+      "elf_va": "0x1403d34",
+      "original": "프론테라 평원",
+      "target": "Prontera Plns",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 691,
+      "elf_va": "0x1403dc0",
+      "original": "타락의 동굴 1층",
+      "target": "Decay Cave 1F",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 692,
+      "elf_va": "0x1403dd4",
+      "original": "타락의 동굴 2층",
+      "target": "Decay Cave 2F",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 693,
+      "elf_va": "0x1403de8",
+      "original": "수련의 성지 1층",
+      "target": "Training 1F",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 694,
+      "elf_va": "0x1403dfc",
+      "original": "수련의 성지 2층",
+      "target": "Training 2F",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 695,
+      "elf_va": "0x1403e10",
+      "original": "수련의 성지 3층",
+      "target": "Training 3F",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 696,
+      "elf_va": "0x1403e24",
+      "original": "수련의 성지 4층",
+      "target": "Training 4F",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 697,
+      "elf_va": "0x1403e38",
+      "original": "농장던전 1",
+      "target": "Farm Dgn 1",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 698,
+      "elf_va": "0x1403e4c",
+      "original": "농장던전 2",
+      "target": "Farm Dgn 2",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 699,
+      "elf_va": "0x1403e60",
+      "original": "농장던전 3",
+      "target": "Farm Dgn 3",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 700,
+      "elf_va": "0x1403e74",
+      "original": "농장던전 4",
+      "target": "Farm Dgn 4",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 701,
+      "elf_va": "0x1403e88",
+      "original": "농장던전 5",
+      "target": "Farm Dgn 5",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 702,
+      "elf_va": "0x1403e9c",
+      "original": "농장던전 6",
+      "target": "Farm Dgn 6",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 704,
+      "elf_va": "0x1403ec4",
+      "original": "농장던전 7",
+      "target": "Farm Dgn 7",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 705,
+      "elf_va": "0x1403ed8",
+      "original": "농장던전 8",
+      "target": "Farm Dgn 8",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 706,
+      "elf_va": "0x1403eec",
+      "original": "용암굴1층",
+      "target": "Lava Cav1",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 707,
+      "elf_va": "0x1403f00",
+      "original": "용암굴2층",
+      "target": "Lava Cav2",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 708,
+      "elf_va": "0x1403f14",
+      "original": "용암굴3층",
+      "target": "Lava Cav3",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 709,
+      "elf_va": "0x1403f28",
+      "original": "망각의 동굴 1층",
+      "target": "Oblivion Cv 1",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 710,
+      "elf_va": "0x1403f3c",
+      "original": "망각의 동굴 2층",
+      "target": "Oblivion Cv 2",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 711,
+      "elf_va": "0x1403f50",
+      "original": "망각의 동굴 3층",
+      "target": "Oblivion Cv 3",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 712,
+      "elf_va": "0x1403f64",
+      "original": "잊혀진 동굴 1층",
+      "target": "Forgotten Cv 1",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 713,
+      "elf_va": "0x1403f78",
+      "original": "잊혀진 동굴 2층",
+      "target": "Forgotten Cv 2",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 716,
+      "elf_va": "0x1403fb4",
+      "original": "고블린 소굴 1",
+      "target": "Goblin Den 1",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 717,
+      "elf_va": "0x1403fc8",
+      "original": "고블린 소굴 2",
+      "target": "Goblin Den 2",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 718,
+      "elf_va": "0x1403fdc",
+      "original": "고블린 소굴 3",
+      "target": "Goblin Den 3",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 719,
+      "elf_va": "0x1403ff0",
+      "original": "고블린 소굴 4",
+      "target": "Goblin Den 4",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 720,
+      "elf_va": "0x1404004",
+      "original": "팬저 고블린 방",
+      "target": "Panz Gob Room",
+      "capacity": 14,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 721,
+      "elf_va": "0x1404018",
+      "original": "고대 유적 1층",
+      "target": "Anc Ruins 1F",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 722,
+      "elf_va": "0x140402c",
+      "original": "고대 유적 2층",
+      "target": "Anc Ruins 2F",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 723,
+      "elf_va": "0x1404040",
+      "original": "고대 유적 3층",
+      "target": "Anc Ruins 3F",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 724,
+      "elf_va": "0x1404054",
+      "original": "화염의 성소 1층",
+      "target": "Flame Shr 1F",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 725,
+      "elf_va": "0x1404068",
+      "original": "화염의 성소 2층",
+      "target": "Flame Shr 2F",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 726,
+      "elf_va": "0x140407c",
+      "original": "화염의 성소 3층",
+      "target": "Flame Shr 3F",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 734,
+      "elf_va": "0x140411c",
+      "original": "이프리트 방",
+      "target": "Ifrit Room",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 735,
+      "elf_va": "0x1404130",
+      "original": "차원의 틈 1층",
+      "target": "Dim Rift 1F",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 736,
+      "elf_va": "0x1404144",
+      "original": "차원의 틈 2층",
+      "target": "Dim Rift 2F",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 737,
+      "elf_va": "0x1404158",
+      "original": "차원의 틈 3층",
+      "target": "Dim Rift 3F",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 738,
+      "elf_va": "0x140416c",
+      "original": "빛의 성지 1층",
+      "target": "Light Shr 1F",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 739,
+      "elf_va": "0x1404180",
+      "original": "빛의 성지 2층",
+      "target": "Light Shr 2F",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 740,
+      "elf_va": "0x1404194",
+      "original": "빛의 성지 3층",
+      "target": "Light Shr 3F",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 741,
+      "elf_va": "0x14041a8",
+      "original": "빛의 성지 4층",
+      "target": "Light Shr 4F",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 742,
+      "elf_va": "0x14041bc",
+      "original": "달빛의 동굴",
+      "target": "Moon Cave",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 746,
+      "elf_va": "0x140420c",
+      "original": "버섯 동굴",
+      "target": "Mush Cave",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 754,
+      "elf_va": "0x14042ac",
+      "original": "다크로드 봉인지",
+      "target": "Dark Lord Seal",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 755,
+      "elf_va": "0x14042c0",
+      "original": "다크로드 봉인지",
+      "target": "Dark Lord Seal",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 756,
+      "elf_va": "0x14042d4",
+      "original": "포링 소굴 1",
+      "target": "Poring Den1",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 757,
+      "elf_va": "0x14042e8",
+      "original": "포링 소굴 2",
+      "target": "Poring Den2",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 758,
+      "elf_va": "0x14042fc",
+      "original": "포링 소굴 3",
+      "target": "Poring Den3",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 759,
+      "elf_va": "0x1404310",
+      "original": "포포링 둥지",
+      "target": "Popo Nest",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 760,
+      "elf_va": "0x1404324",
+      "original": "감옥 1구역",
+      "target": "Prison A1",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 761,
+      "elf_va": "0x1404338",
+      "original": "감옥 2구역",
+      "target": "Prison A2",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 762,
+      "elf_va": "0x140434c",
+      "original": "감옥 하수도",
+      "target": "Prison Sew",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 763,
+      "elf_va": "0x1404360",
+      "original": "감옥 3구역",
+      "target": "Prison A3",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 764,
+      "elf_va": "0x1404374",
+      "original": "감옥 4구역",
+      "target": "Prison A4",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 765,
+      "elf_va": "0x1404388",
+      "original": "감옥 상수도",
+      "target": "Prison Wtr",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 766,
+      "elf_va": "0x140439c",
+      "original": "감옥 5구역",
+      "target": "Prison A5",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 767,
+      "elf_va": "0x14043b0",
+      "original": "지하수로 1",
+      "target": "Underwtr 1",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 768,
+      "elf_va": "0x14043c4",
+      "original": "지하수로 2",
+      "target": "Underwtr 2",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 769,
+      "elf_va": "0x14043d8",
+      "original": "지하수로 3",
+      "target": "Underwtr 3",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 770,
+      "elf_va": "0x14043ec",
+      "original": "지하수로 4",
+      "target": "Underwtr 4",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 771,
+      "elf_va": "0x1404400",
+      "original": "지하수로 5",
+      "target": "Underwtr 5",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 772,
+      "elf_va": "0x1404414",
+      "original": "드라큘라 방",
+      "target": "Drac Room",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 773,
+      "elf_va": "0x1404428",
+      "original": "도적길드",
+      "target": "Thief Gd",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 774,
+      "elf_va": "0x140443c",
+      "original": "비밀금고",
+      "target": "Vault",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 778,
+      "elf_va": "0x140448c",
+      "original": "어둠의 동굴 1",
+      "target": "Dark Cave 1",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 779,
+      "elf_va": "0x14044a0",
+      "original": "어둠의 동굴 2",
+      "target": "Dark Cave 2",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 780,
+      "elf_va": "0x14044b4",
+      "original": "어둠의 동굴 3",
+      "target": "Dark Cave 3",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 781,
+      "elf_va": "0x14044c8",
+      "original": "어둠의 동굴 4",
+      "target": "Dark Cave 4",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 782,
+      "elf_va": "0x14044dc",
+      "original": "어둠의 동굴 5",
+      "target": "Dark Cave 5",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 783,
+      "elf_va": "0x14044f0",
+      "original": "어둠의 동굴 6",
+      "target": "Dark Cave 6",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 784,
+      "elf_va": "0x1404504",
+      "original": "어둠의 동굴 7",
+      "target": "Dark Cave 7",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 785,
+      "elf_va": "0x1404518",
+      "original": "타오군카 서식지",
+      "target": "Tao Gunka Den",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 786,
+      "elf_va": "0x140452c",
+      "original": "어둠의 동굴 8",
+      "target": "Dark Cave 8",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 787,
+      "elf_va": "0x1404540",
+      "original": "어둠의 동굴 9",
+      "target": "Dark Cave 9",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 793,
+      "elf_va": "0x14045b8",
+      "original": "당빌의 집",
+      "target": "Dan Home",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 794,
+      "elf_va": "0x14045cc",
+      "original": "사막 동굴",
+      "target": "Des Cave",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 796,
+      "elf_va": "0x14045f4",
+      "original": "작은 동굴",
+      "target": "Sm Cave",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 797,
+      "elf_va": "0x1405814",
+      "original": "조작",
+      "target": "Keys",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 798,
+      "elf_va": "0x1405825",
+      "original": "캐릭터",
+      "target": "Char",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 799,
+      "elf_va": "0x1405836",
+      "original": "스텟(1)",
+      "target": "Stats 1",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 800,
+      "elf_va": "0x1405847",
+      "original": "스텟(2)",
+      "target": "Stats 2",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 801,
+      "elf_va": "0x1405858",
+      "original": "스텟(3)",
+      "target": "Stats 3",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 802,
+      "elf_va": "0x1405869",
+      "original": "능력치(1)",
+      "target": "Stats(1)",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 803,
+      "elf_va": "0x140587a",
+      "original": "능력치(2)",
+      "target": "Stats(2)",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 804,
+      "elf_va": "0x140588b",
+      "original": "능력치(3)",
+      "target": "Stats(3)",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 805,
+      "elf_va": "0x140589c",
+      "original": "능력치(4)",
+      "target": "Stats(4)",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 806,
+      "elf_va": "0x14058ad",
+      "original": "능력치(5)",
+      "target": "Stats(5)",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 807,
+      "elf_va": "0x14058be",
+      "original": "능력치(6)",
+      "target": "Stats(6)",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 808,
+      "elf_va": "0x14058cf",
+      "original": "퀵슬롯 등록",
+      "target": "Quick Slots",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 809,
+      "elf_va": "0x14058e0",
+      "original": "스킬(1)",
+      "target": "Skill 1",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 810,
+      "elf_va": "0x14058f1",
+      "original": "스킬(2)",
+      "target": "Skill 2",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 813,
+      "elf_va": "0x1405924",
+      "original": "무기 교체 시스템",
+      "target": "Swap Weapons",
+      "capacity": 16,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 814,
+      "elf_va": "0x1405935",
+      "original": "단검",
+      "target": "Dag.",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 818,
+      "elf_va": "0x1405979",
+      "original": "펫 관리방법(1)",
+      "target": "Pet Care (1)",
+      "capacity": 14,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 819,
+      "elf_va": "0x140598a",
+      "original": "펫 관리방법(2)",
+      "target": "Pet Care (2)",
+      "capacity": 14,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 821,
+      "elf_va": "0x14059ac",
+      "original": "제련시스템",
+      "target": "Refine Sys",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 822,
+      "elf_va": "0x14059bd",
+      "original": "인챈트 시스템",
+      "target": "Slot Enchant",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 823,
+      "elf_va": "0x14059ce",
+      "original": "아이템 제조",
+      "target": "Item Craft",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 824,
+      "elf_va": "0x14059df",
+      "original": "속성(1)",
+      "target": "Elem. 1",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 825,
+      "elf_va": "0x14059f0",
+      "original": "속성(2)",
+      "target": "Elem. 2",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 826,
+      "elf_va": "0x1405a01",
+      "original": "속성(3)",
+      "target": "Elem. 3",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 827,
+      "elf_va": "0x1405a12",
+      "original": "네트워크(1)",
+      "target": "Network 1",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 828,
+      "elf_va": "0x1405a23",
+      "original": "네트워크(2)",
+      "target": "Network 2",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 829,
+      "elf_va": "0x1405a34",
+      "original": "네트워크(3)",
+      "target": "Network 3",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 830,
+      "elf_va": "0x1405a45",
+      "original": "네트워크(4)",
+      "target": "Network 4",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 833,
+      "elf_va": "0x1406305",
+      "original": "적Def(%)",
+      "target": "DEF(%)",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 834,
+      "elf_va": "0x140630e",
+      "original": "감속(%)",
+      "target": "Slow(%)",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 835,
+      "elf_va": "0x1406320",
+      "original": "방어(%)",
+      "target": "Guard %",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 836,
+      "elf_va": "0x1406329",
+      "original": "흡혈(%)",
+      "target": "Drain %",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 838,
+      "elf_va": "0x1406371",
+      "original": "시간(f)",
+      "target": "Time(f)",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 840,
+      "elf_va": "0x14065be",
+      "original": "제트 기사단장",
+      "target": "Meet Zet",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 841,
+      "elf_va": "0x14065d0",
+      "original": "펫상점 방문",
+      "target": "Visit Pet",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 842,
+      "elf_va": "0x14065e2",
+      "original": "정찰임무",
+      "target": "Scout",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 844,
+      "elf_va": "0x1406606",
+      "original": "페이욘 촌장",
+      "target": "Payon Chief",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 847,
+      "elf_va": "0x140663c",
+      "original": "베스퍼 처치",
+      "target": "Beat Vesper",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 849,
+      "elf_va": "0x1406660",
+      "original": "카렌의 진실",
+      "target": "Karen Truth",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 850,
+      "elf_va": "0x1406672",
+      "original": "드러나는 음모",
+      "target": "Uncover Plot",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 851,
+      "elf_va": "0x1406684",
+      "original": "프레이샘의 비밀",
+      "target": "Pray Spring",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 852,
+      "elf_va": "0x1406696",
+      "original": "프론테라로 복귀",
+      "target": "Back to Pront.",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 854,
+      "elf_va": "0x14066ba",
+      "original": "모로크 탄광수색",
+      "target": "Search Morroc",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 858,
+      "elf_va": "0x1406702",
+      "original": "지하수로 수색",
+      "target": "Search Sewers",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 860,
+      "elf_va": "0x1406726",
+      "original": "드라큘라 처치",
+      "target": "Beat Dracula",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 861,
+      "elf_va": "0x1406738",
+      "original": "죽은 자들의 도시",
+      "target": "City of Dead",
+      "capacity": 16,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 863,
+      "elf_va": "0x140675c",
+      "original": "다크로드의 전설",
+      "target": "Darklord Lore",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 866,
+      "elf_va": "0x1406792",
+      "original": "다크로드를 찾아라",
+      "target": "Find Dark Lord",
+      "capacity": 17,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 872,
+      "elf_va": "0x14067fe",
+      "original": "포악해진 포링",
+      "target": "Wild Porings",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 874,
+      "elf_va": "0x1406822",
+      "original": "고블린 처치",
+      "target": "Beat Goblin",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 875,
+      "elf_va": "0x1406834",
+      "original": "팬저고블린 처치",
+      "target": "Beat Panzer Gob",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 881,
+      "elf_va": "0x14068a0",
+      "original": "독 원액",
+      "target": "Poison",
+      "capacity": 7,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 884,
+      "elf_va": "0x14068d6",
+      "original": "비스트 처치",
+      "target": "Beat Beast",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 885,
+      "elf_va": "0x14068e8",
+      "original": "붕대",
+      "target": "Band",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 888,
+      "elf_va": "0x140691e",
+      "original": "데몬의 눈물",
+      "target": "Demon Tears",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 889,
+      "elf_va": "0x1406930",
+      "original": "불의 인장",
+      "target": "Fire Seal",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 890,
+      "elf_va": "0x1406942",
+      "original": "와일드로즈 처치",
+      "target": "Beat Wild Rose",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 893,
+      "elf_va": "0x1406978",
+      "original": "거품",
+      "target": "Foam",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 896,
+      "elf_va": "0x14069ae",
+      "original": "챔피언시로마처치",
+      "target": "Beat Champ Sirom",
+      "capacity": 16,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 898,
+      "elf_va": "0x14069d2",
+      "original": "자격 시험",
+      "target": "Entrance",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 900,
+      "elf_va": "0x14069f6",
+      "original": "소탕",
+      "target": "Raid",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 902,
+      "elf_va": "0x1406a1a",
+      "original": "불의 시련",
+      "target": "Fire Test",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 905,
+      "elf_va": "0x1406a50",
+      "original": "차원의 틈",
+      "target": "Dim Rift",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 906,
+      "elf_va": "0x1406a62",
+      "original": "고대 유적",
+      "target": "Anc Ruins",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 907,
+      "elf_va": "0x1406a74",
+      "original": "탈옥",
+      "target": "Jail",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 909,
+      "elf_va": "0x1406a98",
+      "original": "구출",
+      "target": "Save",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 912,
+      "elf_va": "0x1406ace",
+      "original": "봉인석 파괴",
+      "target": "Break Seal",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 914,
+      "elf_va": "0x1406af2",
+      "original": "더위 안녕!",
+      "target": "Avoid Heat",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 917,
+      "elf_va": "0x1406b28",
+      "original": "버섯",
+      "target": "Mush",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 919,
+      "elf_va": "0x1406b4c",
+      "original": "달빛의 동굴",
+      "target": "Moon Cave",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 920,
+      "elf_va": "0x1406b5e",
+      "original": "상수도",
+      "target": "Water",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 921,
+      "elf_va": "0x1406b70",
+      "original": "망각의 동굴",
+      "target": "Obliv Cave",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 922,
+      "elf_va": "0x1406b82",
+      "original": "잊혀진 동굴",
+      "target": "Forgot Cave",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 923,
+      "elf_va": "0x1406b94",
+      "original": "저승사자",
+      "target": "Grim",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 924,
+      "elf_va": "0x1406ba6",
+      "original": "하수도",
+      "target": "Sewer",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 925,
+      "elf_va": "0x1406bb8",
+      "original": "대신녀",
+      "target": "HiPri",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 926,
+      "elf_va": "0x1406bca",
+      "original": "도적길드",
+      "target": "Thief Gd",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 927,
+      "elf_va": "0x1406bdc",
+      "original": "비밀통로",
+      "target": "Passage",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 931,
+      "elf_va": "0x1406c99",
+      "original": "윈드 커터",
+      "target": "Wind Cut",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 933,
+      "elf_va": "0x1406cbd",
+      "original": "프로보크 ",
+      "target": "Provoke",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 936,
+      "elf_va": "0x1406cf3",
+      "original": "라이딩 쉴드",
+      "target": "Ride Shield",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 938,
+      "elf_va": "0x1406d17",
+      "original": "트위스터 ",
+      "target": "Twister",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 940,
+      "elf_va": "0x1406d3b",
+      "original": "어스퀘이크 ",
+      "target": "Quake",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 941,
+      "elf_va": "0x1406d4d",
+      "original": "리플렉트 쉴드",
+      "target": "Reflect Shld",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 942,
+      "elf_va": "0x1406d5f",
+      "original": "레인오브파이어 ",
+      "target": "Rain of Fire",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 943,
+      "elf_va": "0x1406d71",
+      "original": "윈드밀",
+      "target": "Windml",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 944,
+      "elf_va": "0x1406d83",
+      "original": "락피스트 ",
+      "target": "Rock Fist",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 945,
+      "elf_va": "0x1406d95",
+      "original": "그랜드크로스 ",
+      "target": "Grand Cross",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 946,
+      "elf_va": "0x1406da7",
+      "original": "버서커",
+      "target": "Bersrk",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 954,
+      "elf_va": "0x1406e37",
+      "original": "베스퍼_미사일",
+      "target": "Vesp Missile",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 955,
+      "elf_va": "0x1406e49",
+      "original": "베스퍼_공격",
+      "target": "Vesp Attack",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 956,
+      "elf_va": "0x1406e5b",
+      "original": "타오군카_헤드뱅",
+      "target": "Tao Headspin",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 957,
+      "elf_va": "0x1406e6d",
+      "original": "다크로드_다크쉴드",
+      "target": "DL Dark Shield",
+      "capacity": 17,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 958,
+      "elf_va": "0x1406e7f",
+      "original": "다크로드_다크빔",
+      "target": "DL Dark Beam",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 959,
+      "elf_va": "0x1406e91",
+      "original": "다크로드_다크타깃",
+      "target": "DL Target",
+      "capacity": 17,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 963,
+      "elf_va": "0x1406ed9",
+      "original": "다크로드_소환",
+      "target": "DL Summon",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 965,
+      "elf_va": "0x1406efd",
+      "original": "한손무기 수련",
+      "target": "1H Mastery",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 966,
+      "elf_va": "0x1406f0f",
+      "original": "양손무기 수련",
+      "target": "2H Mastery",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 967,
+      "elf_va": "0x1406f21",
+      "original": "방패 수련",
+      "target": "Shld Mast",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 969,
+      "elf_va": "0x1406f45",
+      "original": "정신집중",
+      "target": "Focus",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 971,
+      "elf_va": "0x1406f69",
+      "original": "마법강화",
+      "target": "Magic Up",
+      "capacity": 8,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 972,
+      "elf_va": "0x1406f7b",
+      "original": "일격",
+      "target": "Crit",
+      "capacity": 4,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 973,
+      "elf_va": "0x1406f8d",
+      "original": "크리티컬증가",
+      "target": "Crit Rate +",
+      "capacity": 12,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 974,
+      "elf_va": "0x1406f9f",
+      "original": "드롭제니량 증가",
+      "target": "Zeny Drop +",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 975,
+      "elf_va": "0x1406fb1",
+      "original": "허브드롭증가",
+      "target": "Herb Drop +",
+      "capacity": 12,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 976,
+      "elf_va": "0x1406fc3",
+      "original": "장비드롭증가",
+      "target": "Gear Drop +",
+      "capacity": 12,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 977,
+      "elf_va": "0x1406fd5",
+      "original": "카드드롭증가",
+      "target": "Card Drop +",
+      "capacity": 12,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 978,
+      "elf_va": "0x1406fe7",
+      "original": "음식드롭증가",
+      "target": "Food Drop +",
+      "capacity": 12,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 979,
+      "elf_va": "0x1406ff9",
+      "original": "제련드롭증가",
+      "target": "Ore Drop +",
+      "capacity": 12,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 980,
+      "elf_va": "0x140700b",
+      "original": "레시피드롭증가",
+      "target": "Recipe Drop +",
+      "capacity": 14,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 981,
+      "elf_va": "0x140701d",
+      "original": "HP최대량 증가",
+      "target": "Max HP Up",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 982,
+      "elf_va": "0x140702f",
+      "original": "SP최대량 증가",
+      "target": "Max SP Up",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 983,
+      "elf_va": "0x1407041",
+      "original": "데미지 반사",
+      "target": "Dmg Reflect",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 986,
+      "elf_va": "0x1407077",
+      "original": "HP회복량 증가",
+      "target": "HP Regen +",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 987,
+      "elf_va": "0x1407089",
+      "original": "SP회복량 증가",
+      "target": "SP Regen +",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 988,
+      "elf_va": "0x140709b",
+      "original": "몬스터 스폰증가",
+      "target": "More Monsters",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 989,
+      "elf_va": "0x14070ad",
+      "original": "몬스터 스폰감소",
+      "target": "Fewer Monsters",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 991,
+      "elf_va": "0x140ed81",
+      "original": "송곳",
+      "target": "Dril",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 994,
+      "elf_va": "0x140edb4",
+      "original": "대거",
+      "target": "Dagr",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 995,
+      "elf_va": "0x140edc5",
+      "original": "커터",
+      "target": "Cut.",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1000,
+      "elf_va": "0x140ee1a",
+      "original": "어부의 단검",
+      "target": "Fisher Dag",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1002,
+      "elf_va": "0x140ee3c",
+      "original": "포츈소드",
+      "target": "Fort Swd",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1004,
+      "elf_va": "0x140ee5e",
+      "original": "홀리 대거",
+      "target": "Holy Dag",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1006,
+      "elf_va": "0x140ee80",
+      "original": "망고슈",
+      "target": "Gauche",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1007,
+      "elf_va": "0x140ee91",
+      "original": "위더나이프",
+      "target": "Weed Knife",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1014,
+      "elf_va": "0x140ef08",
+      "original": "흑요석 단검",
+      "target": "Obsid Dag",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1017,
+      "elf_va": "0x140ef3b",
+      "original": "간눙가가프",
+      "target": "Ginnung",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1018,
+      "elf_va": "0x140ef4c",
+      "original": "컴뱃나이프",
+      "target": "Combat Dg",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1019,
+      "elf_va": "0x140ef5d",
+      "original": "그림투스",
+      "target": "Grimtoot",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1022,
+      "elf_va": "0x140ef90",
+      "original": "고쿠린",
+      "target": "Gokrin",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1025,
+      "elf_va": "0x140efc3",
+      "original": "드래곤 킬러",
+      "target": "DragonKill",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1026,
+      "elf_va": "0x140efd4",
+      "original": "대지의 단검",
+      "target": "Earth Dag",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1027,
+      "elf_va": "0x140efe5",
+      "original": "태풍의 단검",
+      "target": "Storm Dag",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1028,
+      "elf_va": "0x140eff6",
+      "original": "바다의 단검",
+      "target": "Ocean Dag",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1029,
+      "elf_va": "0x140f007",
+      "original": "화산의 단검",
+      "target": "Volc Dag",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1030,
+      "elf_va": "0x140f018",
+      "original": "오딘의 단검",
+      "target": "Odin Dagger",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1031,
+      "elf_va": "0x140f029",
+      "original": "소드",
+      "target": "Swd",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1033,
+      "elf_va": "0x140f04b",
+      "original": "망치",
+      "target": "Hamm",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1038,
+      "elf_va": "0x140f0a0",
+      "original": "태양검",
+      "target": "SolSwd",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1040,
+      "elf_va": "0x140f0c2",
+      "original": "타운소드",
+      "target": "Town Swd",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1042,
+      "elf_va": "0x140f0e4",
+      "original": "스매셔",
+      "target": "Smashr",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1043,
+      "elf_va": "0x140f0f5",
+      "original": "슬래쉬뱅",
+      "target": "Slash Bn",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1045,
+      "elf_va": "0x140f117",
+      "original": "골든메이스",
+      "target": "Gold Mace",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1047,
+      "elf_va": "0x140f139",
+      "original": "츠루기",
+      "target": "Tsurug",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1049,
+      "elf_va": "0x140f15b",
+      "original": "해동검",
+      "target": "Haedng",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1050,
+      "elf_va": "0x140f16c",
+      "original": "별운검",
+      "target": "Byolng",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1052,
+      "elf_va": "0x140f18e",
+      "original": "홀리어벤져",
+      "target": "Holy Avngr",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1053,
+      "elf_va": "0x140f19f",
+      "original": "미스틸테인",
+      "target": "Mysteltain",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1054,
+      "elf_va": "0x140f1b0",
+      "original": "모닝스타",
+      "target": "MornStar",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1055,
+      "elf_va": "0x140f1c1",
+      "original": "무형검",
+      "target": "Immat.",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1056,
+      "elf_va": "0x140f1d2",
+      "original": "백금의 쇼텔",
+      "target": "Plat Shotel",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1058,
+      "elf_va": "0x140f1f4",
+      "original": "시저즈소드",
+      "target": "Caesar Swd",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1061,
+      "elf_va": "0x140f227",
+      "original": "크루세이더 검",
+      "target": "Crusader Swd",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1062,
+      "elf_va": "0x140f238",
+      "original": "팔라딘 검",
+      "target": "Palad Swd",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1063,
+      "elf_va": "0x140f249",
+      "original": "오키쉬 소드",
+      "target": "Orcish Swd",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1064,
+      "elf_va": "0x140f25a",
+      "original": "쿼드릴",
+      "target": "Quadri",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1067,
+      "elf_va": "0x140f28d",
+      "original": "묘르닐",
+      "target": "Mjolnr",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1068,
+      "elf_va": "0x140f29e",
+      "original": "테일핑",
+      "target": "Tirfng",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1069,
+      "elf_va": "0x140f2af",
+      "original": "대지의 검",
+      "target": "Earth Swd",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1070,
+      "elf_va": "0x140f2c0",
+      "original": "태풍의 검",
+      "target": "Storm Swd",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1071,
+      "elf_va": "0x140f2d1",
+      "original": "바다의 검",
+      "target": "Ocean Swd",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1072,
+      "elf_va": "0x140f2e2",
+      "original": "화산의 검",
+      "target": "Volc Swd",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1073,
+      "elf_va": "0x140f2f3",
+      "original": "오딘의 검",
+      "target": "Odin Swd",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1074,
+      "elf_va": "0x140f304",
+      "original": "투핸드소드",
+      "target": "2H Sword",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1075,
+      "elf_va": "0x140f315",
+      "original": "바스타드소드",
+      "target": "Bastard Swd",
+      "capacity": 12,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1076,
+      "elf_va": "0x140f326",
+      "original": "투핸드 액스",
+      "target": "2H Axe",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1077,
+      "elf_va": "0x140f337",
+      "original": "근육절단기",
+      "target": "Muscle Cut",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1080,
+      "elf_va": "0x140f36a",
+      "original": "도살자의 검",
+      "target": "Butcher Swd",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1085,
+      "elf_va": "0x140f3bf",
+      "original": "하트브레이커",
+      "target": "Heartbreaker",
+      "capacity": 12,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1088,
+      "elf_va": "0x140f3f2",
+      "original": "슬러터",
+      "target": "Slaugh",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1089,
+      "elf_va": "0x140f403",
+      "original": "발뭉",
+      "target": "Balm",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1090,
+      "elf_va": "0x140f414",
+      "original": "브로드소드",
+      "target": "Broad Swd",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1095,
+      "elf_va": "0x140f469",
+      "original": "알슈피스",
+      "target": "Ahlspies",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1096,
+      "elf_va": "0x140f47a",
+      "original": "튱클레티",
+      "target": "Tjungklt",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1098,
+      "elf_va": "0x140f49c",
+      "original": "아트로스의흉기",
+      "target": "Atroce Blade",
+      "capacity": 14,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1099,
+      "elf_va": "0x140f4ad",
+      "original": "핼버드",
+      "target": "Halbrd",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1100,
+      "elf_va": "0x140f4be",
+      "original": "버디슈",
+      "target": "Bardch",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1101,
+      "elf_va": "0x140f4cf",
+      "original": "액서큐셔너",
+      "target": "Executionr",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1105,
+      "elf_va": "0x140f513",
+      "original": "로드나이트의 검",
+      "target": "Lord Knt Sword",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1109,
+      "elf_va": "0x140f557",
+      "original": "새버스",
+      "target": "Sabbth",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1113,
+      "elf_va": "0x140f59b",
+      "original": "태풍의 창",
+      "target": "Storm Spr",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1117,
+      "elf_va": "0x140f5df",
+      "original": "가드",
+      "target": "Gurd",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1121,
+      "elf_va": "0x140f623",
+      "original": "쉴드",
+      "target": "Shld",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1122,
+      "elf_va": "0x140f634",
+      "original": "버클러",
+      "target": "Bucklr",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1125,
+      "elf_va": "0x140f667",
+      "original": "미러쉴드",
+      "target": "MirrorSh",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1126,
+      "elf_va": "0x140f678",
+      "original": "그림자 방패",
+      "target": "Shadow Shld",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1127,
+      "elf_va": "0x140f689",
+      "original": "가시방패",
+      "target": "Thorn Sh",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1129,
+      "elf_va": "0x140f6ab",
+      "original": "스트롱쉴드",
+      "target": "StrongShld",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1130,
+      "elf_va": "0x140f6bc",
+      "original": "홀리 가드",
+      "target": "HolyGuard",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1131,
+      "elf_va": "0x140f6cd",
+      "original": "타이탄 쉴드",
+      "target": "Titan Shld",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1134,
+      "elf_va": "0x140f700",
+      "original": "플래티넘 쉴드",
+      "target": "Plat. Shield",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1135,
+      "elf_va": "0x140f711",
+      "original": "천사의 보호",
+      "target": "Angel Guard",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1136,
+      "elf_va": "0x140f722",
+      "original": "유계의 버클러",
+      "target": "Other Buckler",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1138,
+      "elf_va": "0x140f744",
+      "original": "발키리아의 쉴드",
+      "target": "Valkyrie Shield",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1140,
+      "elf_va": "0x140f766",
+      "original": "코튼셔츠",
+      "target": "Cotton",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1142,
+      "elf_va": "0x140f788",
+      "original": "초보자용흉갑",
+      "target": "Novice Armor",
+      "capacity": 12,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1143,
+      "elf_va": "0x140f799",
+      "original": "오를레앙의제복",
+      "target": "Orleans Robes",
+      "capacity": 14,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1145,
+      "elf_va": "0x140f7bb",
+      "original": "실버로브",
+      "target": "SilvRobe",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1146,
+      "elf_va": "0x140f7cc",
+      "original": "웨딩드레스",
+      "target": "Wed Dress",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1149,
+      "elf_va": "0x140f7ff",
+      "original": "매직코트",
+      "target": "MageCoat",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1150,
+      "elf_va": "0x140f810",
+      "original": "맨틀",
+      "target": "Mant",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1154,
+      "elf_va": "0x140f854",
+      "original": "롱코트",
+      "target": "L Coat",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1156,
+      "elf_va": "0x140f876",
+      "original": "메일",
+      "target": "Mail",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1158,
+      "elf_va": "0x140f898",
+      "original": "은혜의 성의",
+      "target": "Holy Cloth",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1161,
+      "elf_va": "0x140f8cb",
+      "original": "디바인클로스",
+      "target": "Divine Cloth",
+      "capacity": 12,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1162,
+      "elf_va": "0x140f8dc",
+      "original": "세이트 로브",
+      "target": "Saint Robe",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1165,
+      "elf_va": "0x140f90f",
+      "original": "글리터링 클로스",
+      "target": "Glitter Jacket",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1166,
+      "elf_va": "0x140f920",
+      "original": "플레이트",
+      "target": "FullPlat",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1167,
+      "elf_va": "0x140f931",
+      "original": "풀플레이트아머",
+      "target": "Legion Plt Arm",
+      "capacity": 14,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1172,
+      "elf_va": "0x140f986",
+      "original": "로드나이트 갑옷",
+      "target": "Lord Knt Armor",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1173,
+      "elf_va": "0x140f997",
+      "original": "팔라딘 갑옷",
+      "target": "Palad Armor",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1174,
+      "elf_va": "0x140f9a8",
+      "original": "천사의 가호",
+      "target": "Angel Guard",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1178,
+      "elf_va": "0x140f9ec",
+      "original": "대지의 갈라짐",
+      "target": "Earth Crack",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1179,
+      "elf_va": "0x140f9fd",
+      "original": "태풍의 광폭함",
+      "target": "Typhoon Fury",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1181,
+      "elf_va": "0x140fa1f",
+      "original": "화산의 격렬함",
+      "target": "Volcano Fury",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1182,
+      "elf_va": "0x140fa30",
+      "original": "오딘의 가호",
+      "target": "Odin Grace",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1183,
+      "elf_va": "0x140fa41",
+      "original": "런닝셔츠",
+      "target": "UnderSh",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1184,
+      "elf_va": "0x140fa52",
+      "original": "머플러",
+      "target": "Mufflr",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1186,
+      "elf_va": "0x140fa74",
+      "original": "초보자용망토",
+      "target": "Novice Mant",
+      "capacity": 12,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1187,
+      "elf_va": "0x140fa85",
+      "original": "누더기 망토",
+      "target": "Ragged Mant",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1189,
+      "elf_va": "0x140faa7",
+      "original": "매의 날개옷",
+      "target": "Hawk Robe",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1191,
+      "elf_va": "0x140fac9",
+      "original": "스켈레톤 망토",
+      "target": "Skele Mant",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1193,
+      "elf_va": "0x140faeb",
+      "original": "수호병의 망토",
+      "target": "Guard Mant",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1194,
+      "elf_va": "0x140fafc",
+      "original": "미스릴마법망토",
+      "target": "Mithril Mant",
+      "capacity": 14,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1198,
+      "elf_va": "0x140fb40",
+      "original": "발리의 망토",
+      "target": "Vali Mant",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1201,
+      "elf_va": "0x140fb73",
+      "original": "모험가 망토",
+      "target": "Advent Mant",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1202,
+      "elf_va": "0x140fb84",
+      "original": "나이트 망토",
+      "target": "Knight Mant",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1203,
+      "elf_va": "0x140fb95",
+      "original": "크루세이더 망토",
+      "target": "Crusader Mant",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1205,
+      "elf_va": "0x140fbb7",
+      "original": "로드나이트 망토",
+      "target": "Lord Knt Mant",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1206,
+      "elf_va": "0x140fbc8",
+      "original": "팔라딘 망토",
+      "target": "Palad Mant",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1207,
+      "elf_va": "0x140fbd9",
+      "original": "천사의 온기",
+      "target": "Angel Cape",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1208,
+      "elf_va": "0x140fbea",
+      "original": "모리아네의 망토",
+      "target": "Morrigane Mant",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1209,
+      "elf_va": "0x140fbfb",
+      "original": "게브네이어깨장식",
+      "target": "Goibne Spalders",
+      "capacity": 16,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1210,
+      "elf_va": "0x140fc0c",
+      "original": "발키리의 망토",
+      "target": "Valkyrie Mant",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1211,
+      "elf_va": "0x140fc1d",
+      "original": "울프헤딘",
+      "target": "Wolfhdn",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1212,
+      "elf_va": "0x140fc2e",
+      "original": "천상의 날개",
+      "target": "Heaven Wing",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1213,
+      "elf_va": "0x140fc3f",
+      "original": "드래곤의 숨결",
+      "target": "Dragon Breath",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1216,
+      "elf_va": "0x140fc72",
+      "original": "삿갓",
+      "target": "Skt",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1219,
+      "elf_va": "0x140fca5",
+      "original": "각시탈",
+      "target": "Mask",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1224,
+      "elf_va": "0x140fcfa",
+      "original": "벙거지 모자",
+      "target": "Soldier Hat",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1227,
+      "elf_va": "0x140fd2d",
+      "original": "신비술사 모자",
+      "target": "Occultist Hat",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1229,
+      "elf_va": "0x140fd4f",
+      "original": "봉산탈",
+      "target": "Bonsan",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1234,
+      "elf_va": "0x140fda4",
+      "original": "포포링모자",
+      "target": "PoporingHt",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1238,
+      "elf_va": "0x140fde8",
+      "original": "하회탈",
+      "target": "Hahoe",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1239,
+      "elf_va": "0x140fdf9",
+      "original": "철의 투구",
+      "target": "SteelHelm",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1240,
+      "elf_va": "0x140fe0a",
+      "original": "12월의 모자",
+      "target": "Decembr Hat",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1241,
+      "elf_va": "0x140fe1b",
+      "original": "기사의 면갑",
+      "target": "Knight Face",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1246,
+      "elf_va": "0x140fe70",
+      "original": "모리아네의 헬름",
+      "target": "Morrigane Helm",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1248,
+      "elf_va": "0x140fe92",
+      "original": "발키리의 투구",
+      "target": "Valkyrie Helm",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1249,
+      "elf_va": "0x140fea3",
+      "original": "산타모자",
+      "target": "SantaHat",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1250,
+      "elf_va": "0x140feb4",
+      "original": "양반탈",
+      "target": "Yangbn",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1255,
+      "elf_va": "0x140ff09",
+      "original": "블루톤 샤기",
+      "target": "Blu Shaggy",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1256,
+      "elf_va": "0x140ff1a",
+      "original": "화이트 울프컷",
+      "target": "White Wolf",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1257,
+      "elf_va": "0x140ff2b",
+      "original": "뉴욕커 스타일",
+      "target": "NY Style",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1258,
+      "elf_va": "0x140ff3c",
+      "original": "난 민이라고해",
+      "target": "Red Hair",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1259,
+      "elf_va": "0x140ff4d",
+      "original": "그레이 범생",
+      "target": "Grey Hair",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1260,
+      "elf_va": "0x140ff5e",
+      "original": "간지 브라운",
+      "target": "Cool Brown",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1261,
+      "elf_va": "0x140ff6f",
+      "original": "큐티 퍼플",
+      "target": "Cute Purp",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1262,
+      "elf_va": "0x140ff80",
+      "original": "오렌지 바람",
+      "target": "Orange Wind",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1264,
+      "elf_va": "0x140ffa2",
+      "original": "토끼 슬리퍼",
+      "target": "Bunny Slips",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1265,
+      "elf_va": "0x140ffb3",
+      "original": "샌들",
+      "target": "Snd",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1266,
+      "elf_va": "0x140ffc4",
+      "original": "슈즈",
+      "target": "Shoe",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1267,
+      "elf_va": "0x140ffd5",
+      "original": "족쇄",
+      "target": "Shac",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1268,
+      "elf_va": "0x140ffe6",
+      "original": "고급샌들",
+      "target": "FineSndl",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1269,
+      "elf_va": "0x140fff7",
+      "original": "유리구두",
+      "target": "CrystPmp",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1270,
+      "elf_va": "0x1410008",
+      "original": "뾰족구두",
+      "target": "Hi Heels",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1271,
+      "elf_va": "0x1410019",
+      "original": "안전화",
+      "target": "Safety",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1272,
+      "elf_va": "0x141002a",
+      "original": "배리언트슈즈",
+      "target": "Variant Shoe",
+      "capacity": 12,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1273,
+      "elf_va": "0x141003b",
+      "original": "타이달슈즈",
+      "target": "Tidal Shoe",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1274,
+      "elf_va": "0x141004c",
+      "original": "부츠",
+      "target": "Boot",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1275,
+      "elf_va": "0x141005d",
+      "original": "그리브",
+      "target": "Greave",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1276,
+      "elf_va": "0x141006e",
+      "original": "조화의 부츠",
+      "target": "HarmonyBoot",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1277,
+      "elf_va": "0x141007f",
+      "original": "프리코슈즈",
+      "target": "Freya Shoe",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1278,
+      "elf_va": "0x1410090",
+      "original": "검은가죽부츠",
+      "target": "Black Boots",
+      "capacity": 12,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1280,
+      "elf_va": "0x14100b2",
+      "original": "블랙스톤 그리브",
+      "target": "BlackSt Greaves",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1282,
+      "elf_va": "0x14100d4",
+      "original": "로드나이트 부츠",
+      "target": "Lord Knt Boots",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1283,
+      "elf_va": "0x14100e5",
+      "original": "팔라딘 부츠",
+      "target": "Palad Boots",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1284,
+      "elf_va": "0x14100f6",
+      "original": "천사의 재래",
+      "target": "AngelReborn",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1285,
+      "elf_va": "0x1410107",
+      "original": "게브네이의 군화",
+      "target": "Goibne Greaves",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1286,
+      "elf_va": "0x1410118",
+      "original": "발키리의 슈즈",
+      "target": "Valkyrie Shoe",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1289,
+      "elf_va": "0x141014b",
+      "original": "쉐도우워크",
+      "target": "ShadowWt",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1291,
+      "elf_va": "0x141016d",
+      "original": "노비스 암릿",
+      "target": "Novice Arm",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1292,
+      "elf_va": "0x141017e",
+      "original": "오를레앙의장갑",
+      "target": "Orleans Glove",
+      "capacity": 14,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1293,
+      "elf_va": "0x141018f",
+      "original": "명사수의 장갑",
+      "target": "Archer Gloves",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1294,
+      "elf_va": "0x14101a0",
+      "original": "피묻은 철구",
+      "target": "Bloody Ball",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1295,
+      "elf_va": "0x14101b1",
+      "original": "명중의 건틀릿",
+      "target": "Hit Gauntlet",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1297,
+      "elf_va": "0x14101d3",
+      "original": "나이트 장갑",
+      "target": "KnightGlove",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1299,
+      "elf_va": "0x14101f5",
+      "original": "모르피셔스 장갑",
+      "target": "Morpheus Glove",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1300,
+      "elf_va": "0x1410206",
+      "original": "로드나이트 장갑",
+      "target": "Lord Knt Gloves",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1301,
+      "elf_va": "0x1410217",
+      "original": "팔라딘 장갑",
+      "target": "Palad Glove",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1302,
+      "elf_va": "0x1410228",
+      "original": "모리아네의 장갑",
+      "target": "Morrigane Glove",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1304,
+      "elf_va": "0x141024a",
+      "original": "벨카프",
+      "target": "Belcar",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1305,
+      "elf_va": "0x141025b",
+      "original": "금반지",
+      "target": "GoldRg",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1307,
+      "elf_va": "0x141027d",
+      "original": "꽃반지",
+      "target": "FlwRg",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1308,
+      "elf_va": "0x141028e",
+      "original": "저항의 반지",
+      "target": "Resist Ring",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1312,
+      "elf_va": "0x14102d2",
+      "original": "스피리츄얼 링",
+      "target": "Spirit Ring",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1313,
+      "elf_va": "0x14102e3",
+      "original": "다이아반지",
+      "target": "Diamnd Rg",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1314,
+      "elf_va": "0x14102f4",
+      "original": "은반지",
+      "target": "SilvRg",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1315,
+      "elf_va": "0x1410305",
+      "original": "더 사인",
+      "target": "Sign",
+      "capacity": 7,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1316,
+      "elf_va": "0x1410316",
+      "original": "실버링",
+      "target": "SilvRg",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1317,
+      "elf_va": "0x1410327",
+      "original": "돌반지",
+      "target": "BD Rg",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1318,
+      "elf_va": "0x1410338",
+      "original": "익스퍼트링",
+      "target": "Expert Rg",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1319,
+      "elf_va": "0x1410349",
+      "original": "듀라한아이",
+      "target": "Dullahan",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1320,
+      "elf_va": "0x141035a",
+      "original": "여신의 귀걸이",
+      "target": "Goddess Ear",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1322,
+      "elf_va": "0x141037c",
+      "original": "생명의 목걸이",
+      "target": "Vital Neck",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1324,
+      "elf_va": "0x141039e",
+      "original": "링",
+      "target": "Rg",
+      "capacity": 2,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1326,
+      "elf_va": "0x14103c0",
+      "original": "해골반지",
+      "target": "Skull Rg",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1328,
+      "elf_va": "0x14103e2",
+      "original": "모리아네 팬던트",
+      "target": "Morrigane Pend",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1329,
+      "elf_va": "0x14103f3",
+      "original": "정신력의 귀걸이",
+      "target": "Mental Earring",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1331,
+      "elf_va": "0x1410415",
+      "original": "브리싱가멘",
+      "target": "Brisingamn",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1332,
+      "elf_va": "0x1410426",
+      "original": "레전드 링",
+      "target": "Legend Rg",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1333,
+      "elf_va": "0x1410437",
+      "original": "링오브레조넌스",
+      "target": "Resonance Ring",
+      "capacity": 14,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1334,
+      "elf_va": "0x1410448",
+      "original": "딸기",
+      "target": "Strw",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1335,
+      "elf_va": "0x1410459",
+      "original": "떡",
+      "target": "Rc",
+      "capacity": 2,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1336,
+      "elf_va": "0x141046a",
+      "original": "꿀",
+      "target": "Hy",
+      "capacity": 2,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1338,
+      "elf_va": "0x141048c",
+      "original": "딸기쥬스",
+      "target": "StrawJce",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1339,
+      "elf_va": "0x141049d",
+      "original": "로얄제리",
+      "target": "RoyJelly",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1340,
+      "elf_va": "0x14104ae",
+      "original": "꿀떡",
+      "target": "HnyR",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1341,
+      "elf_va": "0x14104bf",
+      "original": "떡국",
+      "target": "RCS",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1342,
+      "elf_va": "0x14104d0",
+      "original": "딸기타르트",
+      "target": "Strwb Tart",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1343,
+      "elf_va": "0x14104e1",
+      "original": "딸기파이",
+      "target": "Strw Pie",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1345,
+      "elf_va": "0x1410503",
+      "original": "수라상",
+      "target": "Royal",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1350,
+      "elf_va": "0x1410558",
+      "original": "까만허브",
+      "target": "DarkHerb",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1351,
+      "elf_va": "0x1410569",
+      "original": "빨간포션",
+      "target": "Red Pot.",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1352,
+      "elf_va": "0x141057a",
+      "original": "파란포션",
+      "target": "Blue Pot",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1353,
+      "elf_va": "0x141058b",
+      "original": "노란포션",
+      "target": "Yell Pot",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1354,
+      "elf_va": "0x141059c",
+      "original": "하얀포션",
+      "target": "WhitePot",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1355,
+      "elf_va": "0x14105ad",
+      "original": "까만포션",
+      "target": "Dark Pot",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1356,
+      "elf_va": "0x14105be",
+      "original": "빈병",
+      "target": "Vial",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1357,
+      "elf_va": "0x14105cf",
+      "original": "중화제",
+      "target": "Antacd",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1358,
+      "elf_va": "0x14105e0",
+      "original": "혼합제",
+      "target": "Mixing",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1359,
+      "elf_va": "0x14105f1",
+      "original": "가넷",
+      "target": "Garn",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1364,
+      "elf_va": "0x1410646",
+      "original": "프라콘",
+      "target": "Phracn",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1365,
+      "elf_va": "0x1410657",
+      "original": "엠베르타콘",
+      "target": "Emvertarcn",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1368,
+      "elf_va": "0x141068a",
+      "original": "잘말린뼈다귀",
+      "target": "Dried Bone",
+      "capacity": 12,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1369,
+      "elf_va": "0x141069b",
+      "original": "몬스터과자",
+      "target": "Mon Cookie",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1370,
+      "elf_va": "0x14106ac",
+      "original": "몬스터쥬스",
+      "target": "Mon Juice",
+      "capacity": 10,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1372,
+      "elf_va": "0x14106ce",
+      "original": "가고일 카드",
+      "target": "Garg Card",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1373,
+      "elf_va": "0x14106df",
+      "original": "게 카드",
+      "target": "Crab Cr",
+      "capacity": 7,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1374,
+      "elf_va": "0x14106f0",
+      "original": "고렘 카드",
+      "target": "Golem Crd",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1376,
+      "elf_va": "0x1410712",
+      "original": "무낙 카드",
+      "target": "Munak Crd",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1377,
+      "elf_va": "0x1410723",
+      "original": "미니데몬 카드",
+      "target": "MiniDmon Card",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1379,
+      "elf_va": "0x1410745",
+      "original": "스케골트 카드",
+      "target": "Skeggiold Crd",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1384,
+      "elf_va": "0x141079a",
+      "original": "위스퍼 카드",
+      "target": "Wisp Card",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1385,
+      "elf_va": "0x14107ab",
+      "original": "잭 카드",
+      "target": "Jk Card",
+      "capacity": 7,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1386,
+      "elf_va": "0x14107bc",
+      "original": "좀비 카드",
+      "target": "Zombi Crd",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1387,
+      "elf_va": "0x14107cd",
+      "original": "퍼밀리어 카드",
+      "target": "Familiar Card",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1394,
+      "elf_va": "0x1410844",
+      "original": "헬키퍼 카드",
+      "target": "Hellkp Card",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1396,
+      "elf_va": "0x1410866",
+      "original": "슈미츠 카드",
+      "target": "Schmitz Crd",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1397,
+      "elf_va": "0x1410877",
+      "original": "슈퍼스포아 카드",
+      "target": "Super Spore Crd",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1401,
+      "elf_va": "0x14108bb",
+      "original": "폭주위스퍼 카드",
+      "target": "Super Wisp Crd",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1402,
+      "elf_va": "0x14108cc",
+      "original": "할로윈 잭 카드",
+      "target": "Hallo Jakk Crd",
+      "capacity": 14,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1405,
+      "elf_va": "0x14108ff",
+      "original": "슈퍼포링 카드",
+      "target": "Super Poring",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1406,
+      "elf_va": "0x1410910",
+      "original": "타오군카 카드",
+      "target": "TaoGunka Card",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1410,
+      "elf_va": "0x1410954",
+      "original": "다크로드 카드",
+      "target": "DarkLord Crd",
+      "capacity": 13,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1411,
+      "elf_va": "0x1410965",
+      "original": "발키리 카드",
+      "target": "Valk Card",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1413,
+      "elf_va": "0x1410987",
+      "original": "철괴",
+      "target": "Iron",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1415,
+      "elf_va": "0x14109a9",
+      "original": "독 원액",
+      "target": "Poison",
+      "capacity": 7,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1416,
+      "elf_va": "0x14109ba",
+      "original": "농기구",
+      "target": "Tool",
+      "capacity": 6,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1417,
+      "elf_va": "0x14109cb",
+      "original": "붕대",
+      "target": "Band",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1418,
+      "elf_va": "0x14109dc",
+      "original": "데몬의 눈물",
+      "target": "Demon Tears",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1419,
+      "elf_va": "0x14109ed",
+      "original": "불의 인장",
+      "target": "Fire Seal",
+      "capacity": 9,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1421,
+      "elf_va": "0x1410a0f",
+      "original": "거품",
+      "target": "Foam",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1422,
+      "elf_va": "0x1410a20",
+      "original": "시련의 인장",
+      "target": "Trial Seal",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1424,
+      "elf_va": "0x1410a42",
+      "original": "바람의 증표",
+      "target": "Wind Token",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1428,
+      "elf_va": "0x1410a86",
+      "original": "망치",
+      "target": "Hamm",
+      "capacity": 4,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1429,
+      "elf_va": "0x1410a97",
+      "original": "마린의 눈물",
+      "target": "Marin Tear",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1431,
+      "elf_va": "0x1410ab9",
+      "original": "상황버섯",
+      "target": "Fungus",
+      "capacity": 8,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1432,
+      "elf_va": "0x1410aca",
+      "original": "차원 유지기",
+      "target": "Dim Control",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1433,
+      "elf_va": "0x1410adb",
+      "original": "고대의 망치",
+      "target": "Old Hammer",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1434,
+      "elf_va": "0x1410aec",
+      "original": "달빛의 샘물",
+      "target": "Moon Spring",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1435,
+      "elf_va": "0x1410afd",
+      "original": "상수도 공구상자",
+      "target": "Water Tool Kit",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1436,
+      "elf_va": "0x1410b0e",
+      "original": "고대의 서적",
+      "target": "Anc. Scroll",
+      "capacity": 11,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1437,
+      "elf_va": "0x1410b1f",
+      "original": "하수도 공구상자",
+      "target": "Sewer Tool Kit",
+      "capacity": 15,
+      "mode": "short item label, official iOS name as reference"
+    },
+    {
+      "entry": 1448,
+      "elf_va": "0x1410bda",
+      "original": "포션 레시피",
+      "target": "Potion Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1449,
+      "elf_va": "0x1410beb",
+      "original": "포션 레시피",
+      "target": "Potion Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1450,
+      "elf_va": "0x1410bfc",
+      "original": "포션 레시피",
+      "target": "Potion Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1451,
+      "elf_va": "0x1410c0d",
+      "original": "포션 레시피",
+      "target": "Potion Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1452,
+      "elf_va": "0x1410c1e",
+      "original": "포션 레시피",
+      "target": "Potion Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1461,
+      "elf_va": "0x1410cb7",
+      "original": "제련 레시피",
+      "target": "Upgrade Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1462,
+      "elf_va": "0x1410cc8",
+      "original": "제련 레시피",
+      "target": "Upgrade Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1463,
+      "elf_va": "0x1410cd9",
+      "original": "풍 카드 레시피",
+      "target": "Wind Card Rcp",
+      "capacity": 14,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1464,
+      "elf_va": "0x1410cea",
+      "original": "수 카드 레시피",
+      "target": "Water Card Rcp",
+      "capacity": 14,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1465,
+      "elf_va": "0x1410cfb",
+      "original": "지 카드 레시피",
+      "target": "Earth Card Rcp",
+      "capacity": 14,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1468,
+      "elf_va": "0x1410d2e",
+      "original": "화 카드 레시피",
+      "target": "Fire Card Rcp",
+      "capacity": 14,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1494,
+      "elf_va": "0x1410ee8",
+      "original": "단검 레시피",
+      "target": "Dagger Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1495,
+      "elf_va": "0x1410ef9",
+      "original": "단검 레시피",
+      "target": "Dagger Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1496,
+      "elf_va": "0x1410f0a",
+      "original": "단검 레시피",
+      "target": "Dagger Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1497,
+      "elf_va": "0x1410f1b",
+      "original": "단검 레시피",
+      "target": "Dagger Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1498,
+      "elf_va": "0x1410f2c",
+      "original": "단검 레시피",
+      "target": "Dagger Rcp",
+      "capacity": 11,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1499,
+      "elf_va": "0x1410f3d",
+      "original": "한손무기 레시피",
+      "target": "1H Weapon Rcp",
+      "capacity": 15,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1500,
+      "elf_va": "0x1410f4e",
+      "original": "한손무기 레시피",
+      "target": "1H Weapon Rcp",
+      "capacity": 15,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1501,
+      "elf_va": "0x1410f5f",
+      "original": "한손무기 레시피",
+      "target": "1H Weapon Rcp",
+      "capacity": 15,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1502,
+      "elf_va": "0x1410f70",
+      "original": "한손무기 레시피",
+      "target": "1H Weapon Rcp",
+      "capacity": 15,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1503,
+      "elf_va": "0x1410f81",
+      "original": "한손무기 레시피",
+      "target": "1H Weapon Rcp",
+      "capacity": 15,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1504,
+      "elf_va": "0x1410f92",
+      "original": "양손무기 레시피",
+      "target": "2H Weapon Rcp",
+      "capacity": 15,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1505,
+      "elf_va": "0x1410fa3",
+      "original": "양손무기 레시피",
+      "target": "2H Weapon Rcp",
+      "capacity": 15,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1506,
+      "elf_va": "0x1410fb4",
+      "original": "양손무기 레시피",
+      "target": "2H Weapon Rcp",
+      "capacity": 15,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1507,
+      "elf_va": "0x1410fc5",
+      "original": "양손무기 레시피",
+      "target": "2H Weapon Rcp",
+      "capacity": 15,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1508,
+      "elf_va": "0x1410fd6",
+      "original": "양손무기 레시피",
+      "target": "2H Weapon Rcp",
+      "capacity": 15,
+      "mode": "recipe abbreviation"
+    },
+    {
+      "entry": 1511,
+      "elf_va": "0x1411009",
+      "original": "여행자 가방",
+      "target": "Travel Bag",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1512,
+      "elf_va": "0x141101a",
+      "original": "마력의 샘물",
+      "target": "Mana Water",
+      "capacity": 11,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1516,
+      "elf_va": "0x141105e",
+      "original": "대장장이의 손",
+      "target": "Smiths Hand",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1517,
+      "elf_va": "0x141106f",
+      "original": "까만 펫 알",
+      "target": "Black Egg",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1518,
+      "elf_va": "0x1411080",
+      "original": "녹색 펫 알",
+      "target": "Green Egg",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1519,
+      "elf_va": "0x1411091",
+      "original": "푸른 펫 알",
+      "target": "Blue Egg",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1520,
+      "elf_va": "0x14110a2",
+      "original": "태양 벽지",
+      "target": "Sun Paper",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1521,
+      "elf_va": "0x14110b3",
+      "original": "해변 벽지",
+      "target": "Sea Paper",
+      "capacity": 9,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1523,
+      "elf_va": "0x14110d5",
+      "original": "밥그릇",
+      "target": "PetBwl",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1524,
+      "elf_va": "0x14110e6",
+      "original": "모형칼 펫모자",
+      "target": "Toy Sword Hat",
+      "capacity": 13,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1526,
+      "elf_va": "0x1411108",
+      "original": "천사하트 펫모자",
+      "target": "Angel Heart Hat",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1527,
+      "elf_va": "0x1411119",
+      "original": "바람개비 펫모자",
+      "target": "Pinwheel Hat",
+      "capacity": 15,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1528,
+      "elf_va": "0x141112a",
+      "original": "재료주머니",
+      "target": "Mat. Pouch",
+      "capacity": 10,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1529,
+      "elf_va": "0x141113b",
+      "original": "카드북",
+      "target": "CrdBk",
+      "capacity": 6,
+      "mode": "verified context / manual abbreviation"
+    },
+    {
+      "entry": 1536,
+      "elf_va": "0x1412322",
+      "original": "카렌",
+      "target": "Karn",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1543,
+      "elf_va": "0x14123a0",
+      "original": "가렛",
+      "target": "Gart",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1544,
+      "elf_va": "0x14123b2",
+      "original": "앤소니",
+      "target": "Antony",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1546,
+      "elf_va": "0x14123d6",
+      "original": "조합의 대가",
+      "target": "Fusion Mast",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1553,
+      "elf_va": "0x1412454",
+      "original": "노인",
+      "target": "Eldr",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1554,
+      "elf_va": "0x1412466",
+      "original": "경비병 월터",
+      "target": "Guard Walt",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1558,
+      "elf_va": "0x14124ae",
+      "original": "홍도르",
+      "target": "Hongdr",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1559,
+      "elf_va": "0x14124c0",
+      "original": "피러",
+      "target": "Pier",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1561,
+      "elf_va": "0x14124e4",
+      "original": "컬린",
+      "target": "Culn",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1565,
+      "elf_va": "0x141252c",
+      "original": "조",
+      "target": "Jo",
+      "capacity": 2,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1569,
+      "elf_va": "0x1412574",
+      "original": "앤듀",
+      "target": "Andy",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1570,
+      "elf_va": "0x1412586",
+      "original": "민초이",
+      "target": "Mincho",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1571,
+      "elf_va": "0x1412598",
+      "original": "샘",
+      "target": "Sm",
+      "capacity": 2,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1579,
+      "elf_va": "0x1412628",
+      "original": "버터",
+      "target": "Butr",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1580,
+      "elf_va": "0x141263a",
+      "original": "병사1",
+      "target": "Sol 1",
+      "capacity": 5,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1581,
+      "elf_va": "0x141264c",
+      "original": "병사2",
+      "target": "Sol 2",
+      "capacity": 5,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1583,
+      "elf_va": "0x1412670",
+      "original": "패트릭",
+      "target": "Patric",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1586,
+      "elf_va": "0x14126a6",
+      "original": "블랙",
+      "target": "Blak",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1587,
+      "elf_va": "0x14126b8",
+      "original": "쿠숀",
+      "target": "Cush",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1588,
+      "elf_va": "0x14126ca",
+      "original": "클락",
+      "target": "Clrk",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1589,
+      "elf_va": "0x14126dc",
+      "original": "비쇼",
+      "target": "Bish",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1590,
+      "elf_va": "0x14126ee",
+      "original": "볼",
+      "target": "Wo",
+      "capacity": 2,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1591,
+      "elf_va": "0x1412700",
+      "original": "덕스",
+      "target": "Dux",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1593,
+      "elf_va": "0x1412724",
+      "original": "저스틴",
+      "target": "Justin",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1595,
+      "elf_va": "0x1412748",
+      "original": "케빈",
+      "target": "Kevn",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1596,
+      "elf_va": "0x141275a",
+      "original": "벤자민",
+      "target": "Benjam",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1597,
+      "elf_va": "0x141276c",
+      "original": "당빌",
+      "target": "Danv",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1598,
+      "elf_va": "0x141277e",
+      "original": "필립스",
+      "target": "Phil",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1599,
+      "elf_va": "0x1412790",
+      "original": "기사 지망생",
+      "target": "Knight Hope",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1601,
+      "elf_va": "0x14127b4",
+      "original": "푸린세스",
+      "target": "Princess",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1602,
+      "elf_va": "0x14127c6",
+      "original": "촌장 손녀딸",
+      "target": "Grandchild",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1603,
+      "elf_va": "0x14127d8",
+      "original": "사뮤엘",
+      "target": "Samuel",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1604,
+      "elf_va": "0x14127ea",
+      "original": "아빠",
+      "target": "Dad",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1605,
+      "elf_va": "0x14127fc",
+      "original": "선생님",
+      "target": "Tutor",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1606,
+      "elf_va": "0x141280e",
+      "original": "카류리트",
+      "target": "Karyur",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1608,
+      "elf_va": "0x1412832",
+      "original": "메간",
+      "target": "Megn",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1609,
+      "elf_va": "0x1412844",
+      "original": "천년홍",
+      "target": "Gomphr",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1610,
+      "elf_va": "0x1412856",
+      "original": "시크",
+      "target": "Schk",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1611,
+      "elf_va": "0x1412868",
+      "original": "제시카",
+      "target": "Jessic",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1612,
+      "elf_va": "0x141287a",
+      "original": "월화란무",
+      "target": "Moonflwr",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1615,
+      "elf_va": "0x14128b0",
+      "original": "조나단",
+      "target": "Jonath",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1617,
+      "elf_va": "0x14128d4",
+      "original": "티모시",
+      "target": "Timoth",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1620,
+      "elf_va": "0x141290a",
+      "original": "그린아이",
+      "target": "Grn Eye",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1621,
+      "elf_va": "0x141291c",
+      "original": "보물상자",
+      "target": "Chest",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1622,
+      "elf_va": "0x141292e",
+      "original": "오딘의 축복",
+      "target": "Odins Grace",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1623,
+      "elf_va": "0x1412940",
+      "original": "사령관",
+      "target": "Cmdr",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1626,
+      "elf_va": "0x1412976",
+      "original": "아랑",
+      "target": "Arng",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1628,
+      "elf_va": "0x141299a",
+      "original": "스코",
+      "target": "Scot",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1629,
+      "elf_va": "0x14129ac",
+      "original": "필드",
+      "target": "Area",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1630,
+      "elf_va": "0x14129be",
+      "original": "감옥경비병",
+      "target": "Prison Grd",
+      "capacity": 10,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1636,
+      "elf_va": "0x1412a2a",
+      "original": "이마드 경호원",
+      "target": "Imad Guard",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1637,
+      "elf_va": "0x1412a3c",
+      "original": "서류 심사원",
+      "target": "File Clerk",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1638,
+      "elf_va": "0x1412a4e",
+      "original": "봉인의 수호자",
+      "target": "Seal Guardian",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1641,
+      "elf_va": "0x1412a84",
+      "original": "상수도 관리인",
+      "target": "Water Keeper",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1643,
+      "elf_va": "0x1412aa8",
+      "original": "도서관 서기",
+      "target": "Librarian",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1644,
+      "elf_va": "0x1412aba",
+      "original": "하수도 관리인",
+      "target": "Sewer Keeper",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1645,
+      "elf_va": "0x1412acc",
+      "original": "저승사자",
+      "target": "Reaper",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1650,
+      "elf_va": "0x1412b26",
+      "original": "신녀",
+      "target": "Pri.",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1655,
+      "elf_va": "0x1412b80",
+      "original": "수습 조합사",
+      "target": "Jr Fusioner",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1662,
+      "elf_va": "0x1412bfe",
+      "original": "다크로드",
+      "target": "DarkLord",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1663,
+      "elf_va": "0x1412c10",
+      "original": "발키리",
+      "target": "Valk.",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1664,
+      "elf_va": "0x1412c22",
+      "original": "가고일",
+      "target": "Gargoy",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1666,
+      "elf_va": "0x1412c46",
+      "original": "가고일 킹",
+      "target": "Garg King",
+      "capacity": 9,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1667,
+      "elf_va": "0x1412c58",
+      "original": "게",
+      "target": "Cr",
+      "capacity": 2,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1669,
+      "elf_va": "0x1412c7c",
+      "original": "킹크랩",
+      "target": "KCrab",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1670,
+      "elf_va": "0x1412c8e",
+      "original": "고렘",
+      "target": "Golm",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1672,
+      "elf_va": "0x1412cb2",
+      "original": "블러드고렘",
+      "target": "BloodGolem",
+      "capacity": 10,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1674,
+      "elf_va": "0x1412cd6",
+      "original": "팬저 고블린",
+      "target": "Panzer Gob",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1675,
+      "elf_va": "0x1412ce8",
+      "original": "고블린 리더",
+      "target": "Gob Leader",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1676,
+      "elf_va": "0x1412cfa",
+      "original": "강시",
+      "target": "Jsh",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1677,
+      "elf_va": "0x1412d0c",
+      "original": "무낙",
+      "target": "Munk",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1678,
+      "elf_va": "0x1412d1e",
+      "original": "본건",
+      "target": "Bong",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1679,
+      "elf_va": "0x1412d30",
+      "original": "미니데몬",
+      "target": "MiniDmon",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1680,
+      "elf_va": "0x1412d42",
+      "original": "데몬",
+      "target": "Dmon",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1685,
+      "elf_va": "0x1412d9c",
+      "original": "미니 스케골트",
+      "target": "Mini Skegg",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1686,
+      "elf_va": "0x1412dae",
+      "original": "스케골트 주니어",
+      "target": "Skegg Junior",
+      "capacity": 15,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1687,
+      "elf_va": "0x1412dc0",
+      "original": "스케골트",
+      "target": "Skeggold",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1693,
+      "elf_va": "0x1412e2c",
+      "original": "챔피언 시로마",
+      "target": "Champ Siroma",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1700,
+      "elf_va": "0x1412eaa",
+      "original": "위스퍼",
+      "target": "Wisp",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1702,
+      "elf_va": "0x1412ece",
+      "original": "거대 위스퍼",
+      "target": "Great Wisp",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1703,
+      "elf_va": "0x1412ee0",
+      "original": "잭",
+      "target": "Jk",
+      "capacity": 2,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1704,
+      "elf_va": "0x1412ef2",
+      "original": "젠틀 잭",
+      "target": "Gent Jk",
+      "capacity": 7,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1706,
+      "elf_va": "0x1412f16",
+      "original": "좀비",
+      "target": "Zomb",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1708,
+      "elf_va": "0x1412f3a",
+      "original": "좀비 마스터",
+      "target": "Zombie Mast",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1709,
+      "elf_va": "0x1412f4c",
+      "original": "퍼밀리어",
+      "target": "Familia",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1710,
+      "elf_va": "0x1412f5e",
+      "original": "흡혈박쥐",
+      "target": "Vamp Bat",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1711,
+      "elf_va": "0x1412f70",
+      "original": "황금박쥐",
+      "target": "Gold Bat",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1712,
+      "elf_va": "0x1412f82",
+      "original": "포링",
+      "target": "Porg",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1713,
+      "elf_va": "0x1412f94",
+      "original": "포포링",
+      "target": "Popori",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1714,
+      "elf_va": "0x1412fa6",
+      "original": "마린",
+      "target": "Mar.",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1716,
+      "elf_va": "0x1412fca",
+      "original": "랍스터",
+      "target": "Lobstr",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1718,
+      "elf_va": "0x1412fee",
+      "original": "멀록",
+      "target": "Murl",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1720,
+      "elf_va": "0x1413012",
+      "original": "발록",
+      "target": "Balr",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1721,
+      "elf_va": "0x1413024",
+      "original": "이모텝",
+      "target": "Imhotp",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1722,
+      "elf_va": "0x1413036",
+      "original": "로로틴",
+      "target": "Lolotn",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1723,
+      "elf_va": "0x1413048",
+      "original": "머슈룸",
+      "target": "Mushrm",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1728,
+      "elf_va": "0x14130a2",
+      "original": "펌프킨",
+      "target": "Pumpkn",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1737,
+      "elf_va": "0x1413144",
+      "original": "헬키퍼",
+      "target": "Hellkp",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1739,
+      "elf_va": "0x1413168",
+      "original": "슈미츠",
+      "target": "Schmtz",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1744,
+      "elf_va": "0x14131c2",
+      "original": "폭주 위스퍼",
+      "target": "Super Wisp",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1750,
+      "elf_va": "0x141322e",
+      "original": "박스",
+      "target": "Box",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1757,
+      "elf_va": "0x1413915",
+      "original": "카렌",
+      "target": "Karn",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1764,
+      "elf_va": "0x14139ee",
+      "original": "가렛",
+      "target": "Gart",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1765,
+      "elf_va": "0x1413a0d",
+      "original": "앤소니",
+      "target": "Antony",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1767,
+      "elf_va": "0x1413a4b",
+      "original": "조합의 대가",
+      "target": "Fusion Mast",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1774,
+      "elf_va": "0x1413b24",
+      "original": "노인",
+      "target": "Eldr",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1775,
+      "elf_va": "0x1413b43",
+      "original": "경비병 월터",
+      "target": "Guard Walt",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1779,
+      "elf_va": "0x1413bbf",
+      "original": "홍도르",
+      "target": "Hongdr",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1780,
+      "elf_va": "0x1413bde",
+      "original": "피러",
+      "target": "Pier",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1782,
+      "elf_va": "0x1413c1c",
+      "original": "컬린",
+      "target": "Culn",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1786,
+      "elf_va": "0x1413c98",
+      "original": "조",
+      "target": "Jo",
+      "capacity": 2,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1790,
+      "elf_va": "0x1413d14",
+      "original": "앤듀",
+      "target": "Andy",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1791,
+      "elf_va": "0x1413d33",
+      "original": "민초이",
+      "target": "Mincho",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1792,
+      "elf_va": "0x1413d52",
+      "original": "샘",
+      "target": "Sm",
+      "capacity": 2,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1800,
+      "elf_va": "0x1413e4a",
+      "original": "버터",
+      "target": "Butr",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1801,
+      "elf_va": "0x1413e69",
+      "original": "병사1",
+      "target": "Sol 1",
+      "capacity": 5,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1802,
+      "elf_va": "0x1413e88",
+      "original": "병사2",
+      "target": "Sol 2",
+      "capacity": 5,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1804,
+      "elf_va": "0x1413ec6",
+      "original": "패트릭",
+      "target": "Patric",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1807,
+      "elf_va": "0x1413f23",
+      "original": "블랙",
+      "target": "Blak",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1808,
+      "elf_va": "0x1413f42",
+      "original": "쿠숀",
+      "target": "Cush",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1809,
+      "elf_va": "0x1413f61",
+      "original": "클락",
+      "target": "Clrk",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1810,
+      "elf_va": "0x1413f80",
+      "original": "비쇼",
+      "target": "Bish",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1811,
+      "elf_va": "0x1413f9f",
+      "original": "볼",
+      "target": "Wo",
+      "capacity": 2,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1812,
+      "elf_va": "0x1413fbe",
+      "original": "덕스",
+      "target": "Dux",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1814,
+      "elf_va": "0x1413ffc",
+      "original": "저스틴",
+      "target": "Justin",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1816,
+      "elf_va": "0x141403a",
+      "original": "케빈",
+      "target": "Kevn",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1817,
+      "elf_va": "0x1414059",
+      "original": "벤자민",
+      "target": "Benjam",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1818,
+      "elf_va": "0x1414078",
+      "original": "당빌",
+      "target": "Danv",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1819,
+      "elf_va": "0x1414097",
+      "original": "필립스",
+      "target": "Phil",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1820,
+      "elf_va": "0x14140b6",
+      "original": "기사 지망생",
+      "target": "Knight Hope",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1822,
+      "elf_va": "0x14140f4",
+      "original": "푸린세스",
+      "target": "Princess",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1823,
+      "elf_va": "0x1414113",
+      "original": "촌장 손녀딸",
+      "target": "Grandchild",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1824,
+      "elf_va": "0x1414132",
+      "original": "사뮤엘",
+      "target": "Samuel",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1825,
+      "elf_va": "0x1414151",
+      "original": "아빠",
+      "target": "Dad",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1826,
+      "elf_va": "0x1414170",
+      "original": "선생님",
+      "target": "Tutor",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1827,
+      "elf_va": "0x141418f",
+      "original": "카류리트",
+      "target": "Karyur",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1829,
+      "elf_va": "0x14141cd",
+      "original": "메간",
+      "target": "Megn",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1830,
+      "elf_va": "0x14141ec",
+      "original": "천년홍",
+      "target": "Gomphr",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1831,
+      "elf_va": "0x141420b",
+      "original": "시크",
+      "target": "Schk",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1832,
+      "elf_va": "0x141422a",
+      "original": "제시카",
+      "target": "Jessic",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1833,
+      "elf_va": "0x1414249",
+      "original": "월화란무",
+      "target": "Moonflwr",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1836,
+      "elf_va": "0x14142a6",
+      "original": "조나단",
+      "target": "Jonath",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1838,
+      "elf_va": "0x14142e4",
+      "original": "티모시",
+      "target": "Timoth",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1841,
+      "elf_va": "0x1414341",
+      "original": "그린아이",
+      "target": "Grn Eye",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1842,
+      "elf_va": "0x1414360",
+      "original": "보물상자",
+      "target": "Chest",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1843,
+      "elf_va": "0x141437f",
+      "original": "오딘의 축복",
+      "target": "Odins Grace",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1844,
+      "elf_va": "0x141439e",
+      "original": "사령관",
+      "target": "Cmdr",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1847,
+      "elf_va": "0x14143fb",
+      "original": "아랑",
+      "target": "Arng",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1849,
+      "elf_va": "0x1414439",
+      "original": "스코",
+      "target": "Scot",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1850,
+      "elf_va": "0x1414458",
+      "original": "필드",
+      "target": "Area",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1851,
+      "elf_va": "0x1414477",
+      "original": "감옥경비병",
+      "target": "Prison Grd",
+      "capacity": 10,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1857,
+      "elf_va": "0x1414531",
+      "original": "이마드 경호원",
+      "target": "Imad Guard",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1858,
+      "elf_va": "0x1414550",
+      "original": "서류 심사원",
+      "target": "File Clerk",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1859,
+      "elf_va": "0x141456f",
+      "original": "봉인의 수호자",
+      "target": "Seal Guardian",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1862,
+      "elf_va": "0x14145cc",
+      "original": "상수도 관리인",
+      "target": "Water Keeper",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1864,
+      "elf_va": "0x141460a",
+      "original": "도서관 서기",
+      "target": "Librarian",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1865,
+      "elf_va": "0x1414629",
+      "original": "하수도 관리인",
+      "target": "Sewer Keeper",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1866,
+      "elf_va": "0x1414648",
+      "original": "저승사자",
+      "target": "Reaper",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1871,
+      "elf_va": "0x14146e3",
+      "original": "신녀",
+      "target": "Pri.",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1876,
+      "elf_va": "0x141477e",
+      "original": "수습 조합사",
+      "target": "Jr Fusioner",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1883,
+      "elf_va": "0x1414857",
+      "original": "다크로드",
+      "target": "DarkLord",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1884,
+      "elf_va": "0x1414876",
+      "original": "발키리",
+      "target": "Valk.",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1885,
+      "elf_va": "0x1414895",
+      "original": "가고일",
+      "target": "Gargoy",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1887,
+      "elf_va": "0x14148d3",
+      "original": "가고일 킹",
+      "target": "Garg King",
+      "capacity": 9,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1888,
+      "elf_va": "0x14148f2",
+      "original": "게",
+      "target": "Cr",
+      "capacity": 2,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1890,
+      "elf_va": "0x1414930",
+      "original": "킹크랩",
+      "target": "KCrab",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1891,
+      "elf_va": "0x141494f",
+      "original": "고렘",
+      "target": "Golm",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1893,
+      "elf_va": "0x141498d",
+      "original": "블러드고렘",
+      "target": "BloodGolem",
+      "capacity": 10,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1895,
+      "elf_va": "0x14149cb",
+      "original": "팬저 고블린",
+      "target": "Panzer Gob",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1896,
+      "elf_va": "0x14149ea",
+      "original": "고블린 리더",
+      "target": "Gob Leader",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1897,
+      "elf_va": "0x1414a09",
+      "original": "강시",
+      "target": "Jsh",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1898,
+      "elf_va": "0x1414a28",
+      "original": "무낙",
+      "target": "Munk",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1899,
+      "elf_va": "0x1414a47",
+      "original": "본건",
+      "target": "Bong",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1900,
+      "elf_va": "0x1414a66",
+      "original": "미니데몬",
+      "target": "MiniDmon",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1901,
+      "elf_va": "0x1414a85",
+      "original": "데몬",
+      "target": "Dmon",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1906,
+      "elf_va": "0x1414b20",
+      "original": "미니 스케골트",
+      "target": "Mini Skegg",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1907,
+      "elf_va": "0x1414b3f",
+      "original": "스케골트 주니어",
+      "target": "Skegg Junior",
+      "capacity": 15,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1908,
+      "elf_va": "0x1414b5e",
+      "original": "스케골트",
+      "target": "Skeggold",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1914,
+      "elf_va": "0x1414c18",
+      "original": "챔피언 시로마",
+      "target": "Champ Siroma",
+      "capacity": 13,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1921,
+      "elf_va": "0x1414cf1",
+      "original": "위스퍼",
+      "target": "Wisp",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1923,
+      "elf_va": "0x1414d2f",
+      "original": "거대 위스퍼",
+      "target": "Great Wisp",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1924,
+      "elf_va": "0x1414d4e",
+      "original": "잭",
+      "target": "Jk",
+      "capacity": 2,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1925,
+      "elf_va": "0x1414d6d",
+      "original": "젠틀 잭",
+      "target": "Gent Jk",
+      "capacity": 7,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1927,
+      "elf_va": "0x1414dab",
+      "original": "좀비",
+      "target": "Zomb",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1929,
+      "elf_va": "0x1414de9",
+      "original": "좀비 마스터",
+      "target": "Zombie Mast",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1930,
+      "elf_va": "0x1414e08",
+      "original": "퍼밀리어",
+      "target": "Familia",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1931,
+      "elf_va": "0x1414e27",
+      "original": "흡혈박쥐",
+      "target": "Vamp Bat",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1932,
+      "elf_va": "0x1414e46",
+      "original": "황금박쥐",
+      "target": "Gold Bat",
+      "capacity": 8,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1933,
+      "elf_va": "0x1414e65",
+      "original": "포링",
+      "target": "Porg",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1934,
+      "elf_va": "0x1414e84",
+      "original": "포포링",
+      "target": "Popori",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1935,
+      "elf_va": "0x1414ea3",
+      "original": "마린",
+      "target": "Mar.",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1937,
+      "elf_va": "0x1414ee1",
+      "original": "랍스터",
+      "target": "Lobstr",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1939,
+      "elf_va": "0x1414f1f",
+      "original": "멀록",
+      "target": "Murl",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1941,
+      "elf_va": "0x1414f5d",
+      "original": "발록",
+      "target": "Balr",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1942,
+      "elf_va": "0x1414f7c",
+      "original": "이모텝",
+      "target": "Imhotp",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1943,
+      "elf_va": "0x1414f9b",
+      "original": "로로틴",
+      "target": "Lolotn",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1944,
+      "elf_va": "0x1414fba",
+      "original": "머슈룸",
+      "target": "Mushrm",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1949,
+      "elf_va": "0x1415055",
+      "original": "펌프킨",
+      "target": "Pumpkn",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1958,
+      "elf_va": "0x141516c",
+      "original": "헬키퍼",
+      "target": "Hellkp",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1960,
+      "elf_va": "0x14151aa",
+      "original": "슈미츠",
+      "target": "Schmtz",
+      "capacity": 6,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1965,
+      "elf_va": "0x1415245",
+      "original": "폭주 위스퍼",
+      "target": "Super Wisp",
+      "capacity": 11,
+      "mode": "NPC name / short version of iOS name"
+    },
+    {
+      "entry": 1971,
+      "elf_va": "0x14152ff",
+      "original": "박스",
+      "target": "Box",
+      "capacity": 4,
+      "mode": "NPC name / short version of iOS name"
+    }
+  ]
+}

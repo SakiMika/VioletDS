@@ -1,5 +1,7 @@
 #include "zen_boot_profile.h"
 #include "wipi_shim.h"
+#include "rv_smaf_hps.h"
+
 #include "embedded_assets.h"
 #include "zen_sav_backend.h"
 #include "ragnarok_layout_policy.h"
@@ -326,10 +328,9 @@ static char g_audio_last_asset[32]{};
 static int g_media_profile_volume=100;
 static int g_media_device_enabled=1;
 static uint32_t g_audio_start_count=0;
-// v025 Zenonia-specific BGM recovery. The original game sometimes opens a
-// 1xx.mmf BGM resource but never reaches the Play call on this partial WIPI
-// implementation. Track the last genuine BGM asset and start it as a loop only
-// if the game does not do so itself shortly afterwards.
+// Ragnarok BGM recovery. The game may request an MMF resource without
+// completing Player.play on this partial WIPI shim; fall back only for the
+// nine verified multitrack themes after giving the native path priority.
 static char g_audio_last_bgm_asset[32]{};
 static bool g_audio_bgm_pending=false;
 static uint64_t g_audio_bgm_seen_ms=0;
@@ -337,9 +338,8 @@ static bool g_audio_game_bgm_started=false;
 static DummyMediaClip *g_audio_fallback_bgm=nullptr;
 static DummyMediaClip *g_audio_active_bgm=nullptr;
 static uint32_t g_audio_fallback_bgm_count=0;
-// v028: exact sound-request SFX recovery. Zenonia 2 formats sound/%03d.mmf at the point
-// an effect is requested. If the native media manager does not reach Player.play
-// shortly afterwards, play that same MMF once on a free DS channel.
+// Sound-request fallback. Ragnarok formats res/sound/%d.mmf, and its short
+// sound effects live in the same folder as the nine multitrack themes.
 static char g_audio_last_sfx_asset[32]{};
 static bool g_audio_sfx_pending=false;
 static uint64_t g_audio_sfx_seen_ms=0;
@@ -351,29 +351,31 @@ static uint64_t g_audio_last_sfx_fire_ms=0;
 static uint64_t monotonic_ms(void);
 static uint64_t real_monotonic_ms(void);
 
+// Ragnarok Violet bundles original music and SFX as res/sound/<id>.mmf.
+// Do not use Zenonia 2's 3-digit 100..199 music naming convention.
 static int audio_asset_numeric_id(const char *name) {
-    if(!name) return -1;
-    const char *base=strrchr(name,'/');
-    if(!base) base=strrchr(name,'\\');
-    base=base?base+1:name;
-    if(base[0]<'0' || base[0]>'9') return -1;
-    int id=0, digits=0;
-    while(base[digits]>='0' && base[digits]<='9' && digits<4) {
-        id=id*10+(base[digits]-'0');
-        digits++;
+    if(!name || strncmp(name,"res/sound/",10)!=0) return -1;
+    const char *p=name+10;
+    if(*p<'0' || *p>'9') return -1;
+    int id=0;
+    for(int digits=0;*p>='0' && *p<='9';p++,digits++) {
+        if(digits>=3) return -1;
+        id=id*10+(*p-'0');
     }
-    if(digits!=3) return -1;
+    if(strcmp(p,".mmf")!=0 && strcmp(p,".MMF")!=0) return -1;
     return id;
 }
 
 static bool audio_asset_is_bgm(const char *name) {
     const int id=audio_asset_numeric_id(name);
-    return id>=100 && id<=199;
+    // 0..8 are the long, multitrack themes (8..14 seconds each). Later
+    // scores such as 18/20/23..25 are short stingers and remain SFX.
+    return id>=0 && id<=8;
 }
 
 static bool audio_asset_is_sfx(const char *name) {
     const int id=audio_asset_numeric_id(name);
-    return id>=0 && id<100;
+    return id>=9 && id<=25;
 }
 
 static void audio_note_asset(const char *name) {
@@ -385,7 +387,8 @@ static void audio_note_asset(const char *name) {
     g_audio_last_asset[sizeof(g_audio_last_asset)-1]='\0';
     if(audio_asset_is_bgm(name)) {
         // Only arm a transition when the requested BGM actually changes.
-        if(strcmp(g_audio_last_bgm_asset,name)!=0) {
+        if(strcmp(g_audio_last_bgm_asset,name)!=0 ||
+           (!g_audio_active_bgm && !g_audio_bgm_pending)) {
             strncpy(g_audio_last_bgm_asset,name,sizeof(g_audio_last_bgm_asset)-1);
             g_audio_last_bgm_asset[sizeof(g_audio_last_bgm_asset)-1]='\0';
             g_audio_bgm_seen_ms=real_monotonic_ms();
@@ -410,15 +413,16 @@ static void audio_note_asset(const char *name) {
 static void audio_note_sound_request_internal(int id,int arg2,int flag) {
     if(id<0 || id>999) return;
     char path[32];
-    snprintf(path,sizeof(path),"sound/%03d.mmf",id);
+    snprintf(path,sizeof(path),"res/sound/%d.mmf",id);
     static unsigned trace_budget=8;
     if(trace_budget) {
         printf("[SREQ] id=%03d a2=%d f=%d\n",id,arg2,flag);
         trace_budget--;
     }
     const uint64_t now=real_monotonic_ms();
-    if(id>=100 && id<=199) {
-        if(strcmp(g_audio_last_bgm_asset,path)!=0) {
+    if(audio_asset_is_bgm(path)) {
+        if(strcmp(g_audio_last_bgm_asset,path)!=0 ||
+           (!g_audio_active_bgm && !g_audio_bgm_pending)) {
             strncpy(g_audio_last_bgm_asset,path,sizeof(g_audio_last_bgm_asset)-1);
             g_audio_last_bgm_asset[sizeof(g_audio_last_bgm_asset)-1]='\0';
             g_audio_bgm_seen_ms=now;
@@ -427,8 +431,8 @@ static void audio_note_sound_request_internal(int id,int arg2,int flag) {
         }
         return;
     }
-    if(id>=0 && id<100 && g_clet.started && g_audio_clet_started_ms) {
-        // Exact runtime request from Zenonia's sound manager. This is stronger
+    if(audio_asset_is_sfx(path) && g_clet.started && g_audio_clet_started_ms) {
+        // Exact runtime request from the guest sound manager. This is stronger
         // than observing file opens because most effect MMFs are preloaded.
         if(now-g_audio_clet_started_ms >= 2500) {
             const bool same_pending=g_audio_sfx_pending && strcmp(g_audio_last_sfx_asset,path)==0;
@@ -2433,6 +2437,71 @@ static int media_decode_smaf_mtr(DummyMediaClip *c,const uint8_t *mtr,uint32_t m
     return 0;
 }
 
+struct RvHpsRenderContext {
+    int16_t *pcm;
+    uint32_t samples;
+    uint32_t track;
+    uint32_t serial;
+};
+static void media_mix_hps_note(void *ptr,const RvSmafHpsNote *n) {
+    RvHpsRenderContext *ctx=(RvHpsRenderContext*)ptr;
+    if(!ctx || !n) return;
+    // The original four-channel score tracks start at the SAME timestamp.
+    // Keep per-track channels separate rather than concatenating their songs.
+    uint8_t ch=n->rhythm?9:(uint8_t)((ctx->track*4u+n->channel)%16u);
+    smaf_mix_note(ctx->pcm,ctx->samples,n->start_ms,n->gate_ms,ch,n->note,
+                  n->velocity,n->program,n->volume,n->expression,ctx->serial++);
+}
+
+static int media_decode_smaf_hps(DummyMediaClip *c) {
+    const uint8_t *b=c->data;
+    const uint32_t len=c->data_len;
+    uint32_t length_ms=0, note_count=0, track_count=0;
+    // Pass 1: validate every Handy Phone score and allocate one PCM buffer.
+    for(uint32_t p=8;p+8<=len;) {
+        const uint32_t size=read_be32(b+p+4);
+        if(size>len-p-8) return -2;
+        if(memcmp(b+p,"MTR",3)==0 && size>=6 && b[p+8]==0) {
+            uint32_t end=0,notes=0;
+            if(!rv_smaf_hps_parse_track(b+p+8,size,nullptr,nullptr,&end,&notes)) return -2;
+            if(end>length_ms) length_ms=end;
+            note_count+=notes;
+            track_count++;
+        }
+        p+=8+size;
+    }
+    if(!track_count || !note_count || length_ms<40) return -2;
+    const uint64_t samples64=(uint64_t)length_ms*MEDIA_SYNTH_RATE/1000u+2u;
+    if(samples64*sizeof(int16_t)>MEDIA_MAX_PCM_BYTES) return -3;
+    const uint32_t samples=(uint32_t)samples64;
+    int16_t *pcm=(int16_t*)memalign(32,samples*sizeof(int16_t));
+    if(!pcm) return -3;
+    memset(pcm,0,samples*sizeof(int16_t));
+    // Pass 2: render all score tracks into the SAME mix. SMAF instrument
+    // registers are approximated by the existing lightweight DS synth.
+    RvHpsRenderContext ctx{pcm,samples,0,1};
+    for(uint32_t p=8;p+8<=len;) {
+        const uint32_t size=read_be32(b+p+4);
+        if(memcmp(b+p,"MTR",3)==0 && size>=6 && b[p+8]==0) {
+            ctx.track=b[p+3];
+            if(!rv_smaf_hps_parse_track(b+p+8,size,media_mix_hps_note,&ctx,nullptr,nullptr)) {
+                free(pcm);
+                return -2;
+            }
+        }
+        p+=8+size;
+    }
+    media_release_pcm(c);
+    c->pcm=pcm;
+    c->pcm_samples=samples;
+    c->sample_rate=MEDIA_SYNTH_RATE;
+    c->decoded_kind=4;
+    DC_FlushRange(c->pcm,c->pcm_samples*sizeof(int16_t));
+    printf("[SND] RV SMAF HPS %lu tracks %lu notes %lu ms\n",
+           (unsigned long)track_count,(unsigned long)note_count,(unsigned long)length_ms);
+    return 0;
+}
+
 // Decode Yamaha SMAF/MMF. Sampled ATRx + AwaX clips use Yamaha ADPCM;
 // Mobile Standard uncompressed MTR score tracks are rendered by the lightweight
 // v030 software synth above.
@@ -2456,8 +2525,12 @@ static int media_decode_smaf(DummyMediaClip *c) {
         }
         p=payload+size;
     }
-    // Audio-track SMAF remains the preferred path for sampled SFX.  Pure
-    // score-track files (Inotia BGM 1..13, 37..39) fall through to the synth.
+    // Ragnarok's 0..8 themes contain Handy Phone Format 0 MTR tracks.
+    // Even track 6.mmf has an ATR drum sample; playing its ATR alone would
+    // hide all of the real melody, so the score takes precedence here.
+    if(mtr && mtr_size>=6 && mtr[0]==0)
+        return media_decode_smaf_hps(c);
+    // For actual sampled effect files, keep the legacy ADPCM decoder.
     if(!atr || atr_size<6) {
         if(mtr && mtr_size) return media_decode_smaf_mtr(c,mtr,mtr_size);
         return -1;
@@ -2751,22 +2824,20 @@ extern "C" int media_clip_play(uint32_t p,int repeat) {
     DummyMediaClip *c=media_clip(p); if(!c) return -9;
     const bool is_bgm=audio_asset_is_bgm(c->source_name);
 
-    // Native Player.play always wins. Remove runner-owned copies of the exact
-    // same MMF before starting this channel; this eliminates the delayed
-    // fallback + native double-play that caused audible echo in v028.
-    if(!c->runner_owned && c->source_name[0]) media_stop_runner_duplicates(c->source_name);
-    if(!c->runner_owned && is_bgm) {
-        g_audio_game_bgm_started=true;
-        g_audio_bgm_pending=false;
-        media_stop_previous_bgm(c);
-        if(g_audio_fallback_bgm && g_audio_fallback_bgm!=c) media_stop_fallback_bgm();
-    }
-
+    // Native Player.play wins over recovery. Delay the handoff until a valid
+    // PCM stream has been decoded, so a failed guest decode does not permanently
+    // suppress the fallback music.
     g_audio_play_count++;
     if(media_decode(c)!=0 || !c->pcm || !c->pcm_samples) {
         g_audio_fail_count++;
         printf("[AUD!] decode fail len=%lu\n",(unsigned long)c->data_len);
         return -1;
+    }
+    if(!c->runner_owned && c->source_name[0]) media_stop_runner_duplicates(c->source_name);
+    if(!c->runner_owned && is_bgm) {
+        g_audio_bgm_pending=false;
+        media_stop_previous_bgm(c);
+        if(g_audio_fallback_bgm && g_audio_fallback_bgm!=c) media_stop_fallback_bgm();
     }
     if(c->sound_id>=0) soundKill(c->sound_id);
 
@@ -2786,7 +2857,8 @@ extern "C" int media_clip_play(uint32_t p,int repeat) {
     soundEnable();
     soundSetMixerVolume((g_media_profile_volume*127)/100);
     DC_FlushRange(c->pcm,c->pcm_samples*sizeof(int16_t));
-    const bool loop=(repeat!=0);
+    // Keep verified full themes looping even when guest Play(0) is used.
+    const bool loop=(repeat!=0 || is_bgm);
     c->repeat=loop?1:0;
     c->end_notified=0;
     c->end_due_ms=loop?0:(real_monotonic_ms()+
@@ -2796,6 +2868,7 @@ extern "C" int media_clip_play(uint32_t p,int repeat) {
     c->playing=(c->sound_id>=0)?(loop?2:1):0;
     g_audio_last_channel=c->sound_id;
     if(c->sound_id>=0) {
+        if(!c->runner_owned && is_bgm) g_audio_game_bgm_started=true;
         soundSetVolume(c->sound_id,127);
         soundSetPan(c->sound_id,64);
         soundSetFreq(c->sound_id,(u16)c->sample_rate);
@@ -2817,6 +2890,7 @@ extern "C" int media_clip_stop(uint32_t p) {
     const bool was_playing=(c->playing!=0 || c->sound_id>=0);
     if(c->sound_id>=0) soundKill(c->sound_id);
     c->sound_id=-1; c->playing=0; c->end_notified=1;
+    if(c==g_audio_active_bgm) g_audio_active_bgm=nullptr;
     if(was_playing) media_notify(c,3,0); // WIPI PlayListener.STOP
     return 0;
 }
@@ -3014,8 +3088,8 @@ static void media_poll_bgm_fallback(void) {
         return;
     }
 
-    // v026: a fallback track is never allowed to become a global soundtrack.
-    // When the game requests a different 1xx.mmf, stop the old fallback and
+    // A fallback track must not become a global soundtrack.
+    // When the game requests a different verified music MMF, stop the old fallback and
     // replace it with the newly requested track after a short debounce.
     if(g_audio_fallback_bgm) {
         if(g_audio_bgm_pending && g_audio_last_bgm_asset[0] &&
@@ -3034,9 +3108,8 @@ static void media_poll_bgm_fallback(void) {
         return;
     }
 
-    // Only recover an actual BGM resource requested by Zenonia 2. The old v025
-    // hard-coded sound/100.mmf five-second fallback is deliberately removed;
-    // that caused one song to loop through the entire game.
+    // Never force a single hard-coded song. Recover only the actual BGM
+    // resource opened by Ragnarok, and replace it on the next music request.
     if(g_audio_bgm_pending && g_audio_last_bgm_asset[0] && now-g_audio_bgm_seen_ms>=300) {
         char path[32];
         strncpy(path,g_audio_last_bgm_asset,sizeof(path)-1);

@@ -1,0 +1,1616 @@
+{
+  "count_new": 199,
+  "count_revised": 2,
+  "changed_bytes": 1944,
+  "left": 38,
+  "records": [
+    {
+      "entry": 33,
+      "elf_va": "0x3bb54",
+      "original": "흰색",
+      "target": "Wht",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 34,
+      "elf_va": "0x3bb5c",
+      "original": "투명",
+      "target": "Clr",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 46,
+      "elf_va": "0x3bc1c",
+      "original": "슈퍼포링",
+      "target": "Sup.Por",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 54,
+      "elf_va": "0x3bc78",
+      "original": "할로윈잭",
+      "target": "HalJakk",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 58,
+      "elf_va": "0x3bca4",
+      "original": "%s처치",
+      "target": "%s KO",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 170,
+      "elf_va": "0x3c4e0",
+      "original": "폰 데이터",
+      "target": "PhoneData",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 196,
+      "elf_va": "0x3c730",
+      "original": "분실물 받기",
+      "target": "Lost&Found",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 259,
+      "elf_va": "0x3dbd8",
+      "original": "클래스 선택",
+      "target": "Pick Class",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 301,
+      "elf_va": "0x3df48",
+      "original": "안시작",
+      "target": "Wait",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 302,
+      "elf_va": "0x3df50",
+      "original": "거절함",
+      "target": "Reject",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 303,
+      "elf_va": "0x3df58",
+      "original": "받았음",
+      "target": "Taken",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 304,
+      "elf_va": "0x3df60",
+      "original": "완료함",
+      "target": "Done",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 337,
+      "elf_va": "0x3e788",
+      "original": "버리기",
+      "target": "Trash",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 378,
+      "elf_va": "0x14000e2",
+      "original": "제련",
+      "target": "Upgd",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 379,
+      "elf_va": "0x14000ed",
+      "original": "특수제련",
+      "target": "Hi Forge",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 380,
+      "elf_va": "0x14000f8",
+      "original": "인챈트",
+      "target": "Enchnt",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 382,
+      "elf_va": "0x1400214",
+      "original": "타오군카",
+      "target": "TaoGunka",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 392,
+      "elf_va": "0x1400282",
+      "original": "팔라딘",
+      "target": "Palad.",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 399,
+      "elf_va": "0x1400562",
+      "original": "치명타 입히며 도망",
+      "target": "Crit & flee",
+      "capacity": 18,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 479,
+      "elf_va": "0x1400dfd",
+      "original": "그린아이, 류지만",
+      "target": "GreenEye/Ryuji",
+      "capacity": 16,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 481,
+      "elf_va": "0x1400e2b",
+      "original": "이중구, 천년홍",
+      "target": "Ijung/Gomph",
+      "capacity": 14,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 482,
+      "elf_va": "0x1400e42",
+      "original": "카류리트, 황준엽",
+      "target": "Karyuri/Hwang",
+      "capacity": 16,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 483,
+      "elf_va": "0x1400e87",
+      "original": "그외 라바 기사단",
+      "target": "Lava Knights",
+      "capacity": 16,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 485,
+      "elf_va": "0x1400eb5",
+      "original": "모두 감사드립니다",
+      "target": "testers & players",
+      "capacity": 17,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 487,
+      "elf_va": "0x1400f11",
+      "original": "을 플레이 해 주셔",
+      "target": "Thank you for",
+      "capacity": 17,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 493,
+      "elf_va": "0x1400fe0",
+      "original": "니다",
+      "target": "!",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 546,
+      "elf_va": "0x14019ef",
+      "original": "이게 누구야",
+      "target": "Look who!",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 548,
+      "elf_va": "0x1401a25",
+      "original": "술통..술통..",
+      "target": "Barrels!",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 550,
+      "elf_va": "0x1401a5b",
+      "original": "집에 보물이 있어",
+      "target": "Home treasure!",
+      "capacity": 16,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 551,
+      "elf_va": "0x1401a76",
+      "original": "인생이란..",
+      "target": "Thats life",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 553,
+      "elf_va": "0x1401aac",
+      "original": "빛나는 조연이지",
+      "target": "Sidekick here",
+      "capacity": 15,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 555,
+      "elf_va": "0x1401ae2",
+      "original": "무슨 뜻인지 알아",
+      "target": "Know what I mean",
+      "capacity": 16,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 561,
+      "elf_va": "0x1401b84",
+      "original": "세상은 다 변해",
+      "target": "Things change",
+      "capacity": 14,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 562,
+      "elf_va": "0x1401b9f",
+      "original": "아직은 괜찮아",
+      "target": "Still okay",
+      "capacity": 13,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 575,
+      "elf_va": "0x1401cdb",
+      "original": "완전소중!!",
+      "target": "Precious!",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 584,
+      "elf_va": "0x1401da1",
+      "original": "넌 인기짱이야",
+      "target": "So popular!",
+      "capacity": 13,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 585,
+      "elf_va": "0x1401db7",
+      "original": "공부 지겨워",
+      "target": "Study bores",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 594,
+      "elf_va": "0x1401e75",
+      "original": "내 방 안 이뻐!",
+      "target": "Dull room...",
+      "capacity": 14,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 595,
+      "elf_va": "0x1401e8a",
+      "original": "텅빈 방이 시려",
+      "target": "Empty room...",
+      "capacity": 14,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 599,
+      "elf_va": "0x1401ecc",
+      "original": "꼬로록..",
+      "target": "Hungry..",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 608,
+      "elf_va": "0x1401f73",
+      "original": "손가락 불난다!",
+      "target": "Fiery fingers",
+      "capacity": 14,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 609,
+      "elf_va": "0x1401f82",
+      "original": "최고야!!",
+      "target": "Best!",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 611,
+      "elf_va": "0x1401fa0",
+      "original": "잘해쪄~",
+      "target": "Great!",
+      "capacity": 7,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 615,
+      "elf_va": "0x1401fec",
+      "original": "잘 잤니?",
+      "target": "Sleep OK",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 616,
+      "elf_va": "0x1402003",
+      "original": "기분 좋은 하루~",
+      "target": "Have a good day",
+      "capacity": 15,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 617,
+      "elf_va": "0x140201a",
+      "original": "점심 뭐 먹었니?",
+      "target": "Lunch today?",
+      "capacity": 15,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 631,
+      "elf_va": "0x1403910",
+      "original": "케빈의 집",
+      "target": "Kev Home",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 632,
+      "elf_va": "0x1403924",
+      "original": "로버트의 집",
+      "target": "Rob Home",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 634,
+      "elf_va": "0x140394c",
+      "original": "페이욘 도구점",
+      "target": "Payon Gen.Shp",
+      "capacity": 13,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 636,
+      "elf_va": "0x1403974",
+      "original": "외딴집",
+      "target": "LoneHs",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 647,
+      "elf_va": "0x1403a50",
+      "original": "펫상점",
+      "target": "PetShp",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 649,
+      "elf_va": "0x1403a78",
+      "original": "모로크 필드",
+      "target": "Morroc Fld",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 651,
+      "elf_va": "0x1403aa0",
+      "original": "황폐한 사막",
+      "target": "Ruined Des",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 652,
+      "elf_va": "0x1403ab4",
+      "original": "황량한 사막",
+      "target": "Barren Des",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 658,
+      "elf_va": "0x1403b2c",
+      "original": "외딴집 근방",
+      "target": "Near LoneHs",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 660,
+      "elf_va": "0x1403b54",
+      "original": "묘르닐 성소",
+      "target": "Mjolnir Shr",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 662,
+      "elf_va": "0x1403b7c",
+      "original": "죽음의 평원",
+      "target": "Dead Plains",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 669,
+      "elf_va": "0x1403c08",
+      "original": "부름의 땅",
+      "target": "Summon Z.",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 681,
+      "elf_va": "0x1403cf8",
+      "original": "외딴집",
+      "target": "LoneHs",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 727,
+      "elf_va": "0x1404090",
+      "original": "탄광 1구역",
+      "target": "CoalMine1",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 728,
+      "elf_va": "0x14040a4",
+      "original": "탄광 2구역",
+      "target": "CoalMine2",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 729,
+      "elf_va": "0x14040b8",
+      "original": "탄광 3구역",
+      "target": "CoalMine3",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 730,
+      "elf_va": "0x14040cc",
+      "original": "탄광 4구역",
+      "target": "CoalMine4",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 731,
+      "elf_va": "0x14040e0",
+      "original": "탄광 5구역",
+      "target": "CoalMine5",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 732,
+      "elf_va": "0x14040f4",
+      "original": "탄광 6구역",
+      "target": "CoalMine6",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 733,
+      "elf_va": "0x1404108",
+      "original": "탄광 7구역",
+      "target": "CoalMine7",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 747,
+      "elf_va": "0x1404220",
+      "original": "봉인지 1구역",
+      "target": "Seal Area1",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 748,
+      "elf_va": "0x1404234",
+      "original": "봉인지 2구역",
+      "target": "Seal Area2",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 749,
+      "elf_va": "0x1404248",
+      "original": "봉인지 3구역",
+      "target": "Seal Area3",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 750,
+      "elf_va": "0x140425c",
+      "original": "봉인지 4구역",
+      "target": "Seal Area4",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 751,
+      "elf_va": "0x1404270",
+      "original": "봉인지 5구역",
+      "target": "Seal Area5",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 752,
+      "elf_va": "0x1404284",
+      "original": "봉인지 6구역",
+      "target": "Seal Area6",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 753,
+      "elf_va": "0x1404298",
+      "original": "봉인지 7구역",
+      "target": "Seal Area7",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 815,
+      "elf_va": "0x1405946",
+      "original": "양손무기",
+      "target": "2H Wpn",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 816,
+      "elf_va": "0x1405957",
+      "original": "한손무기",
+      "target": "1H Wpn",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 817,
+      "elf_va": "0x1405968",
+      "original": "펫 얻는 법",
+      "target": "Get a Pet",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 837,
+      "elf_va": "0x1406368",
+      "original": "SP소비",
+      "target": "SP Use",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 843,
+      "elf_va": "0x14065f4",
+      "original": "타오군카 처치",
+      "target": "Beat TaoGunka",
+      "capacity": 13,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 845,
+      "elf_va": "0x1406618",
+      "original": "촌장의 부탁",
+      "target": "Chief Req.",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 853,
+      "elf_va": "0x14066a8",
+      "original": "모로크 영주알현",
+      "target": "Meet Morroc Ld",
+      "capacity": 15,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 857,
+      "elf_va": "0x14066f0",
+      "original": "밝혀진 음모",
+      "target": "Plot Found",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 865,
+      "elf_va": "0x1406780",
+      "original": "발키리 처치",
+      "target": "Beat Valk.",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 867,
+      "elf_va": "0x14067a4",
+      "original": "다크로드 처치",
+      "target": "Beat DarkLd",
+      "capacity": 13,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 876,
+      "elf_va": "0x1406846",
+      "original": "철괴 수집",
+      "target": "Iron Bars",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 877,
+      "elf_va": "0x1406858",
+      "original": "위스퍼 처치",
+      "target": "Kill Wisp",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 879,
+      "elf_va": "0x140687c",
+      "original": "포포링 처치",
+      "target": "Kill Popori",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 882,
+      "elf_va": "0x14068b2",
+      "original": "농기구 탐색",
+      "target": "Find Tools",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 883,
+      "elf_va": "0x14068c4",
+      "original": "슈퍼 포링",
+      "target": "SuperPor",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 886,
+      "elf_va": "0x14068fa",
+      "original": "오크워리어 처치",
+      "target": "Beat OrcWarr.",
+      "capacity": 15,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 891,
+      "elf_va": "0x1406954",
+      "original": "낡은 방패",
+      "target": "Old Shld",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 892,
+      "elf_va": "0x1406966",
+      "original": "폭주 위스퍼",
+      "target": "Super Wisp",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 894,
+      "elf_va": "0x140698a",
+      "original": "본건 처치",
+      "target": "Kill Bong",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 897,
+      "elf_va": "0x14069c0",
+      "original": "할로윈 잭",
+      "target": "Hall Jakk",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 901,
+      "elf_va": "0x1406a08",
+      "original": "잠입",
+      "target": "Spy",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 904,
+      "elf_va": "0x1406a3e",
+      "original": "화염의 성소",
+      "target": "Flame Shrn",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 908,
+      "elf_va": "0x1406a86",
+      "original": "매수",
+      "target": "Pay",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 910,
+      "elf_va": "0x1406aaa",
+      "original": "만능열쇠",
+      "target": "Mstr Key",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 911,
+      "elf_va": "0x1406abc",
+      "original": "이상한 봉인",
+      "target": "Odd Seal",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 916,
+      "elf_va": "0x1406b16",
+      "original": "노란 허브",
+      "target": "Yell Herb",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 928,
+      "elf_va": "0x1406bee",
+      "original": "수련의 성지",
+      "target": "Train Shrn",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 929,
+      "elf_va": "0x1406c00",
+      "original": "빛의 성지",
+      "target": "LightShr",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 930,
+      "elf_va": "0x1406c87",
+      "original": "대거 쉴드 ",
+      "target": "Dag Shield",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 932,
+      "elf_va": "0x1406cab",
+      "original": "립 어택",
+      "target": "LeapAtk",
+      "capacity": 7,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 939,
+      "elf_va": "0x1406d29",
+      "original": "오토가드",
+      "target": "Auto Grd",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 947,
+      "elf_va": "0x1406db9",
+      "original": "프레셔 ",
+      "target": "Press.",
+      "capacity": 7,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 948,
+      "elf_va": "0x1406dcb",
+      "original": "흡혈",
+      "target": "Vamp",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 949,
+      "elf_va": "0x1406ddd",
+      "original": "허리케인",
+      "target": "Hurrican",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 964,
+      "elf_va": "0x1406eeb",
+      "original": "단검 수련",
+      "target": "Dag Mast",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 968,
+      "elf_va": "0x1406f33",
+      "original": "재생",
+      "target": "Heal",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 970,
+      "elf_va": "0x1406f57",
+      "original": "믿음",
+      "target": "Fth",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 984,
+      "elf_va": "0x1407053",
+      "original": "HP흡혈",
+      "target": "HP Drn",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 985,
+      "elf_va": "0x1407065",
+      "original": "SP흡혈",
+      "target": "SP Drn",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 992,
+      "elf_va": "0x140ed92",
+      "original": "식칼",
+      "target": "Chop",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1024,
+      "elf_va": "0x140efb2",
+      "original": "월광검",
+      "target": "MoonDg",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1060,
+      "elf_va": "0x140f216",
+      "original": "정의의 망치",
+      "target": "Just. Hamm",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1082,
+      "elf_va": "0x140f38c",
+      "original": "배틀액스",
+      "target": "Batt Ax",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1104,
+      "elf_va": "0x140f502",
+      "original": "나이트의 검",
+      "target": "Knight Swd",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1115,
+      "elf_va": "0x140f5bd",
+      "original": "화산의 창",
+      "target": "Volc Spea",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1118,
+      "elf_va": "0x140f5f0",
+      "original": "여행의 가드",
+      "target": "Trav Guard",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1119,
+      "elf_va": "0x140f601",
+      "original": "초보자용쉴드",
+      "target": "Novice Shld",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1120,
+      "elf_va": "0x140f612",
+      "original": "소가죽 방패",
+      "target": "CowhideShd",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1123,
+      "elf_va": "0x140f645",
+      "original": "철의 버클러",
+      "target": "IronBuckler",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1128,
+      "elf_va": "0x140f69a",
+      "original": "스톤 버클러",
+      "target": "StoneBucklr",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1132,
+      "elf_va": "0x140f6de",
+      "original": "축복의 방패",
+      "target": "Bless Shld",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1133,
+      "elf_va": "0x140f6ef",
+      "original": "사신의 방패",
+      "target": "Death Shld",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1137,
+      "elf_va": "0x140f733",
+      "original": "신의 사자",
+      "target": "SacredMis",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1144,
+      "elf_va": "0x140f7aa",
+      "original": "실크로브",
+      "target": "SilkRobe",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1159,
+      "elf_va": "0x140f8a9",
+      "original": "닌자슈츠",
+      "target": "Ninja St",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1160,
+      "elf_va": "0x140f8ba",
+      "original": "로드 클로스",
+      "target": "Lord Cloth",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1163,
+      "elf_va": "0x140f8ed",
+      "original": "우든메일",
+      "target": "WoodMail",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1164,
+      "elf_va": "0x140f8fe",
+      "original": "씨프클로스",
+      "target": "ThiefClth",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1169,
+      "elf_va": "0x140f953",
+      "original": "모험가 옷",
+      "target": "Adventr",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1170,
+      "elf_va": "0x140f964",
+      "original": "나이트 갑옷",
+      "target": "Knight Arm",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1176,
+      "elf_va": "0x140f9ca",
+      "original": "발키리의 갑옷",
+      "target": "ValkyrieArm",
+      "capacity": 13,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1185,
+      "elf_va": "0x140fa63",
+      "original": "울 스카프",
+      "target": "WoolScarf",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1192,
+      "elf_va": "0x140fada",
+      "original": "보호 망토",
+      "target": "GuardMant",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1196,
+      "elf_va": "0x140fb1e",
+      "original": "복수의 외투",
+      "target": "Revenge C",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1197,
+      "elf_va": "0x140fb2f",
+      "original": "라이더휘장",
+      "target": "RiderCrst",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1215,
+      "elf_va": "0x140fc61",
+      "original": "포링모자",
+      "target": "Por. Hat",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1220,
+      "elf_va": "0x140fcb6",
+      "original": "전사의 투구",
+      "target": "Warrior Hlm",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1221,
+      "elf_va": "0x140fcc7",
+      "original": "구세군 모자",
+      "target": "SalvationHt",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1225,
+      "elf_va": "0x140fd0b",
+      "original": "엔젤링 모자",
+      "target": "AngelingHat",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1235,
+      "elf_va": "0x140fdb5",
+      "original": "방랑자 모자",
+      "target": "WandererHt",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1237,
+      "elf_va": "0x140fdd7",
+      "original": "투탕카맨 모자",
+      "target": "Tutankham Hat",
+      "capacity": 13,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1242,
+      "elf_va": "0x140fe2c",
+      "original": "백호모자",
+      "target": "WhiteTgr",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1251,
+      "elf_va": "0x140fec5",
+      "original": "성기사 투구",
+      "target": "HolyKnt Hat",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1252,
+      "elf_va": "0x140fed6",
+      "original": "나그네 모자",
+      "target": "TravelerHat",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1281,
+      "elf_va": "0x14100c3",
+      "original": "모험가 신발",
+      "target": "AdvntrShoe",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1296,
+      "elf_va": "0x14101c2",
+      "original": "신관의 장갑",
+      "target": "PriestGlov",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1309,
+      "elf_va": "0x141029f",
+      "original": "나일로즈",
+      "target": "NileRose",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1344,
+      "elf_va": "0x14104f2",
+      "original": "무지개떡",
+      "target": "Rainbow",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1347,
+      "elf_va": "0x1410525",
+      "original": "파란허브",
+      "target": "BlueHerb",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1348,
+      "elf_va": "0x1410536",
+      "original": "노란허브",
+      "target": "Yel Herb",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1349,
+      "elf_va": "0x1410547",
+      "original": "하얀허브",
+      "target": "Wht Herb",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1371,
+      "elf_va": "0x14106bd",
+      "original": "나비의날개",
+      "target": "Bfly Wing",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1388,
+      "elf_va": "0x14107de",
+      "original": "포링 카드",
+      "target": "PoringCrd",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1393,
+      "elf_va": "0x1410833",
+      "original": "폭주 강시 카드",
+      "target": "Sup.Munak Card",
+      "capacity": 14,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1398,
+      "elf_va": "0x1410888",
+      "original": "풍산개 카드",
+      "target": "Pungsan Crd",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1420,
+      "elf_va": "0x14109fe",
+      "original": "낡은 방패",
+      "target": "Old Shld",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1423,
+      "elf_va": "0x1410a31",
+      "original": "불의 증표",
+      "target": "Fire Tokn",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1425,
+      "elf_va": "0x1410a53",
+      "original": "차원조각",
+      "target": "DimShard",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1426,
+      "elf_va": "0x1410a64",
+      "original": "유물조각",
+      "target": "RelicBit",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1427,
+      "elf_va": "0x1410a75",
+      "original": "만능 열쇠",
+      "target": "Mastr Key",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1438,
+      "elf_va": "0x1410b30",
+      "original": "죽음의 서",
+      "target": "DeathBook",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1513,
+      "elf_va": "0x141102b",
+      "original": "신비의 샘물",
+      "target": "Mystic Wtr",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1522,
+      "elf_va": "0x14110c4",
+      "original": "노을 벽지",
+      "target": "Dusk Art",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1525,
+      "elf_va": "0x14110f7",
+      "original": "밀짚 펫모자",
+      "target": "Straw PtHat",
+      "capacity": 11,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1550,
+      "elf_va": "0x141241e",
+      "original": "카프라서비스",
+      "target": "Kafra Serv.",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1566,
+      "elf_va": "0x141253e",
+      "original": "카프라서비스",
+      "target": "Kafra Serv.",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1576,
+      "elf_va": "0x14125f2",
+      "original": "카프라서비스",
+      "target": "Kafra Serv.",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1582,
+      "elf_va": "0x141265e",
+      "original": "카프라서비스",
+      "target": "Kafra Serv.",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1592,
+      "elf_va": "0x1412712",
+      "original": "카프라서비스",
+      "target": "Kafra Serv.",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1640,
+      "elf_va": "0x1412a72",
+      "original": "병든 노인",
+      "target": "Sick Old",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1652,
+      "elf_va": "0x1412b4a",
+      "original": "도적길드원",
+      "target": "Thief Mem",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1653,
+      "elf_va": "0x1412b5c",
+      "original": "문지기",
+      "target": "Guard",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1658,
+      "elf_va": "0x1412bb6",
+      "original": "타오군카",
+      "target": "TaoGunka",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1665,
+      "elf_va": "0x1412c34",
+      "original": "에이션트 가고일",
+      "target": "Anc. Gargoyle",
+      "capacity": 15,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1681,
+      "elf_va": "0x1412d54",
+      "original": "데몬데몬",
+      "target": "DemonDuo",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1707,
+      "elf_va": "0x1412f28",
+      "original": "구울",
+      "target": "Ghul",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1736,
+      "elf_va": "0x1413132",
+      "original": "폭주 강시",
+      "target": "Sup.Munak",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1741,
+      "elf_va": "0x141318c",
+      "original": "풍산개",
+      "target": "Pungsn",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1745,
+      "elf_va": "0x14131d4",
+      "original": "할로윈 잭",
+      "target": "Hall Jakk",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1748,
+      "elf_va": "0x141320a",
+      "original": "슈퍼포링",
+      "target": "Sup. Por",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1771,
+      "elf_va": "0x1413ac7",
+      "original": "카프라서비스",
+      "target": "Kafra Serv.",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1787,
+      "elf_va": "0x1413cb7",
+      "original": "카프라서비스",
+      "target": "Kafra Serv.",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1797,
+      "elf_va": "0x1413ded",
+      "original": "카프라서비스",
+      "target": "Kafra Serv.",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1803,
+      "elf_va": "0x1413ea7",
+      "original": "카프라서비스",
+      "target": "Kafra Serv.",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1813,
+      "elf_va": "0x1413fdd",
+      "original": "카프라서비스",
+      "target": "Kafra Serv.",
+      "capacity": 12,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1861,
+      "elf_va": "0x14145ad",
+      "original": "병든 노인",
+      "target": "Sick Old",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1873,
+      "elf_va": "0x1414721",
+      "original": "도적길드원",
+      "target": "Thief Mem",
+      "capacity": 10,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1874,
+      "elf_va": "0x1414740",
+      "original": "문지기",
+      "target": "Guard",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1879,
+      "elf_va": "0x14147db",
+      "original": "타오군카",
+      "target": "TaoGunka",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1886,
+      "elf_va": "0x14148b4",
+      "original": "에이션트 가고일",
+      "target": "Anc. Gargoyle",
+      "capacity": 15,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1902,
+      "elf_va": "0x1414aa4",
+      "original": "데몬데몬",
+      "target": "DemonDuo",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1928,
+      "elf_va": "0x1414dca",
+      "original": "구울",
+      "target": "Ghul",
+      "capacity": 4,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1957,
+      "elf_va": "0x141514d",
+      "original": "폭주 강시",
+      "target": "Sup.Munak",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1962,
+      "elf_va": "0x14151e8",
+      "original": "풍산개",
+      "target": "Pungsn",
+      "capacity": 6,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1966,
+      "elf_va": "0x1415264",
+      "original": "할로윈 잭",
+      "target": "Hall Jakk",
+      "capacity": 9,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 1969,
+      "elf_va": "0x14152c1",
+      "original": "슈퍼포링",
+      "target": "Sup. Por",
+      "capacity": 8,
+      "mode": "shortened to fit"
+    },
+    {
+      "entry": 488,
+      "elf_va": "0x1400f28",
+      "original": "our game!",
+      "target": "playing!",
+      "capacity": 14,
+      "mode": "English credit line correction"
+    },
+    {
+      "entry": 492,
+      "elf_va": "0x1400fc9",
+      "original": "you to discover.",
+      "target": "more to discover",
+      "capacity": 17,
+      "mode": "English credit line correction"
+    }
+  ]
+}

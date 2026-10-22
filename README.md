@@ -123,3 +123,33 @@ Ragnarok Violet.nds
 ```
 
 It runs the static acceptance test before compiling and verifies the 32 MiB size, compatibility game code `CDLG`, and ARM9 ROM offset `0x8000`.
+
+## Music / sound (Ragnarok Violet audio patch)
+
+The original MMFs live in `nitrofs/res/sound/0.mmf` ... `25.mmf`, not
+`nitrofs/sound/100.mmf`. Music 0..8 contains multiple Yamaha SMAF Handy Phone
+Standard (`MTR`, format byte `00`) score tracks played concurrently. The
+old partial WIPI emulator recognized only Mobile Standard (`02`) scores,
+so every multitrack BGM decode failed. Score 6 also includes an audio track;
+its score must be preferred over the sampled track for the main melody.
+
+`source/rv_smaf_hps.cpp` now parses format-0 time, note, gate and main
+control messages, and `source/wipi_shim.cpp` mixes all score tracks using its
+existing lightweight DS synthesizer. It deliberately approximates Yamaha
+MA-series FM voices, rather than bit-exactly reproducing the original chipset.
+Short effects are left as one-shots; themes 0..8 loop. The BGM fallback uses
+the real `res/sound/<id>.mmf` path and yields to successful guest playback.
+
+To verify the parser without DS hardware, from the project root run:
+
+```sh
+g++ -std=c++17 -O2 -Wall -Wextra -Werror \
+  source/rv_smaf_hps.cpp tests/rv_smaf_hps_native_test.cpp -o check_hps
+./check_hps nitrofs
+```
+
+These host tests validate note/timing parsing against every supplied MMF,
+but **do not** establish that audio plays on DS hardware. For that, build
+with devkitARM and inspect the on-device log for `[SND] RV SMAF HPS` and
+`[AUD] PLAY` or `[BGM] fallback` when a song is requested. Verify title,
+in-game map changes, looping, audio settings, and returning to the menu.

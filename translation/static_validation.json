@@ -1,16 +1,16 @@
 {
   "changed_files": 484,
-  "changed_records": 3456,
+  "changed_records": 4516,
   "per_kind": {
-    "unchanged_native": 1143,
-    "native": 829,
+    "unchanged_native": 83,
+    "native": 1889,
     "length8": 428,
     "same_length8": 1,
     "dialogue": 2199,
     "unchanged_dialogue": 370,
     "same_dialogue": 14
   },
-  "remaining_korean_elf_entries": 1088,
+  "remaining_korean_elf_entries": 28,
   "ios_dialogues_copied": 2145,
   "manual_dialogues": 68,
   "dialogue_control_entries_preserved": 370,
@@ -23,7 +23,7 @@
     185
   ],
   "native_binary_original_sha256": "4aff4641efeff7578afc6d02c44b5c45279648200bb5af6e9db1996778ec609a",
-  "native_binary_patched_sha256": "a303dbf0560819cbc1714407ab9813ff33cd61e9c5f3492baa6fe255878e9b7c",
+  "native_binary_patched_sha256": "76887add62f3bf54d61b35fd8c9e1b3f2b39fad3980d770a5ca0fd321f24396f",
   "round2": {
     "patched": 146,
     "changed_bytes": 2392,
@@ -32,5 +32,20 @@
     "sha256": "a303dbf0560819cbc1714407ab9813ff33cd61e9c5f3492baa6fe255878e9b7c",
     "static_test": "PASS",
     "emulator": "NOT_TESTED"
+  },
+  "round3": {
+    "patched_native": 1060,
+    "revised_tooltips": 2,
+    "changed_elf_bytes": 10947,
+    "remaining_native_korean": 28,
+    "old_sha256": "a303dbf0560819cbc1714407ab9813ff33cd61e9c5f3492baa6fe255878e9b7c",
+    "new_sha256": "76887add62f3bf54d61b35fd8c9e1b3f2b39fad3980d770a5ca0fd321f24396f",
+    "no_repoint": true,
+    "runtime_emulator_test": "NOT_RUN",
+    "round3b_native": 199,
+    "round3b_credits_revised": 2,
+    "round3c_native": 10,
+    "tooltips_revised_again": 2,
+    "qa_short_label_corrections": 15
   }
 }
