@@ -188,31 +188,58 @@ static void patch_ragnarok_title_layout(LgtLoadedImage *img) {
     printf("[RV] background shift=-32 title=32 prompt=164 menu=32..147\n");
 }
 
-// Save-slot page only: title, row frames, selection fill and slot contents.
-static void patch_ragnarok_slot_layout(LgtLoadedImage *img) {
-    struct Patch { uint32_t address; uint16_t before, after; };
-    static const Patch patches[]={
-        {0x167E0u,0x3A50u,0x3A90u}, // title y=80 -> y=16
-        {0x167FEu,0x3938u,0x3978u}, // three row frames: y=40,83,126
-        {0x1682Au,0x3936u,0x3976u}, // selection fill follows each row
-        {0x16860u,0x3834u,0x3874u}, // occupied-slot details follow each row
-        {0x1687Au,0x3A2Au,0x3A6Au}, // empty-slot label follows each row
+// Title sub-pages (save slots, settings, help, game inquiry, exit prompt and the
+// network prompts) were authored for a 320px handset: every ribbon, frame, text
+// row and button is "centerY(160) +/- n". Only the TOP LCD (192 rows) is visible,
+// so their lower halves were clipped. Re-point the centerY literal pools used by
+// exactly those pages to a private 96 (=192/2): the whole page lifts by 64px and
+// stays centered, no individual offset is edited, and the backdrop (drawn by its
+// own call through rv_draw_centered_background) does not move.
+//   0x16B28 slot select (state 2), settings (3), help (4)
+//   0x16F58 / 0x17218 / 0x17650 / 0x17A58 network prompts and sub-pages (5)
+//   0x17A58 game inquiry (6)        0x17C00 exit prompt (7) and its notice (0x1f)
+// This replaces the older per-immediate -64 patch of the slot page (those five
+// Thumb immediates are left original; the alias yields identical positions and
+// also lifts the slot page's overwrite/delete prompts, which were never moved).
+static const uint32_t rv_menu_center_y=96;
+static void patch_ragnarok_menu_pages(LgtLoadedImage *img) {
+    static const uint32_t pools[]={0x16B28u,0x16F58u,0x17218u,0x17650u,0x17A58u,0x17C00u};
+    struct Imm { uint32_t address; uint16_t original; };
+    static const Imm slot_originals[]={
+        {0x167E0u,0x3A50u}, // title ribbon  centerY-80
+        {0x167FEu,0x3938u}, // row frames    centerY-56
+        {0x1682Au,0x3936u}, // selection     centerY-54
+        {0x16860u,0x3834u}, // slot details  centerY-52
+        {0x1687Au,0x3A2Au}, // empty label   centerY-42
     };
-    uint16_t *locations[sizeof(patches)/sizeof(patches[0])];
-    for(unsigned i=0;i<sizeof(patches)/sizeof(patches[0]);i++) {
-        locations[i]=(uint16_t*)lgt_translate_ptr(img,patches[i].address);
-        if(!locations[i] || *locations[i]!=patches[i].before) {
-            printf("[RV!] slot layout opcode mismatch at %08lx; skipped\n",
-                   (unsigned long)patches[i].address);
+    const void *center=lgt_translate_ptr(img,0x015003D0u);
+    uint32_t *locations[sizeof(pools)/sizeof(pools[0])];
+    if(!center) {
+        printf("[RV!] menu pages: centerY global missing; skipped\n");
+        return;
+    }
+    for(unsigned i=0;i<sizeof(pools)/sizeof(pools[0]);i++) {
+        locations[i]=(uint32_t*)lgt_translate_ptr(img,pools[i]);
+        if(!locations[i] || *locations[i]!=(uint32_t)(uintptr_t)center) {
+            printf("[RV!] menu pages literal mismatch at %08lx; skipped\n",
+                   (unsigned long)pools[i]);
             return;
         }
     }
-    for(unsigned i=0;i<sizeof(patches)/sizeof(patches[0]);i++) {
-        *locations[i]=patches[i].after;
-        DC_FlushRange(locations[i],sizeof(uint16_t));
-        IC_InvalidateRange(locations[i],sizeof(uint16_t));
+    for(const Imm &m:slot_originals) {
+        const uint16_t *op=(const uint16_t*)lgt_translate_ptr(img,m.address);
+        if(!op || *op!=m.original) {
+            printf("[RV!] menu pages: slot opcode %08lx is not original; skipped\n",
+                   (unsigned long)m.address);
+            return;
+        }
     }
-    printf("[RV] slot page lifted=64 title=16 rows=40,83,126\n");
+    for(unsigned i=0;i<sizeof(pools)/sizeof(pools[0]);i++) {
+        *locations[i]=(uint32_t)(uintptr_t)&rv_menu_center_y;
+        DC_FlushRange(locations[i],sizeof(uint32_t));
+        IC_InvalidateRange(locations[i],sizeof(uint32_t));
+    }
+    printf("[RV] menu pages lifted=64 (centerY=96): slot/settings/help/inquiry/exit/network\n");
 }
 
 // Private read-only viewport values for gameplay, camera bounds and in-game UI.
@@ -457,7 +484,7 @@ int main(void) {
     patch_ragnarok_notice_layout(&image);
     patch_ragnarok_loader_layout(&image);
     patch_ragnarok_title_layout(&image);
-    patch_ragnarok_slot_layout(&image);
+    patch_ragnarok_menu_pages(&image);
     patch_ragnarok_gameplay_viewport(&image);
     patch_ragnarok_intro_controls(&image);
     install_ragnarok_sub_map(&image);
